@@ -15,10 +15,10 @@
     </insert>
     <select id="queryClientByUserName" resultType="com.epms.entity.Client">
         SELECT  cName, cId, cTel, cPhoneNumber, cQNumber, cEmail, cUsername, cPwd, cUnit
-        FROM client WHERE sUsername=#{cUsername}
+        FROM client WHERE cUsername=#{cUserName}
     </select>
     <select id="queryClientById" resultType="com.epms.entity.Client">
-        SELECT sName, sId, sType, sSex, sIdNumber, sAddress, sTel, sUsername, sPwd
-        FROM client WHERE sUsername=#{sId}
+        SELECT cName, cId, cTel, cPhoneNumber, cQNumber, cEmail, cUsername, cPwd, cUnit
+        FROM client WHERE cId=#{cId}
     </select>
 </mapper>

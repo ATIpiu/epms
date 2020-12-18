@@ -10,6 +10,18 @@ public class CommitLog {
     String cFeedback;
     Integer cResponseType;
 
+    public CommitLog() {}
+
+    public CommitLog(Integer sId, Integer pId, Date cCreateTime,
+                     Integer sType, String cFeedback, Integer cResponseType) {
+        this.sId = sId;
+        this.pId = pId;
+        this.cCreateTime = cCreateTime;
+        this.sType = sType;
+        this.cFeedback = cFeedback;
+        this.cResponseType = cResponseType;
+    }
+
     public Integer getsId() {
         return sId;
     }

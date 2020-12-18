@@ -19,6 +19,6 @@
     </select>
     <select id="queryStaffById" resultType="com.epms.entity.Staff">
         SELECT sName, sId, sType, sSex, sIdNumber, sAddress, sTel, sUsername, sPwd
-        FROM staff WHERE sUsername=#{sId}
+        FROM staff WHERE sId=#{sId}
     </select>
 </mapper>

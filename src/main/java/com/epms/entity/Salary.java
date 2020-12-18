@@ -10,6 +10,19 @@ public class Salary {
     Date sSalaryTime;
     String sEvaluation;
 
+    public Salary() {
+    }
+
+    public Salary(Integer sId, Integer pId, Float sQuality,
+                  Float sCheckIn, Date sSalaryTime, String sEvaluation) {
+        this.sId = sId;
+        this.pId = pId;
+        this.sQuality = sQuality;
+        this.sCheckIn = sCheckIn;
+        this.sSalaryTime = sSalaryTime;
+        this.sEvaluation = sEvaluation;
+    }
+
     public Integer getsId() {
         return sId;
     }

@@ -5,6 +5,15 @@ public class SelectProject {
     Integer pId;
     Integer spId;
 
+    public SelectProject() {
+    }
+
+    public SelectProject(Integer sId, Integer pId, Integer spId) {
+        this.sId = sId;
+        this.pId = pId;
+        this.spId = spId;
+    }
+
     public Integer getsId() {
         return sId;
     }

@@ -11,6 +11,21 @@ public class Client {
     String cPwd;
     String cUnit;
 
+    public Client(){}
+    public Client(String cName, Integer cId, String cTel,
+                  String cPhoneNumber, String cQNumber, String cEmail,
+                  String cUsername, String cPwd, String cUnit) {
+        this.cName = cName;
+        this.cId = cId;
+        this.cTel = cTel;
+        this.cPhoneNumber = cPhoneNumber;
+        this.cQNumber = cQNumber;
+        this.cEmail = cEmail;
+        this.cUsername = cUsername;
+        this.cPwd = cPwd;
+        this.cUnit = cUnit;
+    }
+
     public String getcName() {
         return cName;
     }

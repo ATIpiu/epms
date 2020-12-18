@@ -8,6 +8,16 @@ public class UploadFileLog {
     Date upLoadTime;
     String upLoadUrl;
 
+    public UploadFileLog() {
+    }
+
+    public UploadFileLog(Integer sId, Integer pId, Date upLoadTime, String upLoadUrl) {
+        this.sId = sId;
+        this.pId = pId;
+        this.upLoadTime = upLoadTime;
+        this.upLoadUrl = upLoadUrl;
+    }
+
     public Integer getsId() {
         return sId;
     }
