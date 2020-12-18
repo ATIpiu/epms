@@ -3,25 +3,25 @@ package com.epms.entity;
 import java.sql.Date;
 
 public class UploadFileLog {
-    Integer u_sId;
-    Integer u_pId;
+    Integer sId;
+    Integer pId;
     Date upLoadTime;
     String upLoadUrl;
 
-    public Integer getU_sId() {
-        return u_sId;
+    public Integer getsId() {
+        return sId;
     }
 
-    public void setU_sId(Integer u_sId) {
-        this.u_sId = u_sId;
+    public void setsId(Integer sId) {
+        this.sId = sId;
     }
 
-    public Integer getU_pId() {
-        return u_pId;
+    public Integer getpId() {
+        return pId;
     }
 
-    public void setU_pId(Integer u_pId) {
-        this.u_pId = u_pId;
+    public void setpId(Integer pId) {
+        this.pId = pId;
     }
 
     public Date getUpLoadTime() {
@@ -43,8 +43,8 @@ public class UploadFileLog {
     @Override
     public String toString() {
         return "UploadFileLog{" +
-                "u_sId=" + u_sId +
-                ", u_pId=" + u_pId +
+                "sId=" + sId +
+                ", pId=" + pId +
                 ", upLoadTime=" + upLoadTime +
                 ", upLoadUrl='" + upLoadUrl + '\'' +
                 '}';

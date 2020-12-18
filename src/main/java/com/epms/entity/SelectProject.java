@@ -1,24 +1,24 @@
 package com.epms.entity;
 
 public class SelectProject {
-    Integer sp_sId;
-    Integer sp_pId;
+    Integer sId;
+    Integer pId;
     Integer spId;
 
-    public Integer getSp_sId() {
-        return sp_sId;
+    public Integer getsId() {
+        return sId;
     }
 
-    public void setSp_sId(Integer sp_sId) {
-        this.sp_sId = sp_sId;
+    public void setsId(Integer sId) {
+        this.sId = sId;
     }
 
-    public Integer getSp_pId() {
-        return sp_pId;
+    public Integer getpId() {
+        return pId;
     }
 
-    public void setSp_pId(Integer sp_pId) {
-        this.sp_pId = sp_pId;
+    public void setpId(Integer pId) {
+        this.pId = pId;
     }
 
     public Integer getSpId() {
@@ -32,8 +32,8 @@ public class SelectProject {
     @Override
     public String toString() {
         return "SelectProject{" +
-                "sp_sId=" + sp_sId +
-                ", sp_pId=" + sp_pId +
+                "sId=" + sId +
+                ", pId=" + pId +
                 ", spId=" + spId +
                 '}';
     }

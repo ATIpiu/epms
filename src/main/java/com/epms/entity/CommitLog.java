@@ -3,27 +3,27 @@ package com.epms.entity;
 import java.sql.Date;
 
 public class CommitLog {
-    Integer c_sId;
-    Integer c_pId;
+    Integer sId;
+    Integer pId;
     Date cCreateTime;
-    Integer c_sType;
+    Integer sType;
     String cFeedback;
     Integer cResponseType;
 
-    public Integer getC_sId() {
-        return c_sId;
+    public Integer getsId() {
+        return sId;
     }
 
-    public void setC_sId(Integer c_sId) {
-        this.c_sId = c_sId;
+    public void setsId(Integer sId) {
+        this.sId = sId;
     }
 
-    public Integer getC_pId() {
-        return c_pId;
+    public Integer getpId() {
+        return pId;
     }
 
-    public void setC_pId(Integer c_pId) {
-        this.c_pId = c_pId;
+    public void setpId(Integer pId) {
+        this.pId = pId;
     }
 
     public Date getcCreateTime() {
@@ -34,12 +34,12 @@ public class CommitLog {
         this.cCreateTime = cCreateTime;
     }
 
-    public Integer getC_sType() {
-        return c_sType;
+    public Integer getsType() {
+        return sType;
     }
 
-    public void setC_sType(Integer c_sType) {
-        this.c_sType = c_sType;
+    public void setsType(Integer sType) {
+        this.sType = sType;
     }
 
     public String getcFeedback() {
@@ -61,10 +61,10 @@ public class CommitLog {
     @Override
     public String toString() {
         return "CommitLog{" +
-                "c_sId=" + c_sId +
-                ", c_pId=" + c_pId +
+                "sId=" + sId +
+                ", pId=" + pId +
                 ", cCreateTime=" + cCreateTime +
-                ", c_sType=" + c_sType +
+                ", sType=" + sType +
                 ", cFeedback='" + cFeedback + '\'' +
                 ", cResponseType=" + cResponseType +
                 '}';

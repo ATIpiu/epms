@@ -3,27 +3,27 @@ package com.epms.entity;
 import java.sql.Date;
 
 public class Salary {
-    Integer s_sId;
-    Integer s_pId;
+    Integer sId;
+    Integer pId;
     Float sQuality;
     Float sCheckIn;
     Date sSalaryTime;
     String sEvaluation;
 
-    public Integer getS_sId() {
-        return s_sId;
+    public Integer getsId() {
+        return sId;
     }
 
-    public void setS_sId(Integer s_sId) {
-        this.s_sId = s_sId;
+    public void setsId(Integer sId) {
+        this.sId = sId;
     }
 
-    public Integer getS_pId() {
-        return s_pId;
+    public Integer getpId() {
+        return pId;
     }
 
-    public void setS_pId(Integer s_pId) {
-        this.s_pId = s_pId;
+    public void setpId(Integer pId) {
+        this.pId = pId;
     }
 
     public Float getsQuality() {
@@ -61,8 +61,8 @@ public class Salary {
     @Override
     public String toString() {
         return "Salary{" +
-                "s_sId=" + s_sId +
-                ", s_pId=" + s_pId +
+                "sId=" + sId +
+                ", pId=" + pId +
                 ", sQuality=" + sQuality +
                 ", sCheckIn=" + sCheckIn +
                 ", sSalaryTime=" + sSalaryTime +

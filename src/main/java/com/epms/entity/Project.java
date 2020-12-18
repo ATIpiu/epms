@@ -8,7 +8,7 @@ public class Project {
     Date pCreateDate;
     Date pEndDate;
     Integer pType;
-    Integer p_cId;
+    Integer cId;
     Integer pModelManagerId;
     String pModelStaff;
     Integer pRenderManagerId;
@@ -62,12 +62,12 @@ public class Project {
         this.pType = pType;
     }
 
-    public Integer getP_cId() {
-        return p_cId;
+    public Integer getcId() {
+        return cId;
     }
 
-    public void setP_cId(Integer p_cId) {
-        this.p_cId = p_cId;
+    public void setcId(Integer cId) {
+        this.cId = cId;
     }
 
     public Integer getpModelManagerId() {
@@ -174,7 +174,7 @@ public class Project {
                 ", pCreateDate=" + pCreateDate +
                 ", pEndDate=" + pEndDate +
                 ", pType=" + pType +
-                ", p_cId=" + p_cId +
+                ", cId=" + cId +
                 ", pModelManagerId=" + pModelManagerId +
                 ", pModelStaff='" + pModelStaff + '\'' +
                 ", pRenderManagerId=" + pRenderManagerId +
