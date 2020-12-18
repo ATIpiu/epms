@@ -11,6 +11,21 @@ public class Staff {
     String sUsername;
     String sPwd;
 
+    public Staff(){}
+    public Staff(String sName, Integer sId, Integer sType, String sSex,
+                 String sIdNumber, String sAddress, String sTel,
+                 String sUsername, String sPwd) {
+        this.sName = sName;
+        this.sId = sId;
+        this.sType = sType;
+        this.sSex = sSex;
+        this.sIdNumber = sIdNumber;
+        this.sAddress = sAddress;
+        this.sTel = sTel;
+        this.sUsername = sUsername;
+        this.sPwd = sPwd;
+    }
+
     public String getsName() {
         return sName;
     }
