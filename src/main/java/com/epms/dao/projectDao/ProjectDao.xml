@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.epms.dao.projectDao.ProjectDao">
+
+    <insert id="insertIntoProject" parameterType="com.epms.entity.Project"
+            useGeneratedKeys="true" keyProperty="pId" keyColumn="pId">
+        insert into
+		project(pId, pName, pCreateDate, pEndDate, ptype, cId, pModelManagerId, pModelStaff,
+         pRenderManagerId, pRenderStaff, pAfterManagerId, pAfterStaff, pPeriodStatus, pProjectStatus,
+         pFileUrl, pModelWage, pRenderWage, pAfterWage)
+		values
+		(${pId},#{pName},#{pCreateDate},#{pEndDate},${ptype},${cId},${pModelManagerId},#{pModelStaff},
+		${pRenderManagerId},#{pRenderStaff},${pAfterManagerId},#{pAfterStaff},${pPeriodStatus},${pProjectStatus},
+		#{pFileUrl},${pModelWage},${pRenderWage},${pAfterWage})
+    </insert>
+
+    <delete id="deleteProjectBypId" parameterType="int">
+        delete from project where pId=${pId}
+    </delete>
+
+    <select id="queryProjectBypId" resultType="com.epms.entity.Project">
+        select * from project where pId=${pId}
+    </select>
+
+    <select id="queryProjectBycId" resultType="com.epms.entity.Project">
+        select * from project where cId=${cId}
+    </select>
+
+    <select id="queryAllProjects" resultType="com.epms.entity.Project">
+        select * from project
+    </select>
+</mapper>

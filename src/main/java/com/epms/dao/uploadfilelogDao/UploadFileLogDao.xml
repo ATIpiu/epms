@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.epms.dao.uploadfilelogDao.UploadFileLogDao">
+    <insert id="insertIntoUploadFileLog" parameterType="com.epms.entity.UploadFileLog"
+            useGeneratedKeys="true">
+        insert into uploadfilelog(sId,pId,upLoadTime,upLoadUrl)
+        values (${sId},${pId},#{upLoadTime},#{upLoadUrl})
+    </insert>
+
+    <delete id="deleteUploadFileLog"  parameterType="com.epms.entity.UploadFileLog">
+        delete from uploadfilelog where sId=${sId} and pId=${pId} and upLoadTime=#{upLoadTime}
+    </delete>
+
+    <update id="updateUploadFileLog" parameterType="com.epms.entity.UploadFileLog">
+        update uploadfilelog set upLoadUrl=#{upLoadUrl} where sId=${sId} and pId=${pId} and upLoadTime=#{upLoadTime}
+    </update>
+
+    <select id="queryUploadFileLogsBysId" resultType="com.epms.entity.UploadFileLog" parameterType="int">
+        select * from uploadfilelog where sId=${sId}
+    </select>
+
+    <select id="queryUploadFileLogsBypId" resultType="com.epms.entity.UploadFileLog" parameterType="int">
+        select * from uploadfilelog where pId=${pId}
+    </select>
+
+    <select id="queryAllUploadFileLogs" resultType="com.epms.entity.UploadFileLog">
+        select * from uploadfilelog
+    </select>
+
+
+</mapper>

@@ -4,14 +4,14 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.epms.dao.staffDao.StaffDao">
     <select id="queryAllStaffs" resultType="com.epms.entity.Staff">
-        SELECT sName, sId, sType, sSex, sIdNumber, sAddress, sTel, sUsername, sPwd  FROM staff
+        select sName, sId, sType, sSex, sIdNumber, sAddress, sTel, sUsername, sPwd  FROM staff
     </select>
     <insert id="insertIntoStaff" parameterType="com.epms.entity.Staff"
             useGeneratedKeys="true" keyProperty="sId" keyColumn="sId">
          INSERT INTO
 		staff(sName, sId, sType, sSex, sIdNumber, sAddress, sTel, sUsername, sPwd)
 		VALUES
-		(#{sName},#{sId},#{sType},#{sSex},#{sIdNumber},#{sAddress},#{sTel},#{sUsername},#{sPwd})
+		(#{sName},${sId},${sType},#{sSex},#{sIdNumber},#{sAddress},#{sTel},#{sUsername},#{sPwd})
     </insert>
     <select id="queryStaffByUserName" resultType="com.epms.entity.Staff">
         SELECT sName, sId, sType, sSex, sIdNumber, sAddress, sTel, sUsername, sPwd
@@ -19,6 +19,6 @@
     </select>
     <select id="queryStaffById" resultType="com.epms.entity.Staff">
         SELECT sName, sId, sType, sSex, sIdNumber, sAddress, sTel, sUsername, sPwd
-        FROM staff WHERE sId=#{sId}
+        FROM staff WHERE sId=${sId}
     </select>
 </mapper>
