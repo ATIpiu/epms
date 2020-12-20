@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.epms.dao.selectprojectDao.SelectProjectDao">
+<mapper namespace="com.epms.dao.selectProjectDao.SelectProjectDao">
     <insert id="insertIntoSelectProject" parameterType="com.epms.entity.SelectProject"
             useGeneratedKeys="true">
         insert into selectproject(sId,pId,spId) values (${sId},${pId},${spId})

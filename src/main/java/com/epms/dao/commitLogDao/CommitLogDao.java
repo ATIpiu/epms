@@ -1,4 +1,4 @@
-package com.epms.dao.commitlogDao;
+package com.epms.dao.commitLogDao;
 
 import com.epms.entity.CommitLog;
 

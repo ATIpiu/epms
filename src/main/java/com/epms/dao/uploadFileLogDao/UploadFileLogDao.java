@@ -1,28 +1,27 @@
-package com.epms.dao.uploadfilelogDao;
+package com.epms.dao.uploadFileLogDao;
 
-import com.epms.entity.Staff;
 import com.epms.entity.UploadFileLog;
 
 import java.util.List;
 
 public interface UploadFileLogDao {
     /**
-     * @param uploadfilelog 参数为一个UploadFileLog类型的对象
+     * @param uploadFileLog 参数为一个UploadFileLog类型的对象
      * @return int 若插入成功返回1，失败返回0；
      */
-    int insertIntoUploadFileLog(UploadFileLog uploadfilelog);
+    int insertIntoUploadFileLog(UploadFileLog uploadFileLog);
 
     /**
-     * @param uploadfilelog 参数为一次提交的记录
+     * @param uploadFileLog 参数为一次提交的记录
      * @return int 若删除成功返回1，失败返回0；
      */
-    int deleteUploadFileLog(UploadFileLog uploadfilelog);
+    int deleteUploadFileLog(UploadFileLog uploadFileLog);
 
     /**
-     * @param uploadfilelog 参数为一次提交的记录
+     * @param uploadFileLog 参数为一次提交的记录
      * @return int 若更新成功返回1，失败返回0；
      */
-    int updateUploadFileLog(UploadFileLog uploadfilelog);
+    int updateUploadFileLog(UploadFileLog uploadFileLog);
 
     /**
      * 获取上传日志（UploadFileLog）信息；

@@ -21,9 +21,9 @@ public interface ProjectDao {
 
     /**
      * @param pId 参数为一个整形Id
-     * @return List<Project> 根据pId查询出的某条project(项目)记录
+     * @return Project 根据pId查询出的某条project(项目)记录
      */
-    List<Project> queryProjectBypId(int pId);
+    Project queryProjectBypId(int pId);
 
     /**
      * @param cId 参数为一个整形Id
@@ -33,7 +33,6 @@ public interface ProjectDao {
 
     /**
      * 获取所有的项目（project）信息；
-     *
      * @return List<Project> 所有的client信息
      */
     List<Project> queryAllProjects();

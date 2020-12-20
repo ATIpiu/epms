@@ -22,11 +22,11 @@ public class ClientDaoTest {
         //按sId查询测试
 //        Client c=new Client("Test2",12345678,"12345667","123456","1123456","1522760512@qq.com","Atipiu","123456","none");
 //        System.out.println(clientDao.queryClientById(c.getcId()));
-        //按sUserName查询测试
-//        Client c=new Client("Test2",12345678,"12345667","123456","1123456","1522760512@qq.com","Atipiu","123456","none");
-//        System.out.println(clientDao.queryClientByUserName(c.getcUsername()));
-        //更新Client对象测试
+//        按sUserName查询测试
         Client c=new Client("Test3",12345678,"12345667","123456","1123456","1522760512@qq.com","Atipiu","123456","none");
-        System.out.println(clientDao.updateClient(c));
+        System.out.println(clientDao.queryClientByUserName(c.getcUsername()));
+        //更新Client对象测试
+//        Client c=new Client("Test3",12345678,"12345667","123456","1123456","1522760512@qq.com","Atipiu","123456","none");
+//        System.out.println(clientDao.updateClient(c));
     }
 }

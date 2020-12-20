@@ -1,16 +1,15 @@
-package com.epms.dao.selectprojectDao;
+package com.epms.dao.selectProjectDao;
 
 import com.epms.entity.SelectProject;
 
 import java.util.List;
-import java.util.Map;
 
 public interface SelectProjectDao {
     /**
-     * @param selectproject 参数为一个SelectProject类型的对象
+     * @param selectProject 参数为一个SelectProject类型的对象
      * @return int 若插入成功返回1，失败返回0；
      */
-    int insertIntoSelectProject(SelectProject selectproject);
+    int insertIntoSelectProject(SelectProject selectProject);
 
     /**
      * @param spId 员工选项目的主键
@@ -19,10 +18,10 @@ public interface SelectProjectDao {
     int deleteSelectProjectByspId(int spId);
 
     /**
-     * @param selectproject 参数为一个SelectProject类型的对象
+     * @param selectProject 参数为一个SelectProject类型的对象
      * @return int 若更改成功返回1，失败返回0；
      */
-    int updateSelectProject(SelectProject selectproject);
+    int updateSelectProject(SelectProject selectProject);
 
 
     /**

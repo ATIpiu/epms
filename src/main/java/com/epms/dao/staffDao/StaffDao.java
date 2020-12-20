@@ -29,7 +29,6 @@ public interface StaffDao {
     Staff queryStaffByUserName(String sUserName);
 
     /**
-     *
      * @param staff 传入要更新的Staff对象；
      * @return 更新成功返回1；失败则返回0；
      */
