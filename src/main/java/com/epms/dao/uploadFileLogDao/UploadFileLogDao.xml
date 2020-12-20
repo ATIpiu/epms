@@ -5,28 +5,31 @@
 <mapper namespace="com.epms.dao.uploadFileLogDao.UploadFileLogDao">
     <insert id="insertIntoUploadFileLog" parameterType="com.epms.entity.UploadFileLog"
             useGeneratedKeys="true">
-        insert into uploadfilelog(sId,pId,upLoadTime,upLoadUrl)
-        values (${sId},${pId},#{upLoadTime},#{upLoadUrl})
+        INSERT INTO uploadfilelog(sId,pId,upLoadTime,upLoadUrl)
+        VALUES (${sId},${pId},#{upLoadTime},#{upLoadUrl})
     </insert>
 
     <delete id="deleteUploadFileLog"  parameterType="com.epms.entity.UploadFileLog">
-        delete from uploadfilelog where sId=${sId} and pId=${pId} and upLoadTime=#{upLoadTime}
+        DELETE FROM uploadfilelog WHERE sId=${sId} AND pId=${pId} AND upLoadTime=#{upLoadTime}
     </delete>
 
     <update id="updateUploadFileLog" parameterType="com.epms.entity.UploadFileLog">
-        update uploadfilelog set upLoadUrl=#{upLoadUrl} where sId=${sId} and pId=${pId} and upLoadTime=#{upLoadTime}
+        UPDATE uploadfilelog SET upLoadUrl=#{upLoadUrl} WHERE sId=${sId} AND pId=${pId} AND upLoadTime=#{upLoadTime}
     </update>
 
     <select id="queryUploadFileLogsBysId" resultType="com.epms.entity.UploadFileLog" parameterType="int">
-        select * from uploadfilelog where sId=${sId}
+        SELECT sId, pId, upLoadTime, upLoadUrl
+        FROM uploadfilelog WHERE sId=${sId}
     </select>
 
     <select id="queryUploadFileLogsBypId" resultType="com.epms.entity.UploadFileLog" parameterType="int">
-        select * from uploadfilelog where pId=${pId}
+        SELECT sId, pId, upLoadTime, upLoadUrl
+        FROM uploadfilelog WHERE pId=${pId}
     </select>
 
     <select id="queryAllUploadFileLogs" resultType="com.epms.entity.UploadFileLog">
-        select * from uploadfilelog
+        SELECT sId, pId, upLoadTime, upLoadUrl
+        FROM uploadfilelog
     </select>
 
 
