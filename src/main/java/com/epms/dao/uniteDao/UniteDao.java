@@ -2,6 +2,7 @@ package com.epms.dao.uniteDao;
 
 import com.epms.entity.CommitLog;
 import com.epms.entity.Project;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -26,6 +27,6 @@ public interface UniteDao {
      * @param : type : 主管类型（模型、渲染、后期）
      * @return 提交的日志列表
      */
-    List<CommitLog> managerGetCommitLog(int sId, int type);
+    List<CommitLog> managerGetCommitLog(@Param("sId")int sId, @Param("type")int type);
 
 }

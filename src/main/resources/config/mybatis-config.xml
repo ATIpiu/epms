@@ -18,11 +18,11 @@
         <!--数据库表中的字段create_time映射到Entity类中的createTime-->
         <setting name="mapUnderscoreToCamelCase" value="true"/>
     </settings>
-    <typeAliases>
-        <package name="com.epms.entity"/>
-    </typeAliases>
-    <mappers>
-        <package name="com.epms.dao"/>
-    </mappers>
+<!--    <typeAliases>-->
+<!--        <package name="com.epms.entity"/>-->
+<!--    </typeAliases>-->
+<!--    <mappers>-->
+<!--        <package name="com.epms.dao"/>-->
+<!--    </mappers>-->
 
 </configuration>
