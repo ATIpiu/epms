@@ -4,21 +4,36 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.epms.dao.staffDao.StaffDao">
     <select id="queryAllStaffs" resultType="com.epms.entity.Staff">
-        select sName, sId, sType, sSex, sIdNumber, sAddress, sTel, sUsername, sPwd  FROM staff
+        select sName, sId, sType, sSex, sIdNumber, sAddress, sTel, sUsername, sPwd  from staff
     </select>
     <insert id="insertIntoStaff" parameterType="com.epms.entity.Staff"
             useGeneratedKeys="true" keyProperty="sId" keyColumn="sId">
-         INSERT INTO
+         insert into
 		staff(sName, sId, sType, sSex, sIdNumber, sAddress, sTel, sUsername, sPwd)
-		VALUES
+		values
 		(#{sName},${sId},${sType},#{sSex},#{sIdNumber},#{sAddress},#{sTel},#{sUsername},#{sPwd})
     </insert>
     <select id="queryStaffByUserName" resultType="com.epms.entity.Staff">
-        SELECT sName, sId, sType, sSex, sIdNumber, sAddress, sTel, sUsername, sPwd
-        FROM staff WHERE sUsername=#{sUserName}
+        select sName, sId, sType, sSex, sIdNumber, sAddress, sTel, sUsername, sPwd
+        from staff where sUsername=#{sUserName}
     </select>
     <select id="queryStaffById" resultType="com.epms.entity.Staff">
-        SELECT sName, sId, sType, sSex, sIdNumber, sAddress, sTel, sUsername, sPwd
-        FROM staff WHERE sId=${sId}
+        select sName, sId, sType, sSex, sIdNumber, sAddress, sTel, sUsername, sPwd
+        from staff where sId=${sId}
     </select>
+    <update id="updateStaff" parameterType="com.epms.entity.Staff">
+        update staff
+        <set>
+            <if test="sName!=null">sName=#{sName},</if>
+            <if test="sType!=0">sType=#{sType},</if>
+            <if test="sSex!=null">sSex=#{sSex},</if>
+            <if test="sIdNumber!=null">sIdNumber=#{sIdNumber},</if>
+            <if test="sAddress!=null">sAddress=#{sAddress},</if>
+            <if test="sTel!=null">sTel=#{sTel},</if>
+            <if test="sUsername!=null">sUsername=#{sUsername},</if>
+            <if test="sPwd!=null">sPwd=#{sPwd}</if>
+        </set>
+        where sId=#{sId}
+    </update>
+
 </mapper>

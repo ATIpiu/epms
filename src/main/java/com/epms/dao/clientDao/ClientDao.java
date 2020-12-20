@@ -28,5 +28,12 @@ public interface ClientDao {
      */
     Client queryClientByUserName(String cUserName);
 
+    /**
+     *
+     * @param client 要更新的Client对象，必须包含cId
+     * @return 成功更新返回1，失败返回0
+     */
+    int updateClient(Client client);
+
 
 }
