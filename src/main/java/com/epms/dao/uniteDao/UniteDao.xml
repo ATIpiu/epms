@@ -4,6 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.epms.dao.uniteDao.UniteDao">
     <select id="staffGetProject" resultType="com.epms.entity.Project">
+        SELECT * FROM project WHERE pId IN (SELECT pId FROM selectproject WHERE sId=10000004)
     </select>
 
     <select id="clientGetCommitLog" resultType="com.epms.entity.CommitLog">

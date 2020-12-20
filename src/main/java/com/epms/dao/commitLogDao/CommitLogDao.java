@@ -13,16 +13,16 @@ public interface CommitLogDao {
     int insertIntoCommitLog(Map<String, Object> map);
 
     /**
-     * @param commitlog 参数为一次commit的记录
+     * @param commitLog 参数为一次commit的记录
      * @return int 若删除成功返回1，失败返回0；
      */
-    int deleteCommitLog(CommitLog commitlog);
+    int deleteCommitLog(CommitLog commitLog);
 
     /**
-     * @param commitlog 参数为一次提交的记录
+     * @param commitLog 参数为一次提交的记录
      * @return int 若更新成功返回1，失败返回0；
      */
-    int updateCommitLog(CommitLog commitlog);
+    int updateCommitLog(CommitLog commitLog);
 
     /**
      * 获取commit日志（CommitLog）信息；

@@ -14,14 +14,6 @@ public interface UniteDao {
     List<Project> staffGetProject(int sId);
 
     /**
-     * 客户查询自己所拥有的项目列表
-     * @param cId：客户ID
-     * @return
-     *
-     *List<Project> clientGetProject(int cId);
-     */
-
-    /**
      * 客户查询员工提交记录
      * @param cId：客户ID
      * @return 提交的日志列表

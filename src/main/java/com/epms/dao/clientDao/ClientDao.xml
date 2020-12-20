@@ -4,25 +4,25 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.epms.dao.clientDao.ClientDao">
     <select id="queryAllClients" resultType="com.epms.entity.Client">
-        select cName, cId, cTel, cPhoneNumber, cQNumber, cEmail, cUsername, cPwd, cUnit from client
+        SELECT cName, cId, cTel, cPhoneNumber, cQNumber, cEmail, cUsername, cPwd, cUnit FROM client
     </select>
     <insert id="insertIntoClient" parameterType="com.epms.entity.Client"
             useGeneratedKeys="true" keyProperty="sId" keyColumn="sId">
-         insert into
+         INSERT INTO
 		client(cName, cId, cTel, cPhoneNumber, cQNumber, cEmail, cUsername, cPwd, cUnit)
-		values
+		VALUES
 		(#{cName},${cId},#{cTel},#{cPhoneNumber},#{cQNumber},#{cEmail},#{cUsername},#{cPwd},#{cUnit})
     </insert>
     <select id="queryClientByUserName" resultType="com.epms.entity.Client">
-        select  cName, cId, cTel, cPhoneNumber, cQNumber, cEmail, cUsername, cPwd, cUnit
-        from client where cUsername=#{cUserName}
+        SELECT cName, cId, cTel, cPhoneNumber, cQNumber, cEmail, cUsername, cPwd, cUnit
+        FROM client WHERE cUsername=#{cUserName}
     </select>
     <select id="queryClientById" resultType="com.epms.entity.Client">
-        select cName, cId, cTel, cPhoneNumber, cQNumber, cEmail, cUsername, cPwd, cUnit
-        from client where cId=${cId}
+        SELECT cName, cId, cTel, cPhoneNumber, cQNumber, cEmail, cUsername, cPwd, cUnit
+        FROM client WHERE cId=${cId}
     </select>
     <update id="updateClient" parameterType="com.epms.entity.Client">
-        update client
+        UPDATE client
         <set>
             <if test="cName!=null">cName=#{cName},</if>
             <if test="cTel!=null">cTel=#{cTel},</if>
@@ -33,7 +33,7 @@
             <if test="cPwd!=null">cPwd=#{cPwd},</if>
             <if test="cUnit!=null">cUnit=#{cUnit}</if>
         </set>
-        where cId=#{cId}
+        WHERE cId=#{cId}
     </update>
 
 </mapper>

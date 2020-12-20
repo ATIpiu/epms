@@ -6,29 +6,38 @@
 
     <insert id="insertIntoProject" parameterType="com.epms.entity.Project"
             useGeneratedKeys="true" keyProperty="pId" keyColumn="pId">
-        insert into
+        INSERT INTO
 		project(pId, pName, pCreateDate, pEndDate, ptype, cId, pModelManagerId, pModelStaff,
          pRenderManagerId, pRenderStaff, pAfterManagerId, pAfterStaff, pPeriodStatus, pProjectStatus,
          pFileUrl, pModelWage, pRenderWage, pAfterWage)
-		values
+		VALUES
 		(${pId},#{pName},#{pCreateDate},#{pEndDate},${ptype},${cId},${pModelManagerId},#{pModelStaff},
 		${pRenderManagerId},#{pRenderStaff},${pAfterManagerId},#{pAfterStaff},${pPeriodStatus},${pProjectStatus},
 		#{pFileUrl},${pModelWage},${pRenderWage},${pAfterWage})
     </insert>
 
     <delete id="deleteProjectBypId" parameterType="int">
-        delete from project where pId=${pId}
+        DELETE FROM project WHERE pId=${pId}
     </delete>
 
     <select id="queryProjectBypId" resultType="com.epms.entity.Project">
-        select * from project where pId=${pId}
+        SELECT pid, pname, pcreatedate, penddate, ptype, cid, pmodelmanagerid,
+         pmodelstaff, prendermanagerid, prenderstaff, paftermanagerid, pafterstaff,
+         pperiodstatus, pprojectstatus, pfileurl, pmodelwage, prenderwage, pafterwage
+         FROM project WHERE pId=${pId}
     </select>
 
     <select id="queryProjectBycId" resultType="com.epms.entity.Project">
-        select * from project where cId=${cId}
+        SELECT pid, pname, pcreatedate, penddate, ptype, cid, pmodelmanagerid,
+         pmodelstaff, prendermanagerid, prenderstaff, paftermanagerid, pafterstaff,
+         pperiodstatus, pprojectstatus, pfileurl, pmodelwage, prenderwage, pafterwage
+         FROM project WHERE cId=${cId}
     </select>
 
     <select id="queryAllProjects" resultType="com.epms.entity.Project">
-        select * from project
+        SELECT  pid, pname, pcreatedate, penddate, ptype, cid, pmodelmanagerid,
+         pmodelstaff, prendermanagerid, prenderstaff, paftermanagerid, pafterstaff,
+         pperiodstatus, pprojectstatus, pfileurl, pmodelwage, prenderwage, pafterwage
+         FROM project
     </select>
 </mapper>

@@ -5,29 +5,33 @@
 <mapper namespace="com.epms.dao.salaryDao.SalaryDao">
     <insert id="insertIntoSalary" parameterType="com.epms.entity.Salary"
             useGeneratedKeys="true">
-        insert into salary(sId,pId,sQuality,sSalaryTime)
-        values (${sId},${pId},${sQuality},#{sSalaryTime})
+        INSERT INTO salary(sId,pId,sQuality,sSalaryTime)
+        VALUES (${sId},${pId},${sQuality},#{sSalaryTime})
     </insert>
 
     <delete id="deleteSalary"  parameterType="com.epms.entity.Salary">
-        delete from salary where sId=${sId} and pId=${pId} and sSalaryTime=#{sSalaryTime}
+        DELETE FROM salary
+        WHERE sId=${sId} AND pId=${pId} AND sSalaryTime=#{sSalaryTime}
     </delete>
 
     <update id="updateSalary" parameterType="com.epms.entity.Salary">
-        update salary set sCheckIn=${sCheckIn},sEvaluation=#{sEvaluation}
-        where sId=${sId} and pId=${pId} and sSalaryTime=#{sSalaryTime}
+        UPDATE salary SET sCheckIn=${sCheckIn},sEvaluation=#{sEvaluation}
+        WHERE sId=${sId} AND pId=${pId} AND sSalaryTime=#{sSalaryTime}
     </update>
 
     <select id="querySalaryBysId" resultType="com.epms.entity.Salary" parameterType="int">
-        select * from salary where sId=${sId}
+        SELECT sId, pId, sQuality, sCheckIn, sSalaryTime, sEvaluation
+        FROM salary WHERE sId=${sId}
     </select>
 
     <select id="querySalaryBypId" resultType="com.epms.entity.Salary" parameterType="int">
-        select * from salary where pId=${pId}
+        SELECT sId, pId, sQuality, sCheckIn, sSalaryTime, sEvaluation
+        FROM salary WHERE pId=${pId}
     </select>
 
-    <select id="queryAllSalarys" resultType="com.epms.entity.Salary">
-        select * from salary
+    <select id="queryAllSalaries" resultType="com.epms.entity.Salary">
+        SELECT sId, pId, sQuality, sCheckIn, sSalaryTime, sEvaluation
+        FROM salary
     </select>
 
 

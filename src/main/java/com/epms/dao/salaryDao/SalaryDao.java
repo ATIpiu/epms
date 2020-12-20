@@ -42,6 +42,6 @@ public interface SalaryDao {
      *
      * @return list<Salary> 所有的Salary信息
      */
-    List<Salary> queryAllSalarys();
+    List<Salary> queryAllSalaries();
 
 }

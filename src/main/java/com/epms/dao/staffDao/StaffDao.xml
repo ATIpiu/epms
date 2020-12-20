@@ -4,25 +4,26 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.epms.dao.staffDao.StaffDao">
     <select id="queryAllStaffs" resultType="com.epms.entity.Staff">
-        select sName, sId, sType, sSex, sIdNumber, sAddress, sTel, sUsername, sPwd  from staff
+        SELECT sName, sId, sType, sSex, sIdNumber, sAddress, sTel, sUsername, sPwd
+        FROM staff
     </select>
     <insert id="insertIntoStaff" parameterType="com.epms.entity.Staff"
             useGeneratedKeys="true" keyProperty="sId" keyColumn="sId">
-         insert into
+        INSERT INTO
 		staff(sName, sId, sType, sSex, sIdNumber, sAddress, sTel, sUsername, sPwd)
-		values
+		VALUES
 		(#{sName},${sId},${sType},#{sSex},#{sIdNumber},#{sAddress},#{sTel},#{sUsername},#{sPwd})
     </insert>
     <select id="queryStaffByUserName" resultType="com.epms.entity.Staff">
-        select sName, sId, sType, sSex, sIdNumber, sAddress, sTel, sUsername, sPwd
-        from staff where sUsername=#{sUserName}
+        SELECT sName, sId, sType, sSex, sIdNumber, sAddress, sTel, sUsername, sPwd
+        FROM staff WHERE sUsername=#{sUserName}
     </select>
     <select id="queryStaffById" resultType="com.epms.entity.Staff">
-        select sName, sId, sType, sSex, sIdNumber, sAddress, sTel, sUsername, sPwd
-        from staff where sId=${sId}
+        SELECT sName, sId, sType, sSex, sIdNumber, sAddress, sTel, sUsername, sPwd
+        FROM staff WHERE sId=${sId}
     </select>
     <update id="updateStaff" parameterType="com.epms.entity.Staff">
-        update staff
+        UPDATE staff
         <set>
             <if test="sName!=null">sName=#{sName},</if>
             <if test="sType!=0">sType=#{sType},</if>
@@ -33,7 +34,7 @@
             <if test="sUsername!=null">sUsername=#{sUsername},</if>
             <if test="sPwd!=null">sPwd=#{sPwd}</if>
         </set>
-        where sId=#{sId}
+        WHERE sId=#{sId}
     </update>
 
 </mapper>
