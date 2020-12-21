@@ -3,6 +3,7 @@ package com.epms.dao.selectProjectDao;
 import com.epms.entity.SelectProject;
 
 import java.util.List;
+import java.util.Map;
 
 public interface SelectProjectDao {
     /**
@@ -12,10 +13,10 @@ public interface SelectProjectDao {
     int insertIntoSelectProject(SelectProject selectProject);
 
     /**
-     * @param spId 员工选项目的主键
+     * @param map  里面含有put进去的"spId"与其值
      * @return int 若删除成功返回1，失败返回0；
      */
-    int deleteSelectProjectByspId(int spId);
+    int deleteSelectProjectByspId(Map<String,Object> map);
 
     /**
      * @param selectProject 参数为一个SelectProject类型的对象

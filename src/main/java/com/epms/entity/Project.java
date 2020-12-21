@@ -1,12 +1,14 @@
 package com.epms.entity;
 
 import java.sql.Date;
+import java.sql.Time;
+import java.sql.Timestamp;
 
 public class Project {
     Integer pId;
     String pName;
-    Date pCreateDate;
-    Date pEndDate;
+    Timestamp pCreateDate;
+    Timestamp pEndDate;
     Integer pType;
     Integer cId;
     Integer pModelManagerId;
@@ -24,7 +26,7 @@ public class Project {
 
     public Project() {}
 
-    public Project(Integer pId, String pName, Date pCreateDate, Date pEndDate,
+    public Project(Integer pId, String pName, Timestamp pCreateDate, Timestamp pEndDate,
                    Integer pType, Integer cId, Integer pModelManagerId,
                    String pModelStaff, Integer pRenderManagerId, String pRenderStaff,
                    Integer pAfterManagerId, String pAfterStaff, Integer pPeriodStatus,
@@ -66,19 +68,19 @@ public class Project {
         this.pName = pName;
     }
 
-    public Date getpCreateDate() {
+    public Timestamp getpCreateDate() {
         return pCreateDate;
     }
 
-    public void setpCreateDate(Date pCreateDate) {
+    public void setpCreateDate(Timestamp pCreateDate) {
         this.pCreateDate = pCreateDate;
     }
 
-    public Date getpEndDate() {
+    public Timestamp getpEndDate() {
         return pEndDate;
     }
 
-    public void setpEndDate(Date pEndDate) {
+    public void setpEndDate(Timestamp pEndDate) {
         this.pEndDate = pEndDate;
     }
 

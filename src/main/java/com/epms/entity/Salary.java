@@ -1,20 +1,21 @@
 package com.epms.entity;
 
-import java.sql.Date;
+import java.sql.Time;
+import java.sql.Timestamp;
 
 public class Salary {
     Integer sId;
     Integer pId;
     Float sQuality;
     Float sCheckIn;
-    Date sSalaryTime;
+    Timestamp sSalaryTime;
     String sEvaluation;
 
     public Salary() {
     }
 
     public Salary(Integer sId, Integer pId, Float sQuality,
-                  Float sCheckIn, Date sSalaryTime, String sEvaluation) {
+                  Float sCheckIn, Timestamp sSalaryTime, String sEvaluation) {
         this.sId = sId;
         this.pId = pId;
         this.sQuality = sQuality;
@@ -55,11 +56,11 @@ public class Salary {
         this.sCheckIn = sCheckIn;
     }
 
-    public Date getsSalaryTime() {
+    public Timestamp getsSalaryTime() {
         return sSalaryTime;
     }
 
-    public void setsSalaryTime(Date sSalaryTime) {
+    public void setsSalaryTime(Timestamp sSalaryTime) {
         this.sSalaryTime = sSalaryTime;
     }
 

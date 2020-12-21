@@ -1,23 +1,24 @@
 package com.epms.entity;
 
-import java.sql.Date;
+import java.sql.Time;
+import java.sql.Time;
+import java.sql.Timestamp;
 
 public class CommitLog {
     Integer sId;
     Integer pId;
-    Date cCreateTime;
-    Integer sType;
+    Timestamp cCreateTime;
+    Integer cType;
     String cFeedback;
     Integer cResponseType;
 
-    public CommitLog() {}
+    public CommitLog(){}
 
-    public CommitLog(Integer sId, Integer pId, Date cCreateTime,
-                     Integer sType, String cFeedback, Integer cResponseType) {
+    public CommitLog(Integer sId, Integer pId, Timestamp cCreateTime, Integer cType, String cFeedback, Integer cResponseType) {
         this.sId = sId;
         this.pId = pId;
         this.cCreateTime = cCreateTime;
-        this.sType = sType;
+        this.cType = cType;
         this.cFeedback = cFeedback;
         this.cResponseType = cResponseType;
     }
@@ -38,20 +39,20 @@ public class CommitLog {
         this.pId = pId;
     }
 
-    public Date getcCreateTime() {
+    public Timestamp getcCreateTime() {
         return cCreateTime;
     }
 
-    public void setcCreateTime(Date cCreateTime) {
+    public void setcCreateTime(Timestamp cCreateTime) {
         this.cCreateTime = cCreateTime;
     }
 
-    public Integer getsType() {
-        return sType;
+    public Integer getcType() {
+        return cType;
     }
 
-    public void setsType(Integer sType) {
-        this.sType = sType;
+    public void setcType(Integer cType) {
+        this.cType = cType;
     }
 
     public String getcFeedback() {
@@ -76,7 +77,7 @@ public class CommitLog {
                 "sId=" + sId +
                 ", pId=" + pId +
                 ", cCreateTime=" + cCreateTime +
-                ", sType=" + sType +
+                ", cType=" + cType +
                 ", cFeedback='" + cFeedback + '\'' +
                 ", cResponseType=" + cResponseType +
                 '}';

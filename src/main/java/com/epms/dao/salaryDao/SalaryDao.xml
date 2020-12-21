@@ -11,25 +11,26 @@
 
     <delete id="deleteSalary"  parameterType="com.epms.entity.Salary">
         DELETE FROM salary
-        WHERE sId=#{sId} AND pId=#{pId} AND sSalaryTime=#{sSalaryTime}
+        WHERE sId=#{sId} AND pId=#{pId}
     </delete>
 
     <update id="updateSalary" parameterType="com.epms.entity.Salary">
         UPDATE salary
-        <set>
-            <if test="sQuality!=null">sQuality=#{sQuality},</if>
-            <if test="sCheckIn!=null">sCheckIn=#{sCheckIn},</if>
-            <if test="sEvaluation!=null">sEvaluation=#{sEvaluation}</if>
-        </set>
-        WHERE sId=#{sId} AND pId=#{pId} AND sSalaryTime=#{sSalaryTime}
+        SET sQuality=#{sQuality},sCheckIn=#{sCheckIn},sEvaluation=#{sEvaluation}
+        WHERE sId=#{sId} AND pId=#{pId}
     </update>
+<!--    <set>-->
+<!--        <if test="sQuality!=null">sQuality=#{sQuality},</if>-->
+<!--        <if test="sCheckIn!=null">sCheckIn=#{sCheckIn},</if>-->
+<!--        <if test="sEvaluation!=null">sEvaluation=#{sEvaluation}</if>-->
+<!--    </set>-->
 
-    <select id="querySalaryBysId" resultType="com.epms.entity.Salary" parameterType="int">
+    <select id="querySalaryBysId" resultType="com.epms.entity.Salary" parameterType="map">
         SELECT sId, pId, sQuality, sCheckIn, sSalaryTime, sEvaluation
         FROM salary WHERE sId=#{sId}
     </select>
 
-    <select id="querySalaryBypId" resultType="com.epms.entity.Salary" parameterType="int">
+    <select id="querySalaryBypId" resultType="com.epms.entity.Salary" parameterType="map">
         SELECT sId, pId, sQuality, sCheckIn, sSalaryTime, sEvaluation
         FROM salary WHERE pId=#{pId}
     </select>

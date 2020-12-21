@@ -4,6 +4,7 @@ import com.epms.entity.Client;
 import com.epms.entity.Project;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ProjectDao {
 
@@ -15,10 +16,10 @@ public interface ProjectDao {
     int insertIntoProject(Project project);
 
     /**
-     * @param pId 参数为项目对应的pId
+     * @param map 参数为项目对应的pId
      * @return int 若删除成功返回1，失败返回0；
      */
-    int deleteProjectBypId(int pId);
+    int deleteProjectBypId(Map<String,Object> map);
 
 
     /**
@@ -29,16 +30,16 @@ public interface ProjectDao {
     int updateProject(Project project);
 
     /**
-     * @param pId 参数为一个整形Id
+     * @param map 参数为一个整形Id
      * @return Project 根据pId查询出的某条project(项目)记录
      */
-    Project queryProjectBypId(int pId);
+    Project queryProjectBypId(Map<String,Object> map);
 
     /**
-     * @param cId 参数为一个整形Id
+     * @param map 参数为一个整形Id
      * @return List<Project> 根据cId查询出的某条project(项目)记录
      */
-    List<Project> queryProjectBycId(int cId);
+    List<Project> queryProjectBycId(Map<String,Object> map);
 
     /**
      * 获取所有的项目（project）信息；

@@ -1,17 +1,18 @@
 package com.epms.entity;
 
-import java.sql.Date;
+import java.sql.Time;
+import java.sql.Timestamp;
 
 public class UploadFileLog {
     Integer sId;
     Integer pId;
-    Date upLoadTime;
+    Timestamp upLoadTime;
     String upLoadUrl;
 
     public UploadFileLog() {
     }
 
-    public UploadFileLog(Integer sId, Integer pId, Date upLoadTime, String upLoadUrl) {
+    public UploadFileLog(Integer sId, Integer pId, Timestamp upLoadTime, String upLoadUrl) {
         this.sId = sId;
         this.pId = pId;
         this.upLoadTime = upLoadTime;
@@ -34,11 +35,11 @@ public class UploadFileLog {
         this.pId = pId;
     }
 
-    public Date getUpLoadTime() {
+    public Timestamp getUpLoadTime() {
         return upLoadTime;
     }
 
-    public void setUpLoadTime(Date upLoadTime) {
+    public void setUpLoadTime(Timestamp upLoadTime) {
         this.upLoadTime = upLoadTime;
     }
 

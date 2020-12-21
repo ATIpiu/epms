@@ -5,18 +5,18 @@
 <mapper namespace="com.epms.dao.commitLogDao.CommitLogDao">
     <insert id="insertIntoCommitLog" parameterType="map"
             useGeneratedKeys="true">
-        INSERT INTO commitlog(sId,pId,cCreateTime,sType)
-        VALUES (#{sId},#{pId},#{cCreateTime}#{sType})
+        INSERT INTO commitlog(sId,pId,cCreateTime,cType)
+        VALUES (#{sId},#{pId},#{cCreateTime},#{cType})
     </insert>
 
     <delete id="deleteCommitLog"  parameterType="com.epms.entity.CommitLog">
-        DELETE FROM commitlog WHERE sId=${sId} AND pId=#{pId} AND cCreateTime=#{cCreateTime}
+        DELETE FROM commitlog WHERE sId=#{sId} AND pId=#{pId} AND cCreateTime=#{cCreateTime}
     </delete>
 
     <update id="updateCommitLog" parameterType="com.epms.entity.CommitLog">
         UPDATE commitlog
         <set>
-            <if test="sType!=null">sType=#{sType},</if>
+            <if test="cType!=null">cType=#{cType},</if>
             <if test="cFeedback!=null">cFeedback=#{cFeedback},</if>
             <if test="cResponseType!=null">cResponseType=#{cResponseType}</if>
         </set>
@@ -24,17 +24,17 @@
     </update>
 
     <select id="queryCommitLogsBysId" resultType="com.epms.entity.CommitLog" parameterType="int">
-        SELECT sId, pId, cCreateTime, sType, cFeedback, cResponseType
+        SELECT sId, pId, cCreateTime, cType, cFeedback, cResponseType
         FROM commitlog WHERE sId=#{sId}
     </select>
 
     <select id="queryCommitLogsBypId" resultType="com.epms.entity.CommitLog" parameterType="int">
-        SELECT sId, pId, cCreateTime, sType, cFeedback, cResponseType
+        SELECT sId, pId, cCreateTime, cType, cFeedback, cResponseType
         FROM commitlog WHERE pId=#{pId}
     </select>
 
     <select id="queryAllCommitLogs" resultType="com.epms.entity.CommitLog">
-        SELECT sId, pId, cCreateTime, sType, cFeedback, cResponseType
+        SELECT sId, pId, cCreateTime, cType, cFeedback, cResponseType
         FROM commitlog
     </select>
 

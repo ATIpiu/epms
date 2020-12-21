@@ -8,16 +8,13 @@
         INSERT INTO selectproject(sId,pId,spId) VALUES (#{sId},#{pId},#{spId})
     </insert>
 
-    <delete id="deleteSelectProjectBysIdpId" parameterType="int">
+    <delete id="deleteSelectProjectByspId" parameterType="map">
         DELETE FROM selectproject WHERE spId = #{spId}
     </delete>
 
     <update id="updateSelectProject" parameterType="com.epms.entity.SelectProject">
         UPDATE selectproject
-        <set>
-            <if test="sId!=null">sId=#{sId},</if>
-            <if test="pId!=null">pId=#{pId}</if>
-        </set>
+        SET sId=#{sId},pId=#{pId}
         WHERE spId = #{spId}
     </update>
 

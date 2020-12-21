@@ -28,14 +28,14 @@ public interface SalaryDao {
      *
      * @return list<Salary> 根据员工sId查询工资(Salary)信息
      */
-    List<Salary> querySalaryBysId(int sId);
+    List<Salary> querySalaryBysId(Map<String,Object> map);
 
     /**
      * 获取salary记录信息；
      *
      * @return list<Salary> 根据项目pId查询工资信息
      */
-    List<Salary> querySalaryBypId(int pId);
+    List<Salary> querySalaryBypId(Map<String,Object> map);
 
     /**
      * 获取所有的Salary表信息；
