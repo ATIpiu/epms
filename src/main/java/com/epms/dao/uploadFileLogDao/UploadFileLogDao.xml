@@ -14,10 +14,6 @@
     </delete>
 
     <update id="updateUploadFileLog" parameterType="com.epms.entity.UploadFileLog">
-        UPDATE uploadfilelog SET upLoadUrl=#{upLoadUrl} WHERE sId=#{sId} AND pId=#{pId} AND upLoadTime=#{upLoadTime}
-    </update>
-
-    <update id="updateUploadFileLog" parameterType="com.epms.entity.UploadFileLog">
         UPDATE uploadfilelog
         <set>
             <if test="upLoadUrl!=null">upLoadUrl=#{upLoadUrl}</if>

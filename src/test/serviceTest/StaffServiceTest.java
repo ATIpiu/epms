@@ -11,7 +11,7 @@ public class StaffServiceTest {
     public void StaffServiceTest() {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("epmsApplication.xml");
         StaffService staffService= (StaffService) ctx.getBean("staffService");
-        Result result=staffService.Login("ATIpiu1","atipiu");
-        System.out.println(result);
+        System.out.println(staffService.Login("ATIpiu1","atipiu"));
+//        System.out.println(result);
     }
 }

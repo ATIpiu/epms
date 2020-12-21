@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class StaffServiceImpl implements StaffService {
-//    @Autowired
+    @Autowired
     private StaffDao staffDao;
 
     public void setStaffDao(StaffDao staffDao) {

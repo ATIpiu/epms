@@ -14,11 +14,6 @@
     </delete>
 
     <update id="updateCommitLog" parameterType="com.epms.entity.CommitLog">
-        UPDATE commitlog SET cFeedback=#{cFeedback},cResponseType=#{cResponseType}
-        WHERE sId=#{sId} AND pId=#{pId} AND cCreateTime=#{cCreateTime}
-    </update>
-
-    <update id="updateCommitLog" parameterType="com.epms.entity.CommitLog">
         UPDATE commitlog
         <set>
             <if test="sType!=null">sType=#{sType},</if>

@@ -13,7 +13,6 @@
         <!--使用列标签替换列别名 默认：true-->
         <!--功能：支持别名  让我们的列支持别名-->
         <setting name="useColumnLabel" value="true"/>
-
         <!--开启驼峰命名转换：Table{create_time} -> Entity{createTime}-->
         <!--数据库表中的字段create_time映射到Entity类中的createTime-->
         <setting name="mapUnderscoreToCamelCase" value="true"/>
