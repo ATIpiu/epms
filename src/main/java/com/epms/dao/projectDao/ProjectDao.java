@@ -1,13 +1,12 @@
 package com.epms.dao.projectDao;
 
-import com.epms.entity.Client;
 import com.epms.entity.Project;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
-@Mapper
 import java.util.Map;
 
+@Mapper
 public interface ProjectDao {
 
 

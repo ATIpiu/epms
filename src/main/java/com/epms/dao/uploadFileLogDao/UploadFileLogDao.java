@@ -4,9 +4,8 @@ import com.epms.entity.UploadFileLog;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
-@Mapper
 import java.util.Map;
-
+@Mapper
 public interface UploadFileLogDao {
     /**
      * @param uploadFileLog 参数为一个UploadFileLog类型的对象

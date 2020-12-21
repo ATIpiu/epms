@@ -4,9 +4,8 @@ import com.epms.entity.SelectProject;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
-@Mapper
 import java.util.Map;
-
+@Mapper
 public interface SelectProjectDao {
     /**
      * @param selectProject 参数为一个SelectProject类型的对象
