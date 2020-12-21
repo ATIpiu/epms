@@ -1,8 +1,10 @@
 package com.epms.dao.selectProjectDao;
 
 import com.epms.entity.SelectProject;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+@Mapper
 import java.util.Map;
 
 public interface SelectProjectDao {

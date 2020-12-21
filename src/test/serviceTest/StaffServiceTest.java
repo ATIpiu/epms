@@ -10,7 +10,7 @@ public class StaffServiceTest {
     @Test
     public void StaffServiceTest() {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("epmsApplication.xml");
-        StaffService staffService= (StaffService) ctx.getBean("staffService");
+        StaffService staffService= (StaffService) ctx.getBean("staffServiceImpl");
         System.out.println(staffService.Login("ATIpiu1","atipiu"));
 //        System.out.println(result);
     }

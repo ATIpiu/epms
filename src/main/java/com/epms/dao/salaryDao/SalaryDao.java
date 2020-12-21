@@ -1,9 +1,11 @@
 package com.epms.dao.salaryDao;
 import com.epms.entity.CommitLog;
 import com.epms.entity.Salary;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 import java.util.Map;
+@Mapper
 public interface SalaryDao {
     /**
      * @param salary 参数为一条salary记录 null部分不填

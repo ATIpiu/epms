@@ -4,7 +4,7 @@ import com.epms.entity.Staff;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
-//@Mapper
+@Mapper
 public interface StaffDao {
     /**
      * 获取所有的员工（staff）信息；

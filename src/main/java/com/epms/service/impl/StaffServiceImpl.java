@@ -16,6 +16,9 @@ public class StaffServiceImpl implements StaffService {
     public void setStaffDao(StaffDao staffDao) {
         this.staffDao = staffDao;
     }
+//    public void setStaffDao(StaffDao staffDao) {
+//        this.staffDao = staffDao;
+//    }
 
     @Override
     public Result Login(String userName, String password) {

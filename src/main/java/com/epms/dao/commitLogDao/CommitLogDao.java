@@ -1,10 +1,11 @@
 package com.epms.dao.commitLogDao;
 
 import com.epms.entity.CommitLog;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 import java.util.Map;
-
+@Mapper
 public interface CommitLogDao {
     /**
      * @param map 参数为存着一个commit记录 前四条的map类型的对象

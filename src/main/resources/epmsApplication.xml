@@ -4,18 +4,19 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
     <import resource="classpath:config/epms-config.xml"/>
+    <context:component-scan base-package="com.epms.dao"/>
+    <context:component-scan base-package="com.epms.service"/>
+    <context:component-scan base-package="com.epms.webController"/>
 <!--    mapper扫描-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
         <property name="basePackage" value="com.epms.dao"/>
     </bean>
-    <bean id="staffService" class="com.epms.service.impl.StaffServiceImpl">
-        <property name="staffDao" ref="staffDao"/>
-    </bean>
+<!--    <bean id="staffService" class="com.epms.service.impl.StaffServiceImpl">-->
+<!--        <property name="staffDao" ref="staffDao"/>-->
+<!--    </bean>-->
 <!--    <bean id="loginController" class="com.epms.webController.LoginController">-->
+<!--        <property name="staffService" ref="staffService"/>-->
 <!--    </bean>-->
 
-    <context:component-scan base-package="com.epms.dao"/>
-    <context:component-scan base-package="com.epms.service"/>
-    <context:component-scan base-package="com.epms.webController"/>
 </beans>

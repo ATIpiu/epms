@@ -1,8 +1,10 @@
 package com.epms.dao.uploadFileLogDao;
 
 import com.epms.entity.UploadFileLog;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+@Mapper
 import java.util.Map;
 
 public interface UploadFileLogDao {

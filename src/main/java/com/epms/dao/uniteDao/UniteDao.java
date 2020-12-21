@@ -2,10 +2,11 @@ package com.epms.dao.uniteDao;
 
 import com.epms.entity.CommitLog;
 import com.epms.entity.Project;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-
+@Mapper
 public interface UniteDao {
     /**
      * 员工查询自己所负责项目的列表

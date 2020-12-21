@@ -1,9 +1,10 @@
 package com.epms.dao.clientDao;
 
 import com.epms.entity.Client;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
-
+@Mapper
 public interface ClientDao {
     /**
      * 获取所有的客户（client）信息；
