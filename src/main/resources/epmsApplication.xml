@@ -12,5 +12,8 @@
     <bean id="staffService" class="com.epms.service.impl.StaffServiceImpl">
         <property name="staffDao" ref="staffDao"/>
     </bean>
-<!--    <context:component-scan base-package="com.epms"/>-->
+    <bean id="loginController" class="com.epms.webController.LoginController">
+    </bean>
+
+    <context:component-scan base-package="com.epms"/>
 </beans>

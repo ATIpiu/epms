@@ -1,6 +1,5 @@
 package com.epms.service;
 
-import com.epms.entity.Staff;
 import com.epms.utils.result.Result;
 
 public interface StaffService {
