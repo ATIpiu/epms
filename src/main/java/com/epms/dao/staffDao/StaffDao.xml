@@ -16,7 +16,7 @@
     </insert>
     <select id="queryStaffByUserName" resultType="com.epms.entity.Staff">
         SELECT sName, sId, sType, sSex, sIdNumber, sAddress, sTel, sUsername, sPwd
-        FROM staff WHERE sUserndame=#{sUserName}
+        FROM staff WHERE sUsername=#{sUserName}
     </select>
     <select id="queryStaffById" resultType="com.epms.entity.Staff">
         SELECT sName, sId, sType, sSex, sIdNumber, sAddress, sTel, sUsername, sPwd
