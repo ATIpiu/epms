@@ -109,7 +109,6 @@ public class Staff {
                 ", sAddress='" + sAddress + '\'' +
                 ", sTel='" + sTel + '\'' +
                 ", sUsername='" + sUsername + '\'' +
-                ", sPwd='" + sPwd + '\'' +
                 '}';
     }
 }

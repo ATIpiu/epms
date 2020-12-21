@@ -1,5 +1,5 @@
 # 分工
-## 多表SQL编写：ATIpiu
+## 多表SQL编写：ATIpiu ：（其实这个不是多表查询，这个只是嵌套查询）
 ## 测试：YZL
 1；update修改
 2：按ID查询的不用List
