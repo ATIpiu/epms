@@ -38,9 +38,9 @@ public interface SelectProjectDao {
 
     /**
      * @param spId 参数为一个整形Id
-     * @return List<SelectProject> 根据spId查询出的员工选项目的记录
+     * @return SelectProject 根据spId查询出的员工选项目的记录
      */
-    List<SelectProject> querySelectProjectByspId(int spId);
+    SelectProject querySelectProjectByspId(int spId);
 
     /**
      * 获取所有的员工选项目的记录信息；

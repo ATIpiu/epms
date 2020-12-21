@@ -1,5 +1,6 @@
 package com.epms.dao.projectDao;
 
+import com.epms.entity.Client;
 import com.epms.entity.Project;
 
 import java.util.List;
@@ -18,6 +19,14 @@ public interface ProjectDao {
      * @return int 若删除成功返回1，失败返回0；
      */
     int deleteProjectBypId(int pId);
+
+
+    /**
+     *
+     * @param project 要更新的project对象，必须包含pId
+     * @return 成功更新返回1，失败返回0
+     */
+    int updateProject(Project project);
 
     /**
      * @param pId 参数为一个整形Id

@@ -11,7 +11,7 @@
         INSERT INTO
 		client(cName, cId, cTel, cPhoneNumber, cQNumber, cEmail, cUsername, cPwd, cUnit)
 		VALUES
-		(#{cName},${cId},#{cTel},#{cPhoneNumber},#{cQNumber},#{cEmail},#{cUsername},#{cPwd},#{cUnit})
+		(#{cName},#{cId},#{cTel},#{cPhoneNumber},#{cQNumber},#{cEmail},#{cUsername},#{cPwd},#{cUnit})
     </insert>
     <select id="queryClientByUserName" resultType="com.epms.entity.Client">
         SELECT cName, cId, cTel, cPhoneNumber, cQNumber, cEmail, cUsername, cPwd, cUnit
@@ -19,7 +19,7 @@
     </select>
     <select id="queryClientById" resultType="com.epms.entity.Client">
         SELECT cName, cId, cTel, cPhoneNumber, cQNumber, cEmail, cUsername, cPwd, cUnit
-        FROM client WHERE cId=${cId}
+        FROM client WHERE cId=#{cId}
     </select>
     <update id="updateClient" parameterType="com.epms.entity.Client">
         UPDATE client

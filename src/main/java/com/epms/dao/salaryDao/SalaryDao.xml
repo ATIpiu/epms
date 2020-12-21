@@ -6,27 +6,32 @@
     <insert id="insertIntoSalary" parameterType="com.epms.entity.Salary"
             useGeneratedKeys="true">
         INSERT INTO salary(sId,pId,sQuality,sSalaryTime)
-        VALUES (${sId},${pId},${sQuality},#{sSalaryTime})
+        VALUES (#{sId},#{pId},#{sQuality},#{sSalaryTime})
     </insert>
 
     <delete id="deleteSalary"  parameterType="com.epms.entity.Salary">
         DELETE FROM salary
-        WHERE sId=${sId} AND pId=${pId} AND sSalaryTime=#{sSalaryTime}
+        WHERE sId=#{sId} AND pId=#{pId} AND sSalaryTime=#{sSalaryTime}
     </delete>
 
     <update id="updateSalary" parameterType="com.epms.entity.Salary">
-        UPDATE salary SET sCheckIn=${sCheckIn},sEvaluation=#{sEvaluation}
-        WHERE sId=${sId} AND pId=${pId} AND sSalaryTime=#{sSalaryTime}
+        UPDATE salary
+        <set>
+            <if test="sQuality!=null">sQuality=#{sQuality},</if>
+            <if test="sCheckIn!=null">sCheckIn=#{sCheckIn},</if>
+            <if test="sEvaluation!=null">sEvaluation=#{sEvaluation}</if>
+        </set>
+        WHERE sId=#{sId} AND pId=#{pId} AND sSalaryTime=#{sSalaryTime}
     </update>
 
     <select id="querySalaryBysId" resultType="com.epms.entity.Salary" parameterType="int">
         SELECT sId, pId, sQuality, sCheckIn, sSalaryTime, sEvaluation
-        FROM salary WHERE sId=${sId}
+        FROM salary WHERE sId=#{sId}
     </select>
 
     <select id="querySalaryBypId" resultType="com.epms.entity.Salary" parameterType="int">
         SELECT sId, pId, sQuality, sCheckIn, sSalaryTime, sEvaluation
-        FROM salary WHERE pId=${pId}
+        FROM salary WHERE pId=#{pId}
     </select>
 
     <select id="queryAllSalaries" resultType="com.epms.entity.Salary">

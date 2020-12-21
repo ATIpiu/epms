@@ -12,15 +12,15 @@
         INSERT INTO
 		staff(sName, sId, sType, sSex, sIdNumber, sAddress, sTel, sUsername, sPwd)
 		VALUES
-		(#{sName},${sId},${sType},#{sSex},#{sIdNumber},#{sAddress},#{sTel},#{sUsername},#{sPwd})
+		(#{sName},#{sId},#{sType},#{sSex},#{sIdNumber},#{sAddress},#{sTel},#{sUsername},#{sPwd})
     </insert>
     <select id="queryStaffByUserName" resultType="com.epms.entity.Staff">
         SELECT sName, sId, sType, sSex, sIdNumber, sAddress, sTel, sUsername, sPwd
         FROM staff WHERE sUsername=#{sUserName}
     </select>
-    <select id="queryStaffById" resultType="com.epms.entity.Staff">
+    <select id="queryStaffBysId" resultType="com.epms.entity.Staff">
         SELECT sName, sId, sType, sSex, sIdNumber, sAddress, sTel, sUsername, sPwd
-        FROM staff WHERE sId=${sId}
+        FROM staff WHERE sId=#{sId}
     </select>
     <update id="updateStaff" parameterType="com.epms.entity.Staff">
         UPDATE staff
