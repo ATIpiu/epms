@@ -1,5 +1,6 @@
 package com.epms.webController;
 
+import com.epms.service.ClientService;
 import com.epms.service.StaffService;
 import com.epms.utils.result.Result;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,8 @@ import java.util.Map;
 public class LoginController {
     @Autowired
     private StaffService staffService;
+    @Autowired
+    private ClientService clientService;
 
     public void setStaffService(StaffService staffService) {
         this.staffService = staffService;

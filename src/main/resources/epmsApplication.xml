@@ -12,11 +12,5 @@
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
         <property name="basePackage" value="com.epms.dao"/>
     </bean>
-<!--    <bean id="staffService" class="com.epms.service.impl.StaffServiceImpl">-->
-<!--        <property name="staffDao" ref="staffDao"/>-->
-<!--    </bean>-->
-<!--    <bean id="loginController" class="com.epms.webController.LoginController">-->
-<!--        <property name="staffService" ref="staffService"/>-->
-<!--    </bean>-->
 
 </beans>
