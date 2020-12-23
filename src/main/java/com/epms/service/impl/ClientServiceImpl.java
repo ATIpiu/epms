@@ -26,6 +26,7 @@ public class ClientServiceImpl implements ClientService {
             if (!client.getcPwd().equals(password)) {
                 return Result.error(ResultCodeEnum.ERROR_PASSWORD);
             }
+            client.setcPwd(null);
             return Result.ok(ResultCodeEnum.SUCCESS_LOGIN).data("client", client);
         } catch (Exception e) {
             return Result.error().message(e.toString());

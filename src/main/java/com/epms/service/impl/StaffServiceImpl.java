@@ -32,6 +32,7 @@ public class StaffServiceImpl implements StaffService {
             if(!staff.getsPwd().equals(password)){
                 return Result.error(ResultCodeEnum.ERROR_PASSWORD);
             }
+            staff.setsPwd(null);
             return Result.ok(ResultCodeEnum.SUCCESS_LOGIN).data("staffInfo",staff);
         }
         catch (Exception e){

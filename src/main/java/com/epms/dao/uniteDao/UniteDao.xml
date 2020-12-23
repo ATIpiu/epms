@@ -4,10 +4,9 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.epms.dao.uniteDao.UniteDao">
     <select id="staffGetProject" resultType="com.epms.entity.Project">
-        SELECT pid, pname, pcreatedate, penddate, ptype, cid,
-        pmodelmanagerid, pmodelstaff, prendermanagerid, prenderstaff,
-        paftermanagerid, pafterstaff, pperiodstatus, pprojectstatus, pfileurl,
-        pmodelwage, prenderwage, pafterwage
+        SELECT pid, pname, pcreatedate, penddate, ptype, cid, pmodelmanagerid,
+        pmodelstaff, prendermanagerid, prenderstaff, paftermanagerid, pafterstaff,
+        pperiodstatus, pprojectstatus, pfileurl, pmodelwage, prenderwage, pafterwage
         FROM project
         WHERE pId IN (SELECT pId FROM selectproject WHERE sId=#{sId})
     </select>
