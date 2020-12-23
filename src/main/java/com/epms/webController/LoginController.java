@@ -26,10 +26,17 @@ public class LoginController {
     }
     @RequestMapping(value = "/Login" )
 //    public Map<String, Object> setTutorInfo(@RequestParam("userName")String  userName, @RequestParam("password")String  password) throws Exception{
-    public  Result Login(String userName, String password) throws Exception {
-        System.out.println(userName+":"+password);
-        System.out.println(staffService.Login(userName, password));
-        return staffService.Login(userName, password);
+    public  Result Login(String userName, String password,int type) throws Exception {
+        try {
+            if(type==2){
+                return clientService.Login(userName,password);
+            }else {
+                return staffService.Login(userName, password);
+            }
+        }catch (Exception e){
+            return Result.error().message(e.toString());
+        }
+
     }
 }
 
