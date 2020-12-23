@@ -32,4 +32,14 @@ public class ClientServiceImpl implements ClientService {
             return Result.error().message(e.toString());
         }
     }
+
+    @Override
+    public Result queryClientById(int id) {
+        return null;
+    }
+
+    @Override
+    public Result addClient(Client client) {
+        return null;
+    }
 }
