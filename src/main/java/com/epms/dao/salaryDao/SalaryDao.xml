@@ -9,23 +9,24 @@
         VALUES (#{sId},#{pId},#{sQuality},#{sSalaryTime})
     </insert>
 
-    <delete id="deleteSalary"  parameterType="com.epms.entity.Salary">
+    <delete id="deleteSalary" parameterType="com.epms.entity.Salary">
         DELETE FROM salary
         WHERE sId=#{sId} AND pId=#{pId}
     </delete>
 
     <update id="updateSalary" parameterType="com.epms.entity.Salary">
         UPDATE salary
-        SET sQuality=#{sQuality},sCheckIn=#{sCheckIn},sEvaluation=#{sEvaluation}
+        <set>
+            <if test="sQuality!=null">sQuality=#{sQuality},</if>
+            <if test="sCheckIn!=null">sCheckIn=#{sCheckIn},</if>
+            <if test="sEvaluation!=null">sEvaluation=#{sEvaluation}</if>
+        </set>
         WHERE sId=#{sId} AND pId=#{pId}
     </update>
-<!--    <set>-->
-<!--        <if test="sQuality!=null">sQuality=#{sQuality},</if>-->
-<!--        <if test="sCheckIn!=null">sCheckIn=#{sCheckIn},</if>-->
-<!--        <if test="sEvaluation!=null">sEvaluation=#{sEvaluation}</if>-->
-<!--    </set>-->
+    <!--    SET sQuality=#{sQuality},sCheckIn=#{sCheckIn},sEvaluation=#{sEvaluation}-->
 
-    <select id="querySalaryBysId" resultType="com.epms.entity.Salary" >
+
+    <select id="querySalaryBysId" resultType="com.epms.entity.Salary">
         SELECT sId, pId, sQuality, sCheckIn, sSalaryTime, sEvaluation
         FROM salary WHERE sId=#{sId}
     </select>

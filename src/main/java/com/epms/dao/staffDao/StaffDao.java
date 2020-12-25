@@ -4,6 +4,7 @@ import com.epms.entity.Staff;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+
 @Mapper
 public interface StaffDao {
     /**
@@ -18,11 +19,13 @@ public interface StaffDao {
      * @return 若插入成功返回1，失败返回0
      */
     int insertIntoStaff(Staff staff);
+
     /**
      * @param sId 参数为一个整形Id
      * @return 为所查询的员工对象
      */
     Staff queryStaffBysId(int sId);
+
     /**
      * @param sUserName 参数为员工对应的UserName
      * @return 为所查询的员工对象

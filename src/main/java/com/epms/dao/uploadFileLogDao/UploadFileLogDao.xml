@@ -9,7 +9,7 @@
         VALUES (#{sId},#{pId},#{upLoadTime},#{upLoadUrl})
     </insert>
 
-    <delete id="deleteUploadFileLog"  parameterType="com.epms.entity.UploadFileLog">
+    <delete id="deleteUploadFileLog" parameterType="com.epms.entity.UploadFileLog">
         DELETE FROM uploadfilelog WHERE sId=#{sId} AND pId=#{pId} AND upLoadTime=#{upLoadTime}
     </delete>
 

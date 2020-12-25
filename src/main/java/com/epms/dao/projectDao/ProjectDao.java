@@ -4,7 +4,6 @@ import com.epms.entity.Project;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
-import java.util.Map;
 
 @Mapper
 public interface ProjectDao {
@@ -22,9 +21,7 @@ public interface ProjectDao {
      */
     int deleteProjectBypId(int pId);
 
-
     /**
-     *
      * @param project 要更新的project对象，必须包含pId
      * @return 成功更新返回1，失败返回0
      */
@@ -44,9 +41,19 @@ public interface ProjectDao {
 
     /**
      * 获取所有的项目（project）信息；
+     *
      * @return List<Project> 所有的client信息
      */
     List<Project> queryAllProjects();
+
+    /**
+     * 员工查询自己所负责项目的列表
+     *
+     * @param sId :员工ID
+     * @return 返回被查询的Project对象
+     */
+    List<Project> staffGetProject(int sId);
+
 
 }
 

@@ -4,7 +4,7 @@ import com.epms.entity.SelectProject;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
-import java.util.Map;
+
 @Mapper
 public interface SelectProjectDao {
     /**
@@ -14,7 +14,7 @@ public interface SelectProjectDao {
     int insertIntoSelectProject(SelectProject selectProject);
 
     /**
-     * @param spId  里面含有put进去的"spId"与其值
+     * @param spId 里面含有put进去的"spId"与其值
      * @return int 若删除成功返回1，失败返回0；
      */
     int deleteSelectProjectByspId(int spId);

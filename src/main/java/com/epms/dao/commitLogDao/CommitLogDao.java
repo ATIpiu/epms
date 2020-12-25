@@ -2,9 +2,11 @@ package com.epms.dao.commitLogDao;
 
 import com.epms.entity.CommitLog;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
+
 @Mapper
 public interface CommitLogDao {
     /**
@@ -18,6 +20,23 @@ public interface CommitLogDao {
      * @return int 若删除成功返回1，失败返回0；
      */
     int deleteCommitLog(CommitLog commitLog);
+
+    /**
+     * 客户查询员工提交记录
+     *
+     * @param cId：客户ID
+     * @return 提交的日志列表
+     */
+    List<CommitLog> clientGetCommitLog(int cId);
+
+    /**
+     * 主管查询员工提交记录
+     *
+     * @param ：sId ：主管员工ID
+     * @param :    type : 主管类型（模型、渲染、后期）
+     * @return 提交的日志列表
+     */
+    List<CommitLog> managerGetCommitLog(@Param("sId") int sId, @Param("type") int type);
 
     /**
      * @param commitLog 参数为一次提交的记录
