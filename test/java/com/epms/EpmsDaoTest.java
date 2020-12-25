@@ -6,7 +6,6 @@ import com.epms.dao.projectDao.ProjectDao;
 import com.epms.dao.salaryDao.SalaryDao;
 import com.epms.dao.selectProjectDao.SelectProjectDao;
 import com.epms.dao.staffDao.StaffDao;
-import com.epms.dao.uniteDao.UniteDao;
 import com.epms.dao.uploadFileLogDao.UploadFileLogDao;
 import com.epms.entity.*;
 import com.epms.utils.SpringUtil;
@@ -255,13 +254,6 @@ public class EpmsDaoTest {
         //更新Staff记录测试
         Staff s = new Staff("Test3", 10000002, 1, "male", "12345678901", "chongqing", "15730680467", "ATIpiu", "atipiu");
         System.out.println(staffDao.updateStaff(s));
-    }
-
-    @Test
-    public void uniteDaoTest() {
-        ApplicationContext ctx = SpringUtil.getApplicationContext();
-        UniteDao uniteDao = (UniteDao) ctx.getBean("uniteDao");
-        System.out.println(uniteDao.managerGetCommitLog(10000002, 2));
     }
 
     @Test

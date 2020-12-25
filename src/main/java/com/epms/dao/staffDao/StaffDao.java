@@ -38,4 +38,11 @@ public interface StaffDao {
      */
     int updateStaff(Staff staff);
 
+    /**
+     *获取员工类型
+     * @param sId
+     * @return 返回员工类型
+     */
+    int getType(int sId);
+
 }

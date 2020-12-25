@@ -36,5 +36,7 @@
         </set>
         WHERE sId=#{sId}
     </update>
-
+    <select id="getType" resultType="int" >
+        SELECT sType FROM staff WHERE sId=#{sId}
+    </select>
 </mapper>
