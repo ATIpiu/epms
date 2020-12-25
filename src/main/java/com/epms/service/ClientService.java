@@ -25,4 +25,7 @@ public interface ClientService {
      * @return 返回成功与否
      */
     Result addClient(Client client);
+
+
+    Result updateClient(Client client);
 }

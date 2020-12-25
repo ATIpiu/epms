@@ -22,10 +22,12 @@
         SELECT sId, pId, cCreateTime, cType, cFeedback, cResponseType
         FROM commitlog
         WHERE cType=1 AND pId in
-        (SELECT pId FROM project WHERE
-        (<if test="type==1">pModelManagerId </if><if test="type==2"> pRenderManagerId</if><if test="type==3"> pAfterManagerId</if>)
+        (SELECT pId FROM project WHERE(
+        <if test="type==1">pModelManagerId </if>
+        <if test="type==2"> pRenderManagerId</if>
+        <if test="type==3"> pAfterManagerId</if>)
         =#{sId})
-        AND sId in (SELECT sId  FROM staff WHERE sType=#{type}+3 OR sType=#{type}+6)
+        AND sId in (SELECT sId  FROM staff WHERE sType=4 OR sType=5)
     </select>
 
 </mapper>

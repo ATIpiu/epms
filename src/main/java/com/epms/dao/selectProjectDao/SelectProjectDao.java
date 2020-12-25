@@ -14,10 +14,10 @@ public interface SelectProjectDao {
     int insertIntoSelectProject(SelectProject selectProject);
 
     /**
-     * @param map  里面含有put进去的"spId"与其值
+     * @param spId  里面含有put进去的"spId"与其值
      * @return int 若删除成功返回1，失败返回0；
      */
-    int deleteSelectProjectByspId(Map<String,Object> map);
+    int deleteSelectProjectByspId(int spId);
 
     /**
      * @param selectProject 参数为一个SelectProject类型的对象

@@ -17,10 +17,10 @@ public interface ProjectDao {
     int insertIntoProject(Project project);
 
     /**
-     * @param map 参数为项目对应的pId
+     * @param pId 参数为项目对应的pId
      * @return int 若删除成功返回1，失败返回0；
      */
-    int deleteProjectBypId(Map<String,Object> map);
+    int deleteProjectBypId(int pId);
 
 
     /**
@@ -31,16 +31,16 @@ public interface ProjectDao {
     int updateProject(Project project);
 
     /**
-     * @param map 参数为一个整形Id
+     * @param pId 参数为一个整形Id
      * @return Project 根据pId查询出的某条project(项目)记录
      */
-    Project queryProjectBypId(Map<String,Object> map);
+    Project queryProjectBypId(int pId);
 
     /**
-     * @param map 参数为一个整形Id
+     * @param cId 参数为一个整形Id
      * @return List<Project> 根据cId查询出的某条project(项目)记录
      */
-    List<Project> queryProjectBycId(Map<String,Object> map);
+    List<Project> queryProjectBycId(int cId);
 
     /**
      * 获取所有的项目（project）信息；

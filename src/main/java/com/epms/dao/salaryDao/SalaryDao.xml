@@ -25,12 +25,12 @@
 <!--        <if test="sEvaluation!=null">sEvaluation=#{sEvaluation}</if>-->
 <!--    </set>-->
 
-    <select id="querySalaryBysId" resultType="com.epms.entity.Salary" parameterType="map">
+    <select id="querySalaryBysId" resultType="com.epms.entity.Salary" >
         SELECT sId, pId, sQuality, sCheckIn, sSalaryTime, sEvaluation
         FROM salary WHERE sId=#{sId}
     </select>
 
-    <select id="querySalaryBypId" resultType="com.epms.entity.Salary" parameterType="map">
+    <select id="querySalaryBypId" resultType="com.epms.entity.Salary">
         SELECT sId, pId, sQuality, sCheckIn, sSalaryTime, sEvaluation
         FROM salary WHERE pId=#{pId}
     </select>
