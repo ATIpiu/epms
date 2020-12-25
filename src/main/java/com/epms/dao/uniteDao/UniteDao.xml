@@ -27,7 +27,7 @@
         <if test="type==2"> pRenderManagerId</if>
         <if test="type==3"> pAfterManagerId</if>)
         =#{sId})
-        AND sId in (SELECT sId  FROM staff WHERE sType=4 OR sType=5)
+        AND sId in (SELECT sId  FROM staff WHERE sType=${type}+3 OR sType=${type}+6)
     </select>
 
 </mapper>

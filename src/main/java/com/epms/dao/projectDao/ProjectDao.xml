@@ -22,7 +22,6 @@
 
     <update id="updateProject" parameterType="com.epms.entity.Project">
         UPDATE project
-
                 <set>
                     <if test="pName!=null">pName=#{pName},</if>
                     <if test="pCreateDate!=null">pCreateDate=#{pCreateDate},</if>
