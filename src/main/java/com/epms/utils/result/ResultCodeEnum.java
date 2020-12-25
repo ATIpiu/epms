@@ -12,7 +12,8 @@ public enum ResultCodeEnum {
     ERROR_NOT_EXISTS_USER(false,21007,"用户不存在!"),
     ERROR_PASSWORD(false,21008,"密码错误,请重新输入!"),
     SUCCESS_LOGIN(true,20000,"登陆成功!"),
-    SUCCESS_REGISTER(true,20000,"注册成功!");
+    SUCCESS_REGISTER(true,20000,"注册成功!"),
+    ERROR_USERNAME_EXIST(true,21009,"用户名已存在");
 
     private Boolean status; //响应是否成功
     private Integer code; //返回码

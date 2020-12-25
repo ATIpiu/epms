@@ -4,15 +4,9 @@ import com.epms.service.ClientService;
 import com.epms.service.StaffService;
 import com.epms.utils.result.Result;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
-import java.util.Map;
 @RestController
 @RequestMapping(value = "/User")
 public class LoginController {
