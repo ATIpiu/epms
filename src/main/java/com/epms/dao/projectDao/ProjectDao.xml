@@ -22,25 +22,25 @@
 
     <update id="updateProject" parameterType="com.epms.entity.Project">
         UPDATE project
-                <set>
-                    <if test="pName!=null">pName=#{pName},</if>
-                    <if test="pCreateDate!=null">pCreateDate=#{pCreateDate},</if>
-                    <if test="pEndDate!=null">pEndDate=#{pEndDate},</if>
-                    <if test="pType!=null">pType=#{pType},</if>
-                    <if test="cId!=null">cId=#{cId},</if>
-                    <if test="pModelManagerId!=null">pModelManagerId=#{pModelManagerId},</if>
-                    <if test="pModelStaff!=null">pModelStaff=#{pModelStaff},</if>
-                    <if test="pRenderManagerId!=null">pRenderManagerId=#{pRenderManagerId},</if>
-                    <if test="pRenderStaff!=null">pRenderStaff=#{pRenderStaff},</if>
-                    <if test="pAfterManagerId!=null">pAfterManagerId=#{pAfterManagerId},</if>
-                    <if test="pAfterStaff!=null">pAfterStaff=#{pAfterStaff},</if>
-                    <if test="pPeriodStatus!=null">pPeriodStatus=#{pPeriodStatus},</if>
-                    <if test="pProjectStatus!=null">pProjectStatus=#{pProjectStatus},</if>
-                    <if test="pFileUrl!=null">pFileUrl=#{pFileUrl},</if>
-                    <if test="pModelWage!=null">pModelWage=#{pModelWage},</if>
-                    <if test="pRenderWage!=null">pRenderWage=#{pRenderWage},</if>
-                    <if test="pAfterWage!=null">pAfterWage=#{pAfterWage}</if>
-                </set>
+        <set>
+            <if test="pName!=null">pName=#{pName},</if>
+            <if test="pCreateDate!=null">pCreateDate=#{pCreateDate},</if>
+            <if test="pEndDate!=null">pEndDate=#{pEndDate},</if>
+            <if test="pType!=null">pType=#{pType},</if>
+            <if test="cId!=null">cId=#{cId},</if>
+            <if test="pModelManagerId!=null">pModelManagerId=#{pModelManagerId},</if>
+            <if test="pModelStaff!=null">pModelStaff=#{pModelStaff},</if>
+            <if test="pRenderManagerId!=null">pRenderManagerId=#{pRenderManagerId},</if>
+            <if test="pRenderStaff!=null">pRenderStaff=#{pRenderStaff},</if>
+            <if test="pAfterManagerId!=null">pAfterManagerId=#{pAfterManagerId},</if>
+            <if test="pAfterStaff!=null">pAfterStaff=#{pAfterStaff},</if>
+            <if test="pPeriodStatus!=null">pPeriodStatus=#{pPeriodStatus},</if>
+            <if test="pProjectStatus!=null">pProjectStatus=#{pProjectStatus},</if>
+            <if test="pFileUrl!=null">pFileUrl=#{pFileUrl},</if>
+            <if test="pModelWage!=null">pModelWage=#{pModelWage},</if>
+            <if test="pRenderWage!=null">pRenderWage=#{pRenderWage},</if>
+            <if test="pAfterWage!=null">pAfterWage=#{pAfterWage}</if>
+        </set>
         WHERE pId=#{pId}
     </update>
 
@@ -50,26 +50,27 @@
         pperiodstatus, pprojectstatus, pfileurl, pmodelwage, prenderwage, pafterwage
         FROM project
         WHERE pId IN (SELECT pId FROM selectproject WHERE sId=#{sId})
+        ORDER BY pCreateDate
     </select>
 
-    <select id="queryProjectBypId"  resultType="com.epms.entity.Project">
+    <select id="queryProjectBypId" resultType="com.epms.entity.Project">
         SELECT pid, pname, pcreatedate, penddate, pType, cid, pmodelmanagerid,
          pmodelstaff, prendermanagerid, prenderstaff, paftermanagerid, pafterstaff,
          pperiodstatus, pprojectstatus, pfileurl, pmodelwage, prenderwage, pafterwage
-         FROM project WHERE pId=#{pId}
+         FROM project WHERE pId=#{pId}  ORDER BY pCreateDate
     </select>
 
     <select id="queryProjectBycId" resultType="com.epms.entity.Project">
         SELECT pid, pname, pcreatedate, penddate, pType, cid, pmodelmanagerid,
          pmodelstaff, prendermanagerid, prenderstaff, paftermanagerid, pafterstaff,
          pperiodstatus, pprojectstatus, pfileurl, pmodelwage, prenderwage, pafterwage
-         FROM project WHERE cId=#{cId}
+         FROM project WHERE cId=#{cId}  ORDER BY pCreateDate
     </select>
 
     <select id="queryAllProjects" resultType="com.epms.entity.Project">
         SELECT  pid, pname, pcreatedate, penddate, pType, cid, pmodelmanagerid,
          pmodelstaff, prendermanagerid, prenderstaff, paftermanagerid, pafterstaff,
          pperiodstatus, pprojectstatus, pfileurl, pmodelwage, prenderwage, pafterwage
-         FROM project
+         FROM project ORDER BY pCreateDate
     </select>
 </mapper>

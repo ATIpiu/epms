@@ -2,6 +2,7 @@ package com.epms.dao.staffDao;
 
 import com.epms.entity.Staff;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -45,4 +46,18 @@ public interface StaffDao {
      */
     int getType(int sId);
 
+    /**
+     *
+     * @param pId
+     * @param type
+     * @return 返回符合要求的Staff对象
+     */
+    List<Staff> managerGetOwnStaff(@Param("pId") int pId,@Param("type") int type);
+
+    /**
+     * 全字段模糊查询
+     * @param keyWord 关键字
+     * @return 返回符合要求的Staff对象
+     */
+    List<Staff> queryStaffByKeyword(String keyWord);
 }

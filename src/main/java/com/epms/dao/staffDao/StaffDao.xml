@@ -36,7 +36,20 @@
         </set>
         WHERE sId=#{sId}
     </update>
-    <select id="getType" resultType="int" >
+    <select id="getType" resultType="int">
         SELECT sType FROM staff WHERE sId=#{sId}
     </select>
+    <select id="managerGetOwnStaff" resultType="com.epms.entity.Staff">
+        SELECT sName, sId, sType, sSex, sIdNumber, sAddress, sTel, sUsername, sPwd
+        FROM staff
+        WHERE sId IN (select selectproject.sId FROM selectproject where selectproject.pId=#{pId})
+        AND
+        <if test="type!=11">sType=#{type}+3 OR sType=#{type}+6</if>
+        <if test="type==11">sType=1 OR sType=2 Or sType=3</if>
+    </select>
+    <select id="queryStaffByKeyword" resultType="com.epms.entity.Staff" parameterType="string">
+    SELECT sName, sId, sType, sSex, sIdNumber, sAddress, sTel, sUsername, sPwd
+    From staff  WHERE CONCAT_WS(`sName`, `sId`, `sType`, `sSex`, `sIdNumber`, `sAddress`, `sTel`,`sUsername`)
+    like CONCAT('%',#{keyWord},'%')
+     </select>
 </mapper>

@@ -17,6 +17,7 @@
         SELECT sId, pId, cCreateTime, cType, cFeedback, cResponseType, cFileUrl
         FROM commitlog
         WHERE cType=2 AND pId IN (SELECT pId FROM project WHERE cId =#{cId})
+        ORDER BY cCreateTime
     </select>
 
     <select id="managerGetCommitLog" resultType="com.epms.entity.CommitLog">
@@ -30,6 +31,7 @@
         <if test="type==3">pAfterManagerId</if>)
         =#{sId})
         AND sId in (SELECT sId FROM staff WHERE sType=${type}+3 OR sType=${type}+6)
+        ORDER BY cCreateTime
     </select>
 
     <update id="updateCommitLog" parameterType="com.epms.entity.CommitLog">
@@ -40,21 +42,24 @@
             <if test="cResponseType!=null">cResponseType=#{cResponseType}</if>
         </set>
         WHERE sId=#{sId} AND pId=#{pId} AND cCreateTime=#{cCreateTime}
+
     </update>
 
     <select id="queryCommitLogsBysId" resultType="com.epms.entity.CommitLog" parameterType="int">
         SELECT sId, pId, cCreateTime, cType, cFeedback, cResponseType, cFileUrl
-        FROM commitlog WHERE sId=#{sId}
+        FROM commitlog WHERE sId=#{sId}  ORDER BY cCreateTime
     </select>
 
     <select id="queryCommitLogsBypId" resultType="com.epms.entity.CommitLog" parameterType="int">
         SELECT sId, pId, cCreateTime, cType, cFeedback, cResponseType, cFileUrl
         FROM commitlog WHERE pId=#{pId}
+        ORDER BY cCreateTime
     </select>
 
     <select id="queryAllCommitLogs" resultType="com.epms.entity.CommitLog">
         SELECT sId, pId, cCreateTime, cType, cFeedback, cResponseType, cFileUrl
         FROM commitlog
+        ORDER BY cCreateTime
     </select>
 
 

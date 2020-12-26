@@ -1,6 +1,7 @@
 package com.epms.dao.clientDao;
 
 import com.epms.entity.Client;
+import com.epms.entity.Staff;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -36,5 +37,11 @@ public interface ClientDao {
      */
     int updateClient(Client client);
 
+    /**
+     * 全字段模糊查询
+     * @param keyWord 关键字
+     * @return 返回符合要求的Staff对象
+     */
+    List<Client> queryClientByKeyword(String keyWord);
 
 }

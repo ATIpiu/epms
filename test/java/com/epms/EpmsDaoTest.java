@@ -38,10 +38,10 @@ public class EpmsDaoTest {
         System.out.println(ctx);
         ClientDao clientDao = (ClientDao) ctx.getBean("clientDao");
         //查询全部测试
-        List<Client> clients = clientDao.queryAllClients();
-        for (Client client : clients) {
-            System.out.println(client);
-        }
+//        List<Client> clients = clientDao.queryAllClients();
+//        for (Client client : clients) {
+//            System.out.println(client);
+//        }
 //        插入测试
 //        Client c=new Client("Test2",12345678,"12345667","123456","1123456","1522760512@qq.com","Atipiu11","123456","none");
 //        System.out.println(clientDao.insertIntoClient(c));
@@ -54,6 +54,8 @@ public class EpmsDaoTest {
         //更新Client对象测试
 //        Client c=new Client("Test3",12345678,"12345667","123456","1123456","1522760512@qq.com","Atipiu11","123456",null);
 //        System.out.println(clientDao.updateClient(c));
+        //关键字查询测试
+        System.out.println(clientDao.queryClientByKeyword("A"));
     }
 
     @Test
@@ -252,8 +254,11 @@ public class EpmsDaoTest {
 //        Staff s=new Staff("Test2",10000002,1,"male","12345678901","chongqing","15730680467","ATIpiu","atipiu");
 //        System.out.println(staffDao.queryStaffByUserName(s.getsUsername()));
         //更新Staff记录测试
-        Staff s = new Staff("Test3", 10000002, 1, "male", "12345678901", "chongqing", "15730680467", "ATIpiu", "atipiu");
-        System.out.println(staffDao.updateStaff(s));
+//        Staff s = new Staff("Test3", 10000002, 1, "male", "12345678901", "chongqing", "15730680467", "ATIpiu", "atipiu");
+//        System.out.println(staffDao.updateStaff(s));
+//        System.out.println(staffDao.managerGetOwnStaff(10001,11));
+//        模糊查询测试
+        System.out.println(staffDao.queryStaffByKeyword("male"));
     }
 
     @Test

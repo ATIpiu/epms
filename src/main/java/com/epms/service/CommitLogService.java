@@ -2,6 +2,7 @@ package com.epms.service;
 
 import com.epms.entity.CommitLog;
 import com.epms.utils.result.Result;
+import org.springframework.web.multipart.MultipartFile;
 
 public interface CommitLogService {
     /**
@@ -37,7 +38,7 @@ public interface CommitLogService {
      * @param commitLog
      * @return 返回成功与否
      */
-    Result staffAddCommitLog(CommitLog commitLog);
+    Result staffAddCommitLog(CommitLog commitLog, MultipartFile file);
 
     /**
      * 员工根据反馈修改提交记录；

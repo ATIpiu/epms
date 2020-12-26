@@ -27,5 +27,10 @@
             cUsername=#{cUsername},cPwd=#{cPwd},cUnit=#{cUnit}
         WHERE cId=#{cId}
     </update>
+    <select id="queryClientByKeyword" resultType="com.epms.entity.Client" parameterType="string">
+    SELECT cName, cId, cTel, cPhoneNumber, cQNumber, cEmail, cUsername, cPwd, cUnit
+    From client  WHERE CONCAT_WS(`cName`, `cId`, `cTel`, `cPhoneNumber`, `cQNumber`, `cEmail`, `cUsername`,`cUnit`)
+    like CONCAT('%',#{keyWord},'%')
+     </select>
 
 </mapper>

@@ -83,14 +83,38 @@ public class StaffServiceImpl implements StaffService {
     public Result getAllStaffs(int page, int pageSize) {
         try{
             List<Staff> staffs=staffDao.queryAllStaffs();
-            List<Staff> results = new ArrayList<Staff>();
-            for(int i=(page-1)*pageSize;i<page*pageSize&&i<staffs.size();i++){
-                staffs.get(i).setsPwd(null);
-                results.add(staffs.get(i));
-            }
-            return Result.ok().message("查询成功").data("staffList",results);
+            return paging(page, pageSize, staffs);
         }catch (Exception e){
             return Result.error().message("查询失败："+e.toString());
         }
+    }
+
+    @Override
+    public Result managerGetOwnStaff(int pId, int type, int page, int pageSize) {
+        try{
+            List<Staff> staffs=staffDao.managerGetOwnStaff(pId,type);
+            return paging(page, pageSize, staffs);
+        }catch (Exception e){
+            return Result.error().message("查询失败："+e.toString());
+        }
+    }
+
+    @Override
+    public Result queryStaffByKeyword(String keyWord, int page, int pageSize) {
+        try{
+            List<Staff> staffs=staffDao.queryStaffByKeyword(keyWord);
+            return paging(page, pageSize, staffs);
+        }catch (Exception e){
+            return Result.error().message("查询失败："+e.toString());
+        }
+    }
+
+    private Result paging(int page, int pageSize, List<Staff> staffs) {
+        List<Staff> results = new ArrayList<Staff>();
+        for(int i=(page-1)*pageSize;i<page*pageSize&&i<staffs.size();i++){
+            staffs.get(i).setsPwd(null);
+            results.add(staffs.get(i));
+        }
+        return Result.ok().message("查询成功").data("staffList",results);
     }
 }

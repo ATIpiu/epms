@@ -3,10 +3,13 @@ package com.epms.service.impl;
 import com.epms.dao.commitLogDao.CommitLogDao;
 import com.epms.dao.staffDao.StaffDao;
 import com.epms.entity.CommitLog;
+import com.epms.entity.UploadFileLog;
 import com.epms.service.CommitLogService;
 import com.epms.utils.result.Result;
+import com.epms.utils.upLoadFile.UploadFileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,8 +81,12 @@ public class CommitLogServiceImpl implements CommitLogService {
     }
 
     @Override
-    public Result staffAddCommitLog(CommitLog commitLog) {
+    public Result staffAddCommitLog(CommitLog commitLog, MultipartFile file) {
         try{
+            String url= UploadFileUtil.upload(file);
+            if(url==null){
+                return Result.error().message("文件错误");
+            }else commitLog.setcFileUrl(url);
             int sType=staffDao.getType(commitLog.getsId());
             if (sType>=4&&sType<=6&&commitLog.getcType()==2){
                 return Result.error().message("该员工经验不足，不能直接向客户提交");

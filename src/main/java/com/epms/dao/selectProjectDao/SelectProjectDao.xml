@@ -4,8 +4,8 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.epms.dao.selectProjectDao.SelectProjectDao">
     <insert id="insertIntoSelectProject" parameterType="com.epms.entity.SelectProject"
-            useGeneratedKeys="true">
-        INSERT INTO selectproject(sId,pId,spId) VALUES (#{sId},#{pId},#{spId})
+            useGeneratedKeys="true" keyProperty="spId" keyColumn="spId">
+        INSERT INTO selectproject(sId,pId) VALUES (#{sId},#{pId})
     </insert>
 
     <delete id="deleteSelectProjectByspId">

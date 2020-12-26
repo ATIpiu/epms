@@ -11,6 +11,31 @@ public class Salary {
     Timestamp sSalaryTime;
     String sEvaluation;
 
+    public Salary(Integer sId, Integer pId, Timestamp sSalaryTime, int sStatus) {
+        this.sId = sId;
+        this.pId = pId;
+        this.sSalaryTime = sSalaryTime;
+        this.sStatus = sStatus;
+    }
+
+    public Salary(Integer sId, Integer pId, Float sQuality, String sEvaluation, int sStatus) {
+        this.sId = sId;
+        this.pId = pId;
+        this.sQuality = sQuality;
+        this.sEvaluation = sEvaluation;
+        this.sStatus = sStatus;
+    }
+
+    public int getsStatus() {
+        return sStatus;
+    }
+
+    public void setsStatus(int sStatus) {
+        this.sStatus = sStatus;
+    }
+
+    int sStatus;
+
     public Salary() {
     }
 

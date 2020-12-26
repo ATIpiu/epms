@@ -8,6 +8,11 @@ public class SelectProject {
     public SelectProject() {
     }
 
+    public SelectProject(Integer sId, Integer pId) {
+        this.sId = sId;
+        this.pId = pId;
+    }
+
     public SelectProject(Integer sId, Integer pId, Integer spId) {
         this.sId = sId;
         this.pId = pId;

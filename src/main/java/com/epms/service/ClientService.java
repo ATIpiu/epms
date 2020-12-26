@@ -41,4 +41,11 @@ public interface ClientService {
      * @return 返回对应页数所有的客户列表；
      */
     Result getAllClients(int page,int pageSize);
+
+    /**
+     * 按照关键字查询记录
+     * @param keyWord
+     * @return 返回对应页数所有的客户列表；
+     */
+    Result queryClientByKeyword(String keyWord,int page,int pageSize);
 }

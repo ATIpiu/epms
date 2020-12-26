@@ -82,14 +82,28 @@ public class ClientServiceImpl implements ClientService {
     public Result getAllClients(int page, int pageSize) {
         try{
             List<Client> clients=clientDao.queryAllClients();
-            List<Client> results = new ArrayList<Client>();
-            for(int i=(page-1)*pageSize;i<page*pageSize&&i<clients.size();i++){
-                clients.get(i).setcPwd(null);
-                results.add(clients.get(i));
-            }
-            return Result.ok().message("查询成功").data("clientList",results);
+            return getResult(page, pageSize, clients);
         }catch (Exception e){
             return Result.error().message("查询失败："+e.toString());
         }
+    }
+
+    @Override
+    public Result queryClientByKeyword(String keyWord, int page, int pageSize) {
+        try{
+            List<Client> clients=clientDao.queryClientByKeyword(keyWord);
+            return getResult(page, pageSize, clients);
+        }catch (Exception e){
+            return Result.error().message("查询失败："+e.toString());
+        }
+    }
+
+    private Result getResult(int page, int pageSize, List<Client> clients) {
+        List<Client> results = new ArrayList<Client>();
+        for(int i=(page-1)*pageSize;i<page*pageSize&&i<clients.size();i++){
+            clients.get(i).setcPwd(null);
+            results.add(clients.get(i));
+        }
+        return Result.ok().message("查询成功").data("clientList",results);
     }
 }

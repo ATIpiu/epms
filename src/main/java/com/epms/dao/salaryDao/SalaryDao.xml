@@ -5,8 +5,8 @@
 <mapper namespace="com.epms.dao.salaryDao.SalaryDao">
     <insert id="insertIntoSalary" parameterType="com.epms.entity.Salary"
             useGeneratedKeys="true">
-        INSERT INTO salary(sId,pId,sQuality,sSalaryTime)
-        VALUES (#{sId},#{pId},#{sQuality},#{sSalaryTime})
+        INSERT INTO salary(sId,pId,sSalaryTime,sStatus)
+        VALUES (#{sId},#{pId},#{sSalaryTime},#{sStatus})
     </insert>
 
     <delete id="deleteSalary" parameterType="com.epms.entity.Salary">
@@ -19,7 +19,8 @@
         <set>
             <if test="sQuality!=null">sQuality=#{sQuality},</if>
             <if test="sCheckIn!=null">sCheckIn=#{sCheckIn},</if>
-            <if test="sEvaluation!=null">sEvaluation=#{sEvaluation}</if>
+            <if test="sEvaluation!=null">sEvaluation=#{sEvaluation},</if>
+            <if test="sStatus!=null">sStatus=#{sStatus}</if>
         </set>
         WHERE sId=#{sId} AND pId=#{pId}
     </update>
@@ -27,17 +28,17 @@
 
 
     <select id="querySalaryBysId" resultType="com.epms.entity.Salary">
-        SELECT sId, pId, sQuality, sCheckIn, sSalaryTime, sEvaluation
+        SELECT sId, pId, sQuality, sCheckIn, sSalaryTime, sEvaluation, sStatus
         FROM salary WHERE sId=#{sId}
     </select>
 
     <select id="querySalaryBypId" resultType="com.epms.entity.Salary">
-        SELECT sId, pId, sQuality, sCheckIn, sSalaryTime, sEvaluation
+        SELECT sId, pId, sQuality, sCheckIn, sSalaryTime, sEvaluation, sStatus
         FROM salary WHERE pId=#{pId}
     </select>
 
     <select id="queryAllSalaries" resultType="com.epms.entity.Salary">
-        SELECT sId, pId, sQuality, sCheckIn, sSalaryTime, sEvaluation
+        SELECT sId, pId, sQuality, sCheckIn, sSalaryTime, sEvaluation, sStatus
         FROM salary
     </select>
 

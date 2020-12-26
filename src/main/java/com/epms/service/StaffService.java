@@ -42,4 +42,20 @@ public interface StaffService {
      */
     Result getAllStaffs(int page,int pageSize);
 
+    /**
+     *
+     * @param pId 项目Id
+     * @param type 主管类型 1：模型，2：渲染：3：后期 ;11:管理员获取主管
+     * @param page
+     * @param pageSize
+     * @return
+     */
+    Result managerGetOwnStaff(int pId,int type,int page,int pageSize);
+
+    /**
+     * 按照关键字查询记录
+     * @param keyWord
+     * @return 返回对应页数所有的员工列表；
+     */
+    Result queryStaffByKeyword(String keyWord,int page,int pageSize);
 }
