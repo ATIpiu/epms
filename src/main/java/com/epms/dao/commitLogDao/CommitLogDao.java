@@ -10,10 +10,10 @@ import java.util.Map;
 @Mapper
 public interface CommitLogDao {
     /**
-     * @param map 参数为存着一个commit记录 前四条的map类型的对象
+     * @param commitLog 参数为存着一个commit记录
      * @return int 若插入成功返回1，失败返回0；
      */
-    int insertIntoCommitLog(Map<String, Object> map);
+    int insertIntoCommitLog(CommitLog commitLog);
 
     /**
      * @param commitLog 参数为一次commit的记录

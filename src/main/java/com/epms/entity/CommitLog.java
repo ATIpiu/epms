@@ -1,7 +1,5 @@
 package com.epms.entity;
 
-import java.sql.Time;
-import java.sql.Time;
 import java.sql.Timestamp;
 
 public class CommitLog {
@@ -11,8 +9,20 @@ public class CommitLog {
     Integer cType;
     String cFeedback;
     Integer cResponseType;
+    String cFileUrl;
 
-    public CommitLog(){}
+    public CommitLog() {
+    }
+
+    public CommitLog(Integer sId, Integer pId, Timestamp cCreateTime, Integer cType, String cFeedback, Integer cResponseType, String cFileUrl) {
+        this.sId = sId;
+        this.pId = pId;
+        this.cCreateTime = cCreateTime;
+        this.cType = cType;
+        this.cFeedback = cFeedback;
+        this.cResponseType = cResponseType;
+        this.cFileUrl = cFileUrl;
+    }
 
     public CommitLog(Integer sId, Integer pId, Timestamp cCreateTime, Integer cType, String cFeedback, Integer cResponseType) {
         this.sId = sId;
@@ -21,6 +31,14 @@ public class CommitLog {
         this.cType = cType;
         this.cFeedback = cFeedback;
         this.cResponseType = cResponseType;
+    }
+
+    public String getcFileUrl() {
+        return cFileUrl;
+    }
+
+    public void setcFileUrl(String cFileUrl) {
+        this.cFileUrl = cFileUrl;
     }
 
     public Integer getsId() {

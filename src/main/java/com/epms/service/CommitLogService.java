@@ -16,22 +16,21 @@ public interface CommitLogService {
      * @param cId 客户Id
      * @return 成功则返回对应的Log，失败则返回原因；
      */
-    Result clientGetCommitLog(int cId);
+    Result clientGetCommitLog(int cId,int page,int pageSize);
 
     /**
      * 用户或者主管对此次提交进行审核
-     * @param cFeedBack 对此次提交文件的反馈意见；
-     * @param cResponseType 此次提交文件是否满足要求 0：未处理；1：同意；2：驳回
+     * @param commitLog 对此次提交文件的反馈意见，和是否同意此次提交
      * @return 成功与否；
      */
-    Result checkCommitLog(String cFeedBack,int cResponseType);
+    Result checkCommitLog(CommitLog commitLog);
 
     /**
      * 员工自己查看提交记录；
      * @param sId 员工Id
      * @return  成功则返回对应的Log，失败则返回原因；
      */
-    Result staffGetOwnCommitLog(int sId);
+    Result staffGetOwnCommitLog(int sId,int page,int pageSize);
 
     /**
      * 员工提交文件记录
@@ -49,8 +48,7 @@ public interface CommitLogService {
 
     /**
      * 管理员获取所有提交记录
-     * @param sId
      * @return 返回对应Log记录表
      */
-    Result getAllCommitLog(int sId);
+    Result getAllCommitLog(int page,int pageSize);
 }
