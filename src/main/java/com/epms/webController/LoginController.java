@@ -12,17 +12,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin
-@RequestMapping(value = "/User")
 public class LoginController {
     @Autowired
     private StaffService staffService;
     @Autowired
     private ClientService clientService;
 
+    @CrossOrigin
     @RequestMapping(value = "/Login" )
-    public  Result Login(@RequestParam("userName")String  userName, @RequestParam("password")String  password,@RequestParam("type")int  type) throws SignatureException {
-//    public  Result Login(String userName, String password,int type) throws Exception {
+    public  Result Login(@RequestParam("userName")String  userName,
+                         @RequestParam("password")String  password,
+                         @RequestParam("type")int  type) throws SignatureException {
         try {
             if(type==2){
                 return clientService.Login(userName,password);

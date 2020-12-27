@@ -1,6 +1,6 @@
 package com.epms.utils.exception;
 
-public class SignatureException extends Exception {
+public class SignatureException extends RuntimeException {
     private String message;
 
     //构造函数

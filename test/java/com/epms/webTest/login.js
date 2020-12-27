@@ -29,7 +29,7 @@ function sendData() {
     var data = getData();
     console.log(timestamp + ":", token + ":", data);
     $.ajax({
-        url: "http://localhost:8080/User/Login",
+        url: "http://localhost:8080/Login",
         data: data,
         headers: {
             token: token,

@@ -10,10 +10,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(value = Exception.class)
+    @ExceptionHandler(value = RuntimeException.class)
     @ResponseBody
     public
     Result exceptionHandler(SignatureException s) {
         return Result.error(ResultCodeEnum.ERROR_PERMISSION);
     }
+    @ExceptionHandler()
+    @ResponseBody
+    public
+    Result exceptionHandler(Exception s) {
+        return Result.error().message(s.toString());
+    }
+
 }
