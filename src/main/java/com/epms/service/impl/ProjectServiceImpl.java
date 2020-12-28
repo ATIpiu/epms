@@ -68,7 +68,7 @@ public class ProjectServiceImpl implements ProjectService {
             for (int i = (page - 1) * pageSize; i < page * pageSize && i < projects.size(); i++) {
                 results.add(projects.get(i));
             }
-            return Result.ok().message("查询成功").data("commitLogList", results);
+            return Result.ok().message("查询成功").data("projectList", results);
         }catch (Exception e){
             return Result.error().message("查询失败："+e.toString());
         }
@@ -99,6 +99,29 @@ public class ProjectServiceImpl implements ProjectService {
             return Result.ok().message("查询成功").data("commitLogList", results);
         }catch (Exception e){
             return Result.error().message("查询失败："+e.toString());
+        }
+    }
+
+    @Override
+    public Result getProjectBypId(int pId) {
+        try {
+            Project project=projectDao.queryProjectBypId(pId);
+            if(project!=null){
+                return Result.ok().data("project",project);
+            }else return Result.error().message("项目不存在");
+        }catch (Exception e){
+            return Result.error().message("查询失败："+e.toString());
+        }
+    }
+
+    @Override
+    public String getProjectFile(int pId) {
+        try{
+            return projectDao.getProjectFile(pId);
+        }
+        catch (Exception e){
+            System.out.println(e.toString());
+            return null;
         }
     }
 }

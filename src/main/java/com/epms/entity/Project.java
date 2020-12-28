@@ -1,5 +1,7 @@
 package com.epms.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
@@ -7,7 +9,9 @@ import java.sql.Timestamp;
 public class Project {
     Integer pId;
     String pName;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     Timestamp pCreateDate;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     Timestamp pEndDate;
     Integer pType;
     Integer cId;

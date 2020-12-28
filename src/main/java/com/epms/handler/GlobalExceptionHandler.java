@@ -14,12 +14,14 @@ public class GlobalExceptionHandler {
     @ResponseBody
     public
     Result exceptionHandler(SignatureException s) {
+        System.err.println(s.getMessage());
         return Result.error(ResultCodeEnum.ERROR_PERMISSION);
     }
     @ExceptionHandler()
     @ResponseBody
     public
     Result exceptionHandler(Exception s) {
+        System.err.println(s.toString());
         return Result.error().message(s.toString());
     }
 

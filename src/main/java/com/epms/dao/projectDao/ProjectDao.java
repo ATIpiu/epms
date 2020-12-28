@@ -54,7 +54,12 @@ public interface ProjectDao {
      */
     List<Project> staffGetProject(int sId);
 
-
+    /**
+     * 获取文件路径
+     * @param pId
+     * @return
+     */
+    String getProjectFile(int pId);
 }
 
 

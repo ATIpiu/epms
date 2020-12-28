@@ -154,8 +154,8 @@ public class EpmsDaoTest {
 //        Map<String,Object> m1 = new HashMap<String,Object>();
 //        m1.put("pId",10001);
 //        m1.put("cId",12345678);
-//        Project pro2 = projectDao.queryProjectBypId(m1);
-//        System.out.println(pro2);
+        Project pro2 = projectDao.queryProjectBypId(10001);
+        System.out.println(pro2);
 //        List<Project> pro3 = projectDao.queryProjectBycId(m1);
 //        for(Project p:pro3){
 //            System.out.println(p);
@@ -166,7 +166,7 @@ public class EpmsDaoTest {
         Project newp = new Project(10001, "YangForTest", create, end, 1234, 10000001, 10000001, "aaa",
                 10000002, "123", 10000003, "ccc", 0, 0, "www.7k7k.com", 500, 200, 400);
         //projectDao.insertIntoProject(newp);
-        projectDao.updateProject(newp);
+//        projectDao.updateProject(newp);
 
 //        Map<String,Object> map = new HashMap<String, Object>();
 //        map.put("pId",10002);

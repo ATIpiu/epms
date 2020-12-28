@@ -98,6 +98,9 @@ public class ClientServiceImpl implements ClientService {
         }
     }
 
+
+
+
     private Result getResult(int page, int pageSize, List<Client> clients) {
         List<Client> results = new ArrayList<Client>();
         for(int i=(page-1)*pageSize;i<page*pageSize&&i<clients.size();i++){

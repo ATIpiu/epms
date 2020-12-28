@@ -73,4 +73,9 @@
          pperiodstatus, pprojectstatus, pfileurl, pmodelwage, prenderwage, pafterwage
          FROM project ORDER BY pCreateDate
     </select>
+
+    <select id="getProjectFile" resultType="string">
+        SELECT  pFileUrl
+         FROM project where pId=#{pId}
+    </select>
 </mapper>

@@ -6,6 +6,7 @@ import com.epms.entity.CommitLog;
 import com.epms.entity.UploadFileLog;
 import com.epms.service.CommitLogService;
 import com.epms.utils.result.Result;
+import com.epms.utils.result.ResultCodeEnum;
 import com.epms.utils.upLoadFile.UploadFileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -57,7 +58,11 @@ public class CommitLogServiceImpl implements CommitLogService {
         try {
             if (commitLog.getcResponseType() == 0) {
                 return Result.error().message("回复失败：请选择同意还是驳回");
-            } else {
+            }
+            else if(commitLog.getcResponseType() == 2&&commitLog.getcFeedback()==""){
+                return Result.error(ResultCodeEnum.ERROR_NEED_REASON);
+            }
+            else {
                 commitLogDao.updateCommitLog(commitLog);
                 return Result.ok().message("回复成功");
             }

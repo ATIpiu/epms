@@ -40,6 +40,11 @@ public class SignatureValidation {
         HttpServletRequest request = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest();
         String token = request.getHeader("token");
         String timestamp = request.getHeader("timestamp");
+        if(token==null)
+            token=request.getParameter("token");
+        if(timestamp==null)
+            timestamp=request.getParameter("timestamp");
+        System.out.println(token+":"+timestamp);
         try {
             Boolean check = checkToken(token, timestamp);
             if (!check) {
