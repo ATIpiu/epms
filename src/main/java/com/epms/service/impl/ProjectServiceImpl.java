@@ -6,16 +6,19 @@ import com.epms.entity.Project;
 import com.epms.entity.SelectProject;
 import com.epms.service.ProjectService;
 import com.epms.utils.result.Result;
+import com.epms.utils.upLoadFile.UploadFileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class ProjectServiceImpl implements ProjectService {
-    
+
     @Autowired
     private ProjectDao projectDao;
     @Autowired
@@ -122,6 +125,36 @@ public class ProjectServiceImpl implements ProjectService {
         catch (Exception e){
             System.out.println(e.toString());
             return null;
+        }
+    }
+
+    @Override
+    public Result managerUploadFile(int type, int pId, MultipartFile file) {
+        try {
+            String path = "";
+            Project project=projectDao.queryProjectBypId(pId);
+            if (type == 1) {
+                path ="D:/Epms/"+project.getpName()+"max/原始模型";
+                String url= UploadFileUtil.upload(file,path);
+
+            }else if(type==2){
+                path="D:/Epms/"+project.getpName()+"max/原始模型";
+                String url= UploadFileUtil.upload(file,path);
+            }else {
+                path="D:/Epms/"+project.getpName()+ "jpg";
+                String url= UploadFileUtil.upload(file,path);
+            }
+            /**
+             * TO DO LIST:压缩项目文件并返回值；
+             */
+            projectDao.updateProject(project);
+            return Result.ok().message("上传成功");
+        } catch (IOException e) {
+            e.printStackTrace();
+            return Result.error().message("文件读写错误");
+        }catch (Exception e){
+            e.printStackTrace();
+            return Result.error().message("上传失败:"+e.toString());
         }
     }
 }

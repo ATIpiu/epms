@@ -79,8 +79,7 @@ public class ClientController {
     }
     @RequestMapping("/filesDownloads")
     public ResponseEntity<byte[]> EIToolDownloads(@RequestParam("pId") int pId) throws IOException {
-//        String downLoadPath = "D:/ImageFile"+projectService.getProjectFile(pId);
-        String downLoadPath = "D:/ImageFile/"+"4.jpg";
+        String downLoadPath = projectService.getProjectFile(pId);
         File file = new File(downLoadPath);
         if(file.exists()){
             HttpHeaders headers = new HttpHeaders();

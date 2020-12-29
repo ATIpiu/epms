@@ -307,4 +307,8 @@ public class EpmsDaoTest {
         uploadfilelogDao.updateUploadFileLog(up_log);
 
     }
+
+    @org.junit.Test
+    public void test(){
+    }
 }

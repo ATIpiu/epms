@@ -2,6 +2,7 @@ package com.epms.service;
 
 import com.epms.entity.Project;
 import com.epms.utils.result.Result;
+import org.springframework.web.multipart.MultipartFile;
 
 public interface ProjectService {
     /**
@@ -57,4 +58,13 @@ public interface ProjectService {
      * @return
      */
     String getProjectFile(int pId);
+
+    /**
+     * 管理员上传项目文件
+     * @param type ：1模型主管，2：渲染主管，3：后期主管；
+     * @param pId 项目Id：
+     * @param file 上传的文件；
+     * @return
+     */
+    Result managerUploadFile(int type,int pId,MultipartFile file);
 }

@@ -1,8 +1,10 @@
 package com.epms.service.impl;
 
 import com.epms.dao.commitLogDao.CommitLogDao;
+import com.epms.dao.projectDao.ProjectDao;
 import com.epms.dao.staffDao.StaffDao;
 import com.epms.entity.CommitLog;
+import com.epms.entity.Project;
 import com.epms.entity.UploadFileLog;
 import com.epms.service.CommitLogService;
 import com.epms.utils.result.Result;
@@ -21,6 +23,8 @@ public class CommitLogServiceImpl implements CommitLogService {
     private StaffDao staffDao;
     @Autowired
     private CommitLogDao commitLogDao;
+    @Autowired
+    private ProjectDao projectDao;
 
     @Override
     public Result managerGetCommitLog(int managerId, int page, int pageSize) {
@@ -88,7 +92,7 @@ public class CommitLogServiceImpl implements CommitLogService {
     @Override
     public Result staffAddCommitLog(CommitLog commitLog, MultipartFile file) {
         try{
-            String url= UploadFileUtil.upload(file);
+            String url= UploadFileUtil.upload(file,"D:/Epms/"+projectDao.queryProjectBypId(commitLog.getpId()).getpName()+"/小样");
             if(url==null){
                 return Result.error().message("文件错误");
             }else commitLog.setcFileUrl(url);

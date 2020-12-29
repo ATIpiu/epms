@@ -89,6 +89,11 @@
             <artifactId>druid</artifactId>
             <version>1.1.12</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.ant</groupId>
+            <artifactId>ant</artifactId>
+            <version>1.8.1</version>
+        </dependency>
     </dependencies>
     <dependencyManagement>
         <dependencies>
