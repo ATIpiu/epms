@@ -308,7 +308,4 @@ public class EpmsDaoTest {
 
     }
 
-    @org.junit.Test
-    public void test(){
-    }
 }

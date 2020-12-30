@@ -92,11 +92,11 @@ public class EpmsServiceTest {
         long time = javaDate.getTime();
         Timestamp stamp = new Timestamp(time);
         Project project = new Project(10002, "ATIpiuTest", stamp, stamp, 1234, 10000001, 10000001, "none",
-                10000002, "none", 10000003,
+                100000010, "none", 10000003,
                 "none", 0, 0, "www.4399.com", 500,
                 200, 400);
 //        插入测试
-//        System.out.println(projectService.managerAddProject(project));
+        System.out.println(projectService.managerAddProject(project));
 //        更新测试
 //        System.out.println(projectService.managerUpdateProject(project));
 //        客户获取项目列表测试

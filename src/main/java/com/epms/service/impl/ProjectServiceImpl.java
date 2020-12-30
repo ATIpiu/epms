@@ -140,22 +140,23 @@ public class ProjectServiceImpl implements ProjectService {
         try {
             String path = "";
             Project project=projectDao.queryProjectBypId(pId);
-            if (type == 1) {
+            if (type == 1&&project.getpPeriodStatus()==1) {
                 path ="D:/Epms/"+project.getpName()+"/max/原始模型";
                 String url= UploadFileUtil.upload(file,path);
                 project.setpPeriodStatus(2);
             }
-            else if(type==2){
+            else if(type==2&&project.getpPeriodStatus()==2){
                 path="D:/Epms/"+project.getpName()+"/max/原始模型";
                 String url= UploadFileUtil.upload(file,path);
                 project.setpPeriodStatus(3);
 
             }
-            else {
+            else if(type==3&&project.getpPeriodStatus()==2){
                 path="D:/Epms/"+project.getpName()+ "/jpg";
                 String url= UploadFileUtil.upload(file,path);
                 project.setpPeriodStatus(4);
             }
+            else return Result.error().message("上传文件失败：项目阶段错误");
             /**
              * TO DO LIST:压缩项目文件并返回值
              */

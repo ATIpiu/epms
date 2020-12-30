@@ -39,7 +39,15 @@ public class ClientController {
         this.commitLogService = commitLogService;
     }
 
-    @RequestMapping(value = "/clientGetProject")
+    @InitBinder
+    public void initBinder(WebDataBinder binder, WebRequest request) {
+
+        //转换日期
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));// CustomDateEditor为自定义日期编辑器
+    }
+
+    @RequestMapping(value = "/GetProject")
     public Result clientGetProject(@RequestParam("cId") int cId,
                                    @RequestParam(value = "page", required = false, defaultValue = "1") int page,
                                    @RequestParam(value = "pageSize", required = false, defaultValue = "20") int pageSize) throws SignatureException {
@@ -55,7 +63,7 @@ public class ClientController {
         return clientService.updateClient(client);
     }
 
-    @RequestMapping(value = "/clientGetCommitLog")
+    @RequestMapping(value = "/GetCommitLog")
     public Result clientGetCommitLog(@RequestParam("cId") int cId,
                                      @RequestParam(value = "page", required = false, defaultValue = "1") int page,
                                      @RequestParam(value = "pageSize", required = false, defaultValue = "20") int pageSize) throws SignatureException {
@@ -72,13 +80,6 @@ public class ClientController {
         return commitLogService.checkCommitLog(commitLog);
     }
 
-    @InitBinder
-    public void initBinder(WebDataBinder binder, WebRequest request) {
-
-        //转换日期
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));// CustomDateEditor为自定义日期编辑器
-    }
 
     @RequestMapping("/filesDownloads")
     public ResponseEntity<byte[]> EIToolDownloads(@RequestParam("pId") int pId) throws IOException {
@@ -102,7 +103,7 @@ public class ClientController {
         return projectService.clientSetPeriodStatus(cId, pId, status);
     }
 
-    @RequestMapping("/clientUploadFile")
+    @RequestMapping("/UploadFile")
     public Result clientUploadFile(@RequestParam("cId") int cId,
                                    @RequestParam("pId") int pId,
                                    @RequestParam("file") MultipartFile file) {
