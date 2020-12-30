@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <button type="button " onclick="sendData()">提交</button>
+</div>
+<a href=>Download</a>
+<script>
+    function sendData() {
+        var timestamp = (new Date()).valueOf();
+        var token = md5("epms" + timestamp);
+        var data={
+            cId:10000001,
+            pId:10001,
+            status:5
+        }
+        $.ajax({
+            // url: "http://localhost:8080/client/checkCommitLog",
+            // url: "http://localhost:8080/client/clientGetCommitLog",
+            // url: "http://localhost:8080/client/clientGetProject",
+            url: "http://localhost:8080/client/setProjectPeriodStatus",
+            // data: commitLog,
+            data: data,
+            method: "POST",
+            headers: {
+                token: token,
+                timestamp: timestamp
+            },
+            success: function (res) {
+                console.log('res', res);
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        })
+    }
+</script>
+</body>
+</html>

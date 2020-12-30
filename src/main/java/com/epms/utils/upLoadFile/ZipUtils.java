@@ -1,3 +1,4 @@
+package com.epms.utils.upLoadFile;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -7,11 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
-/**
- * @author Nemo
- * @version 1.0
- * @date 2019/11/5
- */
 public class ZipUtils {
     private static final int BUFFER_SIZE = 2 * 1024;
     /**
@@ -123,10 +119,5 @@ public class ZipUtils {
                 }
             }
         }
-    }
-    public static void main(String[] args) throws Exception {
-        /** 测试压缩方法1 */
-        FileOutputStream fos1 = new FileOutputStream(new File("D:/ImageFile.zip"));
-        ZipUtils.toZip(new File("D:/ImageFile"), fos1,true);
     }
 }

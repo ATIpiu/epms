@@ -92,4 +92,11 @@ public class ClientController {
         }
     }
 
+    @RequestMapping(value = "/setProjectPeriodStatus",method = RequestMethod.POST)
+    public Result setStatus(@RequestParam("cId") int cId,
+                            @RequestParam("pId") int pId,
+                            @RequestParam("status") int status) {
+        return projectService.clientSetPeriodStatus(cId,pId,status);
+    }
+
 }

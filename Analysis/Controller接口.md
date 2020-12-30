@@ -1,7 +1,6 @@
 ### Code的所有类型
 
-![code](C:\Users\15227\AppData\Roaming\Typora\typora-user-images\1609144799990.png)
-
+![](.Controller接口_images/026cccad.png)
 ### 登录
 
 **URL**:http://localhost:8080/Login

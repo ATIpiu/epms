@@ -60,11 +60,29 @@ public interface ProjectService {
     String getProjectFile(int pId);
 
     /**
-     * 管理员上传项目文件
+     * 主管上传项目文件
      * @param type ：1模型主管，2：渲染主管，3：后期主管；
      * @param pId 项目Id：
      * @param file 上传的文件；
      * @return
      */
     Result managerUploadFile(int type,int pId,MultipartFile file);
+
+    /**
+     * 客户上传资料
+     * @param cId 客户的ID
+     * @param pId 客户需要上传资料的项目的ID
+     * @param file 客户上传的资料文件；
+     * @return
+     */
+    Result clientUploadFile(int cId,int pId,MultipartFile file);
+
+    /**
+     * 客户确定项目状态
+     * @param cId
+     * @param pId
+     * @param status 项目状态 1：建模阶段，2：渲染阶段；3：后期阶段，4完成阶段，5项目已完工；
+     * @return
+     */
+    Result clientSetPeriodStatus(int cId,int pId,int status);
 }

@@ -7,11 +7,14 @@ import com.epms.entity.SelectProject;
 import com.epms.service.ProjectService;
 import com.epms.utils.result.Result;
 import com.epms.utils.upLoadFile.UploadFileUtil;
+import com.epms.utils.upLoadFile.ZipUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -134,19 +137,28 @@ public class ProjectServiceImpl implements ProjectService {
             String path = "";
             Project project=projectDao.queryProjectBypId(pId);
             if (type == 1) {
-                path ="D:/Epms/"+project.getpName()+"max/原始模型";
+                path ="D:/Epms/"+project.getpName()+"/max/原始模型";
                 String url= UploadFileUtil.upload(file,path);
+                project.setpPeriodStatus(2);
+            }
+            else if(type==2){
+                path="D:/Epms/"+project.getpName()+"/max/原始模型";
+                String url= UploadFileUtil.upload(file,path);
+                project.setpPeriodStatus(3);
 
-            }else if(type==2){
-                path="D:/Epms/"+project.getpName()+"max/原始模型";
+            }
+            else {
+                path="D:/Epms/"+project.getpName()+ "/jpg";
                 String url= UploadFileUtil.upload(file,path);
-            }else {
-                path="D:/Epms/"+project.getpName()+ "jpg";
-                String url= UploadFileUtil.upload(file,path);
+                project.setpPeriodStatus(4);
             }
             /**
-             * TO DO LIST:压缩项目文件并返回值；
+             * TO DO LIST:压缩项目文件并返回值
              */
+            String fileName="D:/Epms/"+project.getpName()+".zip";
+            FileOutputStream fos1 = new FileOutputStream(new File(fileName));
+            ZipUtils.toZip(new File("D:/ImageFile"), fos1,true);
+            project.setpFileUrl(fileName);
             projectDao.updateProject(project);
             return Result.ok().message("上传成功");
         } catch (IOException e) {
@@ -155,6 +167,73 @@ public class ProjectServiceImpl implements ProjectService {
         }catch (Exception e){
             e.printStackTrace();
             return Result.error().message("上传失败:"+e.toString());
+        }
+    }
+
+    @Override
+    public Result clientUploadFile(int cId, int pId, MultipartFile file) {
+        try{
+            Project project=projectDao.queryProjectBypId(pId);
+            if(cId!=project.getcId()){
+                return Result.error().message("项目客户错误!!!");
+            }
+            if(project==null){
+                return Result.error().message("项目不存在!!!");
+            }
+            String path ="D:/Epms/"+project.getpName()+"/资料";
+            UploadFileUtil.upload(file,path);
+            String fileName="D:/Epms/"+project.getpName()+".zip";
+            FileOutputStream fos1 = new FileOutputStream(new File(fileName));
+            ZipUtils.toZip(new File("D:/ImageFile"), fos1,true);
+            project.setpFileUrl(fileName);
+            projectDao.updateProject(project);
+            return Result.ok().message("上传成功");
+        } catch (IOException e) {
+            e.printStackTrace();
+            return Result.error().message("上传错误！！！："+e.toString());
+        }
+        catch (Exception e){
+            return Result.error().message("上传错误！！！："+e.toString());
+        }
+    }
+
+    @Override
+    public Result clientSetPeriodStatus(int cId, int pId, int status) {
+        try {
+            Project project = projectDao.queryProjectBypId(pId);
+            if (cId != project.getcId()) {
+                return Result.error().message("设置错误:项目客户错误!!!");
+            }
+            if (project == null) {
+                return Result.error().message("设置错误:项目不存在!!!");
+            }
+            if (status == 5 && project.getpPeriodStatus() != 4) {
+                return Result.error().message("设置错误:项目未到完成阶段，无法验收项目!!!");
+            } else {
+                project.setpPeriodStatus(status);
+                projectDao.updateProject(project);
+                String message = "";
+                switch (status) {
+                    case 1:
+                        message = "建模阶段";
+                        break;
+                    case 2:
+                        message = "渲染阶段";
+                        break;
+                    case 3:
+                        message = "后期阶段";
+                        break;
+                    case 4:
+                        message = "完成阶段";
+                        break;
+                    case 5:
+                        message = "验收成功";
+                        break;
+                }
+                return Result.ok().message("设置成功:项目已设置成" + message);
+            }
+        } catch (Exception e) {
+            return Result.error().message("设置错误：" + e.toString());
         }
     }
 }
