@@ -22,10 +22,14 @@ import java.util.List;
 @Service
 public class ProjectServiceImpl implements ProjectService {
 
-    @Autowired
-    private ProjectDao projectDao;
-    @Autowired
-    private SelectProjectDao selectProjectDao;
+    private final ProjectDao projectDao;
+    private final SelectProjectDao selectProjectDao;
+
+    public ProjectServiceImpl(ProjectDao projectDao, SelectProjectDao selectProjectDao) {
+        this.projectDao = projectDao;
+        this.selectProjectDao = selectProjectDao;
+    }
+
     @Override
     public Result managerAddProject(Project project) {
         try{
@@ -184,7 +188,7 @@ public class ProjectServiceImpl implements ProjectService {
             UploadFileUtil.upload(file,path);
             String fileName="D:/Epms/"+project.getpName()+".zip";
             FileOutputStream fos1 = new FileOutputStream(new File(fileName));
-            ZipUtils.toZip(new File("D:/ImageFile"), fos1,true);
+            ZipUtils.toZip(new File("D:/Epms/"+project.getpName()+"/资料"), fos1,true);
             project.setpFileUrl(fileName);
             projectDao.updateProject(project);
             return Result.ok().message("上传成功");

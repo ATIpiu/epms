@@ -11,10 +11,13 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 @Service
 public class SalaryServiceImpl implements SalaryService {
-    @Autowired
-    private SalaryDao salaryDao;
-    @Autowired
-    private ProjectDao projectDao;
+    private final SalaryDao salaryDao;
+    private final ProjectDao projectDao;
+
+    public SalaryServiceImpl(SalaryDao salaryDao, ProjectDao projectDao) {
+        this.salaryDao = salaryDao;
+        this.projectDao = projectDao;
+    }
 
     @Override
     public Result staffGetProjectBonus(int sId) {

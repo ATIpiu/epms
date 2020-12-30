@@ -15,10 +15,13 @@ import java.sql.Timestamp;
 
 @Service
 public class SelectProjectServiceImpl implements SelectProjectService {
-    @Autowired
-    private SelectProjectDao selectProjectDao;
-    @Autowired
-    private SalaryDao salaryDao;
+    private final SelectProjectDao selectProjectDao;
+    private final SalaryDao salaryDao;
+
+    public SelectProjectServiceImpl(SelectProjectDao selectProjectDao, SalaryDao salaryDao) {
+        this.selectProjectDao = selectProjectDao;
+        this.salaryDao = salaryDao;
+    }
 
     @Override
     public Result manageDistributeStaff(int pId, int[] sIds) {

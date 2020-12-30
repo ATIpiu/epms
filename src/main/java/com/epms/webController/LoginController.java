@@ -13,10 +13,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class LoginController {
-    @Autowired
-    private StaffService staffService;
-    @Autowired
-    private ClientService clientService;
+    private final StaffService staffService;
+    private final ClientService clientService;
+
+    public LoginController(StaffService staffService, ClientService clientService) {
+        this.staffService = staffService;
+        this.clientService = clientService;
+    }
 
     @CrossOrigin
     @RequestMapping(value = "/Login" )

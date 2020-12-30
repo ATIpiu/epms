@@ -8,27 +8,31 @@
     <title>Title</title>
 </head>
 <body>
-<div>
-    <button type="button " onclick="sendData()">提交</button>
-</div>
+<form id="Form">
+    <input type="file" name="file" value="请选择文件"/><br/>
+    cId:<input type="text" name="cId" /><br/>
+    pId:<input type="text" name="pId" /><br/>
+    <input type="button" value="提交" onclick="sendData()"/>
+</form>
 <a href=>Download</a>
 <script>
     function sendData() {
         var timestamp = (new Date()).valueOf();
         var token = md5("epms" + timestamp);
-        var data={
-            cId:10000001,
-            pId:10001,
-            status:5
-        }
+        var form=document.querySelector("#Form");
+        //将获得的表单元素作为参数，对formData进行初始化
+        var formdata=new FormData(form);
         $.ajax({
-            url: "http://localhost:8080/client/setProjectPeriodStatus",
-            data: data,
+            url: "http://localhost:8080/client/clientUploadFile",
+            data: formdata,
             method: "POST",
             headers: {
                 token: token,
                 timestamp: timestamp
             },
+            cache: false,
+            processData: false,
+            contentType: false,
             success: function (res) {
                 console.log('res', res);
             },

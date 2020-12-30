@@ -19,12 +19,15 @@ import java.util.List;
 
 @Service
 public class CommitLogServiceImpl implements CommitLogService {
-    @Autowired
-    private StaffDao staffDao;
-    @Autowired
-    private CommitLogDao commitLogDao;
-    @Autowired
-    private ProjectDao projectDao;
+    private final StaffDao staffDao;
+    private final CommitLogDao commitLogDao;
+    private final ProjectDao projectDao;
+
+    public CommitLogServiceImpl(StaffDao staffDao, CommitLogDao commitLogDao, ProjectDao projectDao) {
+        this.staffDao = staffDao;
+        this.commitLogDao = commitLogDao;
+        this.projectDao = projectDao;
+    }
 
     @Override
     public Result managerGetCommitLog(int managerId, int page, int pageSize) {

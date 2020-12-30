@@ -17,9 +17,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
@@ -30,73 +29,84 @@ import java.util.Date;
 @CrossOrigin
 @RequestMapping(value = "/client")
 public class ClientController {
-    @Autowired
-    private ClientService clientService;
-    @Autowired
-    private ProjectService projectService;
-    @Autowired
-    private CommitLogService commitLogService;
+    private final ClientService clientService;
+    private final ProjectService projectService;
+    private final CommitLogService commitLogService;
+
+    public ClientController(ClientService clientService, ProjectService projectService, CommitLogService commitLogService) {
+        this.clientService = clientService;
+        this.projectService = projectService;
+        this.commitLogService = commitLogService;
+    }
 
     @RequestMapping(value = "/clientGetProject")
     public Result clientGetProject(@RequestParam("cId") int cId,
                                    @RequestParam(value = "page", required = false, defaultValue = "1") int page,
-                                   @RequestParam(value = "pageSize", required = false, defaultValue = "20") int pageSize)
-            throws SignatureException{
-        if(cId==0){
+                                   @RequestParam(value = "pageSize", required = false, defaultValue = "20") int pageSize) throws SignatureException {
+        if (cId == 0) {
             return Result.error().message("用户Id不能为0");
         }
-        return projectService.clientGetProject(cId,page,pageSize);
+        return projectService.clientGetProject(cId, page, pageSize);
     }
+
     @ResponseBody
-    @RequestMapping(value = "/updateInfo",method = RequestMethod.POST)
-    public Result updateInfo(Client client)
-            throws Exception {
+    @RequestMapping(value = "/updateInfo", method = RequestMethod.POST)
+    public Result updateInfo(Client client) throws Exception {
         return clientService.updateClient(client);
     }
+
     @RequestMapping(value = "/clientGetCommitLog")
     public Result clientGetCommitLog(@RequestParam("cId") int cId,
-                                   @RequestParam(value = "page", required = false, defaultValue = "1") int page,
-                                   @RequestParam(value = "pageSize", required = false, defaultValue = "20") int pageSize)
-            throws SignatureException {
-        if(cId==0){
+                                     @RequestParam(value = "page", required = false, defaultValue = "1") int page,
+                                     @RequestParam(value = "pageSize", required = false, defaultValue = "20") int pageSize) throws SignatureException {
+        if (cId == 0) {
             return Result.error().message("用户Id不能为0");
         }
-        return commitLogService.clientGetCommitLog(cId,page,pageSize);
+        return commitLogService.clientGetCommitLog(cId, page, pageSize);
     }
+
     @ResponseBody
-    @RequestMapping(value = "/checkCommitLog",method = RequestMethod.POST)
-    public Result checkCommitLog(CommitLog commitLog)
-            throws Exception {
+    @RequestMapping(value = "/checkCommitLog", method = RequestMethod.POST)
+    public Result checkCommitLog(CommitLog commitLog) throws Exception {
         System.out.println(commitLog);
         return commitLogService.checkCommitLog(commitLog);
     }
+
     @InitBinder
     public void initBinder(WebDataBinder binder, WebRequest request) {
 
         //转换日期
-        DateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));// CustomDateEditor为自定义日期编辑器
     }
+
     @RequestMapping("/filesDownloads")
     public ResponseEntity<byte[]> EIToolDownloads(@RequestParam("pId") int pId) throws IOException {
         String downLoadPath = projectService.getProjectFile(pId);
         File file = new File(downLoadPath);
-        if(file.exists()){
+        if (file.exists()) {
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
             headers.setContentDispositionFormData("attachment", file.getName());
-            return new ResponseEntity<byte[]>(FileUtils.readFileToByteArray(file),headers, HttpStatus.OK);
-        }else{
+            return new ResponseEntity<byte[]>(FileUtils.readFileToByteArray(file), headers, HttpStatus.OK);
+        } else {
             System.out.println("文件不存在,请重试...");
             return null;
         }
     }
 
-    @RequestMapping(value = "/setProjectPeriodStatus",method = RequestMethod.POST)
+    @RequestMapping(value = "/setProjectPeriodStatus", method = RequestMethod.POST)
     public Result setStatus(@RequestParam("cId") int cId,
                             @RequestParam("pId") int pId,
                             @RequestParam("status") int status) {
-        return projectService.clientSetPeriodStatus(cId,pId,status);
+        return projectService.clientSetPeriodStatus(cId, pId, status);
+    }
+
+    @RequestMapping("/clientUploadFile")
+    public Result clientUploadFile(@RequestParam("cId") int cId,
+                                   @RequestParam("pId") int pId,
+                                   @RequestParam("file") MultipartFile file) {
+        return projectService.clientUploadFile(cId, pId, file);
     }
 
 }

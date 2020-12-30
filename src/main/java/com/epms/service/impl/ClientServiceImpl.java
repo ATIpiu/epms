@@ -14,8 +14,11 @@ import java.util.List;
 
 @Service
 public class ClientServiceImpl implements ClientService {
-    @Autowired
-    private ClientDao clientDao;
+    private final ClientDao clientDao;
+
+    public ClientServiceImpl(ClientDao clientDao) {
+        this.clientDao = clientDao;
+    }
 
     @Override
     public Result Login(String userName, String password) {

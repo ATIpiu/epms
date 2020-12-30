@@ -15,8 +15,11 @@ import java.util.List;
 
 @Service
 public class StaffServiceImpl implements StaffService {
-    @Autowired
-    private StaffDao staffDao;
+    private final StaffDao staffDao;
+
+    public StaffServiceImpl(StaffDao staffDao) {
+        this.staffDao = staffDao;
+    }
 
     @Override
     public Result Login(String userName, String password) {
