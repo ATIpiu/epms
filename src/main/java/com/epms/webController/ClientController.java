@@ -81,7 +81,7 @@ public class ClientController {
     }
 
 
-    @RequestMapping("/filesDownloads")
+    @RequestMapping("/filesDownload")
     public ResponseEntity<byte[]> EIToolDownloads(@RequestParam("pId") int pId) throws IOException {
         String downLoadPath = projectService.getProjectFile(pId);
         File file = new File(downLoadPath);

@@ -85,7 +85,7 @@
 
 #### 4:客户审核提交给自己项目提交记录
 
-**URL**:http://localhost:8080/client/checkCommitLog **ps：不能用ajax请求，请求时需要加上token和timestamp**
+**URL**:http://localhost:8080/client/checkCommitLog ****
 **传入参数列表**：
 
 | 参数名    | 描述               |
@@ -136,6 +136,16 @@
 | success  | 此次请求是否成功(true Or false) |
 | code     | 此次请求的结果      |
 | message     | 此次请求的信息 |
+#### 7:下载项目文件
+
+**URL**:http://localhost:8080/client/filesDownload
+**ps：不能用ajax请求，请求时需要加上token和timestamp**
+**传入参数列表**：
+
+| 参数名 | 描述                   |
+| ------ | ---------------------- |
+| pId    | 要下载项目文件的项目ID |
+**无返回参数，若请求成功则下载文件**
 
 ### Manager:主管所有接口
 
@@ -256,3 +266,29 @@
 | success | 此次请求是否成功(true Or false) |
 | code    | 此次请求的结果                  |
 | message | 此次请求的信息                  |
+#### 7:主管审核提交给自己项目提交记录
+
+**URL**:http://localhost:8080/client/checkCommitLog 
+**传入参数列表**：
+
+| 参数名    | 描述               |
+| --------- | ------------------ |
+| commitLog | 修改过后的提交记录 |
+
+**返回参数列表**:
+
+| 参数名      | 描述                 |
+| ----------- | -------------------- |
+| success  | 此次请求是否成功(true Or false) |
+| code     | 此次请求的结果      |
+| message     | 此次请求的信息 |
+#### 8:下载项目文件
+
+**URL**:http://localhost:8080/client/filesDownload
+**ps：不能用ajax请求，请求时需要加上token和timestamp**
+**传入参数列表**：
+
+| 参数名 | 描述                   |
+| ------ | ---------------------- |
+| pId    | 要下载项目文件的项目ID |
+**无返回参数，若请求成功则下载文件**
