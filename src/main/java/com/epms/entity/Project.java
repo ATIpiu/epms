@@ -20,6 +20,30 @@ public class Project {
     Integer pRenderManagerId;
     String pRenderStaff;
     Integer pAfterManagerId;
+
+    public Project(String pName, Timestamp pCreateDate, Timestamp pEndDate, Integer pType, Integer cId,
+                   Integer pModelManagerId, String pModelStaff, Integer pRenderManagerId, String pRenderStaff,
+                   Integer pAfterManagerId, String pAfterStaff, Integer pPeriodStatus, Integer pProjectStatus,
+                   String pFileUrl, Integer pModelWage, Integer pRenderWage, Integer pAfterWage) {
+        this.pName = pName;
+        this.pCreateDate = pCreateDate;
+        this.pEndDate = pEndDate;
+        this.pType = pType;
+        this.cId = cId;
+        this.pModelManagerId = pModelManagerId;
+        this.pModelStaff = pModelStaff;
+        this.pRenderManagerId = pRenderManagerId;
+        this.pRenderStaff = pRenderStaff;
+        this.pAfterManagerId = pAfterManagerId;
+        this.pAfterStaff = pAfterStaff;
+        this.pPeriodStatus = pPeriodStatus;
+        this.pProjectStatus = pProjectStatus;
+        this.pFileUrl = pFileUrl;
+        this.pModelWage = pModelWage;
+        this.pRenderWage = pRenderWage;
+        this.pAfterWage = pAfterWage;
+    }
+
     String pAfterStaff;
     Integer pPeriodStatus;
     Integer pProjectStatus;

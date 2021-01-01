@@ -1,4 +1,4 @@
-package com.epms;
+package java.com.epms;
 
 import com.epms.entity.CommitLog;
 import com.epms.entity.Project;
