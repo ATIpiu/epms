@@ -236,7 +236,7 @@
 | success | 此次请求是否成功(true Or false) |
 | code    | 此次请求的结果                  |
 | message | 此次请求的信息                  |
-#### 5：主管获取员工提交记录
+#### 6：主管获取员工提交记录
 
 **URL**:http://localhost:8080/manager/distributeStaff
 
