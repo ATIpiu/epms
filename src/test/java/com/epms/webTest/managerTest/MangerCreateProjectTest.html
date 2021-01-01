@@ -9,30 +9,38 @@
 </head>
 <body>
 <form id="Form">
-    <input type="file" name="file" value="请选择文件"/><br/>
-    type:<input type="text" name="pId" /><br/>
-    pId:<input type="text" name="pId" /><br/>
     <input type="button" value="提交" onclick="sendData()"/>
 </form>
-<a href=>Download</a>
 <script>
     function sendData() {
         var timestamp = (new Date()).valueOf();
         var token = md5("epms" + timestamp);
-        var form=document.querySelector("#Form");
-        //将获得的表单元素作为参数，对formData进行初始化
-        var formdata=new FormData(form);
+       var project={
+           pId:10003,
+           pName:'ATIpiuTest',
+           pCreateDate:'2020-12-26 06:50:31',
+           pEndDate:'2020-12-26 06:50:31',
+           pType:1234,
+           cId:10000001,
+           pModelManagerId:10000001,
+           pRenderManagerId:10000002,
+           pAfterManagerId:10000003,
+           pPeriodStatus:1,
+           pProjectStatus:0,
+           pFileUrl:'none',
+           pModelWage:1000,
+           pRenderWage:200,
+           pAfterWage:1000
+       }
         $.ajax({
-            url: "http://localhost:8080/manager/UploadFile",
-            data: formdata,
+            url: "http://localhost:8080/manager/createProject",
+            data:project,
             method: "POST",
             headers: {
                 token: token,
                 timestamp: timestamp
             },
             cache: false,
-            processData: false,
-            contentType: false,
             success: function (res) {
                 console.log('res', res);
             },

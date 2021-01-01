@@ -24,8 +24,9 @@ public class ManagerController {
         return projectService.managerUploadFile(type, pId, file);
     }
     @ResponseBody
-    @RequestMapping("createProject/")
+    @RequestMapping(value = "createProject", method = RequestMethod.POST)
     public Result createProject(Project project) throws Exception{
+        System.out.println(project);
         return projectService.managerAddProject(project);
     }
 
