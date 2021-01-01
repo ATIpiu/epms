@@ -24,7 +24,7 @@ public class SelectProjectServiceImpl implements SelectProjectService {
     }
 
     @Override
-    public Result manageDistributeStaff(int pId, int[] sIds) {
+    public Result managerDistributeStaff(int pId, int[] sIds) {
         try {
             for (int s : sIds) {
                 if (selectProjectDao.insertIntoSelectProject(new SelectProject(s, pId)) == 1) {

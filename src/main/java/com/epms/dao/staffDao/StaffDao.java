@@ -47,12 +47,12 @@ public interface StaffDao {
     int getType(int sId);
 
     /**
-     *
+     *主管获取对应项目的自己的员工
      * @param pId
      * @param type
      * @return 返回符合要求的Staff对象
      */
-    List<Staff> managerGetOwnStaff(@Param("pId") int pId,@Param("type") int type);
+    List<Staff> managerGetOwnProjectStaff(@Param("pId") int pId,@Param("type") int type);
 
     /**
      * 全字段模糊查询
@@ -60,4 +60,12 @@ public interface StaffDao {
      * @return 返回符合要求的Staff对象
      */
     List<Staff> queryStaffByKeyword(String keyWord);
+
+    /**
+     * 主管将获取自己部门的所有员工
+     * @param Type
+     * @return
+     * 返回符合要求的Staff对象
+     */
+    List<Staff> managerGetOwnStaff(int Type);
 }

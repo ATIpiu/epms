@@ -126,7 +126,7 @@ public class EpmsServiceTest {
         ApplicationContext ctx = SpringUtil.getApplicationContext();
         SelectProjectService selectProjectService=(SelectProjectService)ctx.getBean("selectProjectServiceImpl");
         int[] sIds={10000005,10000006};
-        System.out.println(selectProjectService.manageDistributeStaff(10001,sIds));
+        System.out.println(selectProjectService.managerDistributeStaff(10001,sIds));
     }
 }
 

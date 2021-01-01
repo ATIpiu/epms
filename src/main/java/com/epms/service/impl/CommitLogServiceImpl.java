@@ -35,26 +35,26 @@ public class CommitLogServiceImpl implements CommitLogService {
             int type = staffDao.getType(managerId);
             if (type == 1 || type == 2 || type == 3) {
                 List<CommitLog> commitLogs = commitLogDao.managerGetCommitLog(managerId, type);
-                List<CommitLog> results = new ArrayList<CommitLog>();
-                for (int i = (page - 1) * pageSize; i < page * pageSize && i < commitLogs.size(); i++) {
-                    results.add(commitLogs.get(i));
-                }
-                return Result.ok().message("查询成功").data("commitLogList", results);
+                return paging(page, pageSize, commitLogs);
             } else return Result.error().message("查询失败：只有主管才能查询该记录");
         } catch (Exception e) {
             return Result.error().message("获取失败：" + e.toString());
         }
     }
 
+    private Result paging(int page, int pageSize, List<CommitLog> commitLogs) {
+        List<CommitLog> results = new ArrayList<CommitLog>();
+        for (int i = (page - 1) * pageSize; i < page * pageSize && i < commitLogs.size(); i++) {
+            results.add(commitLogs.get(i));
+        }
+        return Result.ok().message("查询成功").data("commitLogList", results);
+    }
+
     @Override
     public Result clientGetCommitLog(int cId, int page, int pageSize) {
         try {
             List<CommitLog> commitLogs = commitLogDao.clientGetCommitLog(cId);
-            List<CommitLog> results = new ArrayList<CommitLog>();
-            for (int i = (page - 1) * pageSize; i < page * pageSize && i < commitLogs.size(); i++) {
-                results.add(commitLogs.get(i));
-            }
-            return Result.ok().message("查询成功").data("commitLogList", results);
+            return paging(page, pageSize, commitLogs);
         } catch (Exception e) {
             return Result.error().message("获取失败：" + e.toString());
         }
@@ -82,11 +82,7 @@ public class CommitLogServiceImpl implements CommitLogService {
     public Result staffGetOwnCommitLog(int sId, int page, int pageSize) {
         try {
             List<CommitLog> commitLogs = commitLogDao.queryCommitLogsBysId(sId);
-            List<CommitLog> results = new ArrayList<CommitLog>();
-            for (int i = (page - 1) * pageSize; i < page * pageSize && i < commitLogs.size(); i++) {
-                results.add(commitLogs.get(i));
-            }
-            return Result.ok().message("查询成功").data("commitLogList", results);
+            return paging(page, pageSize, commitLogs);
         } catch (Exception e) {
             return Result.error().message("查询失败：" + e.toString());
         }
@@ -128,11 +124,7 @@ public class CommitLogServiceImpl implements CommitLogService {
     public Result getAllCommitLog( int page, int pageSize) {
         try {
             List<CommitLog> commitLogs = commitLogDao.queryAllCommitLogs();
-            List<CommitLog> results = new ArrayList<CommitLog>();
-            for (int i = (page - 1) * pageSize; i < page * pageSize && i < commitLogs.size(); i++) {
-                results.add(commitLogs.get(i));
-            }
-            return Result.ok().message("查询成功").data("commitLogList", results);
+            return paging(page, pageSize, commitLogs);
         } catch (Exception e) {
             return Result.error().message("查询失败：" + e.toString());
         }

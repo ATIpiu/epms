@@ -21,16 +21,6 @@ import java.util.List;
 @SpringBootTest
 public class EpmsDaoTest {
 
-    @Test
-    //输出所有的Bean的测试
-    public void seanTest() {
-        ApplicationContext ctx = new ClassPathXmlApplicationContext("epmsApplication.xml");
-        String[] beans = ctx.getBeanDefinitionNames();
-        for (String bean : beans
-        ) {
-            System.out.println(bean);
-        }
-    }
 
     @Test
     public void clientDaoTest() {
@@ -256,9 +246,9 @@ public class EpmsDaoTest {
         //更新Staff记录测试
 //        Staff s = new Staff("Test3", 10000002, 1, "male", "12345678901", "chongqing", "15730680467", "ATIpiu", "atipiu");
 //        System.out.println(staffDao.updateStaff(s));
-//        System.out.println(staffDao.managerGetOwnStaff(10001,11));
+//        System.out.println(staffDao.managerGetOwnProjectStaff(10001,11));
 //        模糊查询测试
-        System.out.println(staffDao.queryStaffByKeyword("male"));
+        System.out.println(staffDao.managerGetOwnStaff(1));
     }
 
     @Test

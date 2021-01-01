@@ -140,13 +140,16 @@ public class ProjectServiceImpl implements ProjectService {
         try {
             String path = "";
             Project project=projectDao.queryProjectBypId(pId);
+            if(project==null){
+                return Result.error().message("上传文件失败：项目Id对应的项目不存在！！！");
+            }
             if (type == 1&&project.getpPeriodStatus()==1) {
                 path ="D:/Epms/"+project.getpName()+"/max/原始模型";
                 String url= UploadFileUtil.upload(file,path);
                 project.setpPeriodStatus(2);
             }
             else if(type==2&&project.getpPeriodStatus()==2){
-                path="D:/Epms/"+project.getpName()+"/max/原始模型";
+                path="D:/Epms/"+project.getpName()+"/max/渲染模型";
                 String url= UploadFileUtil.upload(file,path);
                 project.setpPeriodStatus(3);
 
@@ -162,7 +165,7 @@ public class ProjectServiceImpl implements ProjectService {
              */
             String fileName="D:/Epms/"+project.getpName()+".zip";
             FileOutputStream fos1 = new FileOutputStream(new File(fileName));
-            ZipUtils.toZip(new File("D:/ImageFile"), fos1,true);
+            ZipUtils.toZip(new File("D:/Epms/"+project.getpName()), fos1,true);
             project.setpFileUrl(fileName);
             projectDao.updateProject(project);
             return Result.ok().message("上传成功");

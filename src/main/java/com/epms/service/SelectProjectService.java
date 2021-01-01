@@ -9,6 +9,6 @@ public interface SelectProjectService {
      * @param sIds 员工Id数组
      * @return 返回结果成功与否
      */
-    Result manageDistributeStaff(int pId,int[] sIds);
+    Result managerDistributeStaff(int pId,int[] sIds);
 
 }

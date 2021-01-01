@@ -93,9 +93,19 @@ public class StaffServiceImpl implements StaffService {
     }
 
     @Override
-    public Result managerGetOwnStaff(int pId, int type, int page, int pageSize) {
+    public Result managerGetOwnStaff(int type, int page, int pageSize) {
         try{
-            List<Staff> staffs=staffDao.managerGetOwnStaff(pId,type);
+            List<Staff> staffs=staffDao.managerGetOwnStaff(type);
+            return paging(page, pageSize, staffs);
+        }catch (Exception e){
+            return Result.error().message("查询失败："+e.toString());
+        }
+    }
+
+    @Override
+    public Result managerGetOwnProjectStaff(int pId, int type, int page, int pageSize) {
+        try{
+            List<Staff> staffs=staffDao.managerGetOwnProjectStaff(pId,type);
             return paging(page, pageSize, staffs);
         }catch (Exception e){
             return Result.error().message("查询失败："+e.toString());
