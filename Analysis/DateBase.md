@@ -5,3 +5,5 @@
 responseType:0/NULL:未处理，1:同意，2:驳回；
 
 CommitLog :1:给主管，2:提交给客户；
+
+SalaryStatus：0：未计算，1：已经结算；

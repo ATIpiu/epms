@@ -24,19 +24,13 @@ public class SignatureValidation {
      * 秘钥
      */
     private static final String SECRET= "epms";
-//
-//    /**
-//     * 验签切点(完整的找到设置的文件地址)
-//     */
-//    @Pointcut("execution(@com.epms.aop.SignatureValidation * *(..))")
-//    private void verifyUserKey() {
-//    }
+
 
     /**
      * 开始验签    @Pointcut("execution(* com.epms.service.impl.*(..))")
      */
     @Before("execution(* com.epms.webController.*.*(..))")
-    public void doBasicProfiling() throws Exception {
+    public void doBasicProfiling() {
         HttpServletRequest request = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest();
         String token = request.getHeader("token");
         String timestamp = request.getHeader("timestamp");

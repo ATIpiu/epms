@@ -28,7 +28,6 @@ public class SelectProjectServiceImpl implements SelectProjectService {
         try {
             for (int s : sIds) {
                 if (selectProjectDao.insertIntoSelectProject(new SelectProject(s, pId)) == 1) {
-                    salaryDao.insertIntoSalary(new Salary(s, pId, new Timestamp(new java.util.Date().getTime()), 0));
                 }
             }
             return Result.ok().message("分配员工成功");

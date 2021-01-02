@@ -1,14 +1,15 @@
 package com.epms.service.impl;
 
 import com.epms.dao.projectDao.ProjectDao;
+import com.epms.dao.salaryDao.SalaryDao;
 import com.epms.dao.selectProjectDao.SelectProjectDao;
 import com.epms.entity.Project;
+import com.epms.entity.Salary;
 import com.epms.entity.SelectProject;
 import com.epms.service.ProjectService;
 import com.epms.utils.result.Result;
 import com.epms.utils.upLoadFile.UploadFileUtil;
 import com.epms.utils.upLoadFile.ZipUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -16,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -160,9 +162,6 @@ public class ProjectServiceImpl implements ProjectService {
                 project.setpPeriodStatus(4);
             }
             else return Result.error().message("上传文件失败：项目阶段错误");
-            /**
-             * TO DO LIST:压缩项目文件并返回值
-             */
             String fileName="D:/Epms/"+project.getpName()+".zip";
             FileOutputStream fos1 = new FileOutputStream(new File(fileName));
             ZipUtils.toZip(new File("D:/Epms/"+project.getpName()), fos1,true);

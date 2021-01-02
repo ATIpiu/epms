@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form id="Form">
+    <input type="button" value="提交" onclick="sendData()"/>
+</form>
+<script>
+    function sendData() {
+        let timestamp = (new Date()).valueOf();
+        let token = md5("epms" + timestamp);
+        let salaryLists = [
+            {sId: 10000005, pId: 10003, sQuality: 0.9, sSalaryTime: "2020-01-01", sEvaluation: "goodJob", status: 1},
+            {sId: 10000006, pId: 10003, sQuality: 0.9, sSalaryTime: "2020-01-01", sEvaluation: "goodJob", status: 1},
+            {sId: 10000007, pId: 10003, sQuality: 0.9, sSalaryTime: "2020-01-01", sEvaluation: "goodJob", status: 1}
+        ];
+        $.ajax({
+            url: "http://localhost:8080/manager/evaluateStaff",
+            data:{
+                salaryList:JSON.stringify(salaryLists)
+            },
+            method: "POST",
+            dataType : 'json',
+            headers: {
+                token: token,
+                timestamp: timestamp
+            },
+            success: function (res) {
+                console.log('res', res);
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        })
+    }
+</script>
+</body>
+</html>

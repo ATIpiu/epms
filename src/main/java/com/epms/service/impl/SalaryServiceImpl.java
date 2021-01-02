@@ -6,6 +6,7 @@ import com.epms.entity.Salary;
 import com.epms.service.SalaryService;
 import com.epms.utils.result.Result;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,7 +33,7 @@ public class SalaryServiceImpl implements SalaryService {
             for (Salary s:salaryList
                  ) {
                 s.setsStatus(1);
-                if(salaryDao.updateSalary(s)==0) {
+                if(salaryDao.insertIntoSalary(s)==0) {
                         Failed += s.getsId().toString()+'\n';
                 }
             }
@@ -40,7 +41,10 @@ public class SalaryServiceImpl implements SalaryService {
                 return Result.ok().message("部分录入失败："+Failed);
             }
             else return Result.ok().message("录入成功");
-        }catch (Exception e){
+        }catch (DuplicateKeyException e){
+            return Result.error().message("录入失败：部分货全部员工已录入！！！");
+        }
+        catch (Exception e){
             return Result.error().message("录入失败："+e.toString());
         }
     }
