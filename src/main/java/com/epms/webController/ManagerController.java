@@ -1,18 +1,16 @@
 package com.epms.webController;
 
 import com.alibaba.fastjson.JSONArray;
-import com.epms.service.SalaryService;
 import com.epms.entity.Project;
 import com.epms.entity.Salary;
+import com.epms.entity.Staff;
 import com.epms.service.*;
 import com.epms.utils.exception.SignatureException;
 import com.epms.utils.result.Result;
-import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @CrossOrigin
@@ -59,6 +57,19 @@ public class ManagerController {
         return staffService.managerGetOwnProjectStaff(pId, type, page, pageSize);
     }
 
+    @RequestMapping("/getOwnProject")
+    public Result getOwnProject(@RequestParam("sId") int sId,
+                                @RequestParam(value = "page", required = false, defaultValue = "1") int page,
+                                @RequestParam(value = "pageSize", required = false, defaultValue = "20") int pageSize) throws SignatureException {
+        return projectService.stuffGetProject(sId, page, pageSize);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/updateInfo", method = RequestMethod.POST)
+    public Result updateInfo(Staff staff) {
+        return staffService.updateStaff(staff);
+    }
+
     @RequestMapping("/getOwnStaff")
     public Result getOwnStaff(@RequestParam("type") int type,
                               @RequestParam(value = "page", required = false, defaultValue = "1") int page,
@@ -79,7 +90,7 @@ public class ManagerController {
     @ResponseBody
     @RequestMapping(value = "/evaluateStaff", method = RequestMethod.POST)
     public Result evaluateStaffWork(@RequestParam("salaryList") String salaryList) {
-        List<Salary> salaryLists= JSONArray.parseArray(salaryList,Salary.class);
+        List<Salary> salaryLists = JSONArray.parseArray(salaryList, Salary.class);
         return salaryService.EvaluateQuality(salaryLists);
     }
 }
