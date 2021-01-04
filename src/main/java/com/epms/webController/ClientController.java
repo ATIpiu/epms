@@ -65,7 +65,6 @@ public class ClientController {
     @ResponseBody
     @RequestMapping(value = "/checkCommitLog", method = RequestMethod.POST)
     public Result checkCommitLog(CommitLog commitLog) throws SignatureException {
-        System.out.println(commitLog);
         return commitLogService.checkCommitLog(commitLog);
     }
 
