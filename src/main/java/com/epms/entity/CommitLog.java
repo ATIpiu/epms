@@ -33,6 +33,14 @@ public class CommitLog {
         this.cResponseType = cResponseType;
     }
 
+    public CommitLog(Integer sId, Integer pId, Timestamp cCreateTime, Integer cType, Integer cResponseType) {
+        this.sId = sId;
+        this.pId = pId;
+        this.cCreateTime = cCreateTime;
+        this.cType = cType;
+        this.cFeedback = cFeedback;
+        this.cResponseType = cResponseType;
+    }
     public String getcFileUrl() {
         return cFileUrl;
     }
