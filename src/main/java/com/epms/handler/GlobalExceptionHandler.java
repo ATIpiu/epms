@@ -17,7 +17,7 @@ public class GlobalExceptionHandler {
         System.err.println(s.getMessage());
         return Result.error(ResultCodeEnum.ERROR_PERMISSION);
     }
-    @ExceptionHandler(value = Exception.class)
+    @ExceptionHandler()
     @ResponseBody
     public
     Result exceptionHandler(Exception s) {
