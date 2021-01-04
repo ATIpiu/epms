@@ -5,8 +5,8 @@
 <mapper namespace="com.epms.dao.commitLogDao.CommitLogDao">
     <insert id="insertIntoCommitLog" parameterType="com.epms.entity.CommitLog"
             useGeneratedKeys="true">
-        INSERT INTO commitlog(sId,pId,cCreateTime,cType)
-        VALUES (#{sId},#{pId},#{cCreateTime},#{cType})
+        INSERT INTO commitlog(sId,pId,cCreateTime,cType,cFileUrl,cResponseType)
+        VALUES (#{sId},#{pId},#{cCreateTime},#{cType},#{cFileUrl},#{cResponseType})
     </insert>
 
     <delete id="deleteCommitLog" parameterType="com.epms.entity.CommitLog">

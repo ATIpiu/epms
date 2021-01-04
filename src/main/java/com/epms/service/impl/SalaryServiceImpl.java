@@ -45,6 +45,7 @@ public class SalaryServiceImpl implements SalaryService {
             return Result.error().message("录入失败：部分货全部员工已录入！！！");
         }
         catch (Exception e){
+            System.err.println(e);
             return Result.error().message("录入失败："+e.toString());
         }
     }

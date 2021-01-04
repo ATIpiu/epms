@@ -54,6 +54,7 @@ public class StaffServiceImpl implements StaffService {
                 return Result.ok().data("staff",staff);
             }
         }catch (Exception e){
+            System.err.println(e);
             return Result.error().message("查询失败:"+e.toString());
         }
     }
@@ -88,6 +89,7 @@ public class StaffServiceImpl implements StaffService {
             List<Staff> staffs=staffDao.queryAllStaffs();
             return paging(page, pageSize, staffs);
         }catch (Exception e){
+            System.err.println(e);
             return Result.error().message("查询失败："+e.toString());
         }
     }
@@ -98,6 +100,7 @@ public class StaffServiceImpl implements StaffService {
             List<Staff> staffs=staffDao.managerGetOwnStaff(type);
             return paging(page, pageSize, staffs);
         }catch (Exception e){
+            System.err.println(e);
             return Result.error().message("查询失败："+e.toString());
         }
     }
@@ -108,6 +111,7 @@ public class StaffServiceImpl implements StaffService {
             List<Staff> staffs=staffDao.managerGetOwnProjectStaff(pId,type);
             return paging(page, pageSize, staffs);
         }catch (Exception e){
+            System.err.println(e);
             return Result.error().message("查询失败："+e.toString());
         }
     }
@@ -118,6 +122,7 @@ public class StaffServiceImpl implements StaffService {
             List<Staff> staffs=staffDao.queryStaffByKeyword(keyWord);
             return paging(page, pageSize, staffs);
         }catch (Exception e){
+            System.err.println(e);
             return Result.error().message("查询失败："+e.toString());
         }
     }

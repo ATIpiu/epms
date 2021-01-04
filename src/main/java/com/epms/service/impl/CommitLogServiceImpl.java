@@ -11,6 +11,7 @@ import com.epms.utils.result.Result;
 import com.epms.utils.result.ResultCodeEnum;
 import com.epms.utils.upLoadFile.UploadFileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -102,9 +103,10 @@ public class CommitLogServiceImpl implements CommitLogService {
             if(commitLogDao.insertIntoCommitLog(commitLog)>0){
                 return Result.ok().message("添加成功");
             }
-            else  return Result.error().message("查询失败");
+            else  return Result.error().message("添加失败");
         }catch (Exception e){
-            return Result.error().message("查询失败:"+e.toString());
+            System.err.println(e);
+            return Result.error().message("添加失败:"+e.toString());
         }
     }
 
@@ -115,7 +117,12 @@ public class CommitLogServiceImpl implements CommitLogService {
                 return Result.ok().message("修改成功");
             }
             else return Result.error().message("修改失败：未找到对应记录");
-        }catch (Exception e){
+        }catch (DuplicateKeyException e){
+            System.err.println(e);
+            return Result.error().message("修改失败：已经存在对应记录");
+        }
+        catch (Exception e){
+            System.err.println(e);
             return Result.error().message("修改失败："+e.toString());
         }
     }

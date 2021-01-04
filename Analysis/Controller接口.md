@@ -138,7 +138,7 @@
 | message     | 此次请求的信息 |
 #### 7:下载项目文件
 
-**URL**:http://localhost:8080/client/filesDownload
+**URL**:http://localhost:8080/download/projectFile
 **ps：不能用ajax请求，请求时需要加上token和timestamp**
 **传入参数列表**：
 
@@ -284,9 +284,10 @@
 | message     | 此次请求的信息 |
 #### 8:下载项目文件
 
-**URL**:http://localhost:8080/client/filesDownload
+**URL**:http://localhost:8080/download/projectFile
 **ps：不能用ajax请求，请求时需要加上token和timestamp**
 **传入参数列表**：
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
 
 | 参数名 | 描述                   |
 | ------ | ---------------------- |
@@ -390,11 +391,55 @@
 | projectList | 项目列表 |
 #### 3:下载项目文件
 
-**URL**:http://localhost:8080/client/filesDownload
+**URL**:http://localhost:8080/download/projectFile
 **ps：不能用ajax请求，请求时需要加上token和timestamp**
-**传入参数列表**：下·
+**传入参数列表**：
+
 
 | 参数名 | 描述                   |
 | ------ | ---------------------- |
 | pId    | 要下载项目文件的项目ID |
 **无返回参数，若请求成功则下载文件**
+#### 4:员工上传文件提交记录
+
+**URL**:http://localhost:8080/staff/commit
+
+**返回参数列表**:
+
+
+| 参数名     | 描述                           |
+| ---------- | ------------------------------ |
+| sId  | 员工自己的员工Id |
+| pId | 提交的项目Id |
+| cCreateTime | 当前上传时间：“yyyy-mm-dd hh:mm:ss” |
+| cType | 上传给谁：1：主管；2：客户； |
+| file | 上传的文件 |
+
+**返回参数列表**:
+
+| 参数名      | 描述                 |
+| ----------- | -------------------- |
+| success  | 此次请求是否成功(true Or false) |
+| code     | 此次请求的结果      |
+| message     | 此次请求的信息 |
+#### 5:员工获取自己所有的提交记录
+
+**URL**:http://localhost:8080/staff/GetCommitLog
+
+**返回参数列表**:
+
+
+| 参数名     | 描述                           |
+| ---------- | ------------------------------ |
+| sId  | 员工自己的员工Id |
+| page     | 查询的页数(不传默认为1)  |
+| pageSize | 查询的页数大小(默认为20) |
+
+**返回参数列表**:
+
+| 参数名      | 描述                 |
+| ----------- | -------------------- |
+| success  | 此次请求是否成功(true Or false) |
+| code     | 此次请求的结果      |
+| message     | 此次请求的信息 |
+| commitList | 所有的提交记录 |

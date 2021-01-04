@@ -9,33 +9,24 @@
 </head>
 <body>
 <form id="Form">
-    <input type="file" name="file" value="请选择文件"/><br/>
-    cId:<input type="text" name="sId" /><br/>
-    pId:<input type="text" name="pId" /><br/>
-    cType:<input type="text" name="cType" /><br/>
     <input type="button" value="提交" onclick="sendData()"/>
 </form>
 <script>
     function sendData() {
-        let timestamp = (new Date()).valueOf();
-        let token = md5("epms" + timestamp);
-        let form=document.querySelector("#Form");
-        //将获得的表单元素作为参数，对formData进行初始化
-        let formdata=new FormData(form);
-        let cCreateTime="2020-12-26 06:50:32";
-        formdata.append("cCreateTime",cCreateTime);
-        console.log(formdata.get("cCreateTime"))
+        var timestamp = (new Date()).valueOf();
+        var token = md5("epms" + timestamp);
+        var data={
+            sId:10000005,
+        }
         $.ajax({
-            url: "http://localhost:8080/staff/UploadFile",
-            data: formdata,
+            url: "http://localhost:8080/staff/GetCommitLog",
+            data:data,
             method: "POST",
             headers: {
                 token: token,
                 timestamp: timestamp
             },
             cache: false,
-            processData: false,
-            contentType: false,
             success: function (res) {
                 console.log('res', res);
             },

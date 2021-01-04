@@ -50,6 +50,7 @@ public class ProjectServiceImpl implements ProjectService {
             return Result.error().message("插入失败：项目编号已经存在！");
         }
         catch (Exception e){
+            System.err.println(e);
             return Result.error().message("插入失败："+e.toString());
         }
     }
@@ -68,6 +69,7 @@ public class ProjectServiceImpl implements ProjectService {
             return Result.error().message("更新失败：项目编号已经存在！");
         }
         catch (Exception e){
+            System.err.println(e);
             return Result.error().message("更新失败："+e.toString());
         }
     }
@@ -82,6 +84,7 @@ public class ProjectServiceImpl implements ProjectService {
             }
             return Result.ok().message("查询成功").data("projectList", results);
         }catch (Exception e){
+            System.err.println(e);
             return Result.error().message("查询失败："+e.toString());
         }
     }
@@ -96,6 +99,7 @@ public class ProjectServiceImpl implements ProjectService {
             }
             return Result.ok().message("查询成功").data("commitLogList", results);
         }catch (Exception e){
+            System.err.println(e);
             return Result.error().message("查询失败："+e.toString());
         }
     }
@@ -110,6 +114,7 @@ public class ProjectServiceImpl implements ProjectService {
             }
             return Result.ok().message("查询成功").data("commitLogList", results);
         }catch (Exception e){
+            System.err.println(e);
             return Result.error().message("查询失败："+e.toString());
         }
     }
@@ -122,6 +127,7 @@ public class ProjectServiceImpl implements ProjectService {
                 return Result.ok().data("project",project);
             }else return Result.error().message("项目不存在");
         }catch (Exception e){
+            System.err.println(e);
             return Result.error().message("查询失败："+e.toString());
         }
     }
@@ -200,6 +206,7 @@ public class ProjectServiceImpl implements ProjectService {
             return Result.error().message("上传错误！！！："+e.toString());
         }
         catch (Exception e){
+            System.err.println(e);
             return Result.error().message("上传错误！！！："+e.toString());
         }
     }

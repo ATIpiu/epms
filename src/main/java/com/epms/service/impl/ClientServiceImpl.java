@@ -53,6 +53,7 @@ public class ClientServiceImpl implements ClientService {
                 return Result.ok().data("client",client);
             }
         }catch (Exception e){
+            System.err.println(e);
             return Result.error().message("查询失败:"+e.toString());
         }
     }
@@ -87,6 +88,7 @@ public class ClientServiceImpl implements ClientService {
             List<Client> clients=clientDao.queryAllClients();
             return getResult(page, pageSize, clients);
         }catch (Exception e){
+            System.err.println(e);
             return Result.error().message("查询失败："+e.toString());
         }
     }
@@ -97,6 +99,7 @@ public class ClientServiceImpl implements ClientService {
             List<Client> clients=clientDao.queryClientByKeyword(keyWord);
             return getResult(page, pageSize, clients);
         }catch (Exception e){
+            System.err.println(e);
             return Result.error().message("查询失败："+e.toString());
         }
     }
