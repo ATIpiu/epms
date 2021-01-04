@@ -1,12 +1,51 @@
 package com.epms.webController;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.epms.entity.Client;
+import com.epms.entity.Staff;
+import com.epms.service.ClientService;
+import com.epms.service.StaffService;
+import com.epms.utils.exception.SignatureException;
+import com.epms.utils.result.Result;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin
-@RequestMapping(value = "/staff")
+@RequestMapping(value = "/frontDesk")
 public class FrontDeskController {
+    @Autowired
+    private StaffService staffService;
+    @Autowired
+    private ClientService clientService;
+
+    @RequestMapping("getAllClient")
+    public Result getClients(@RequestParam(value = "keyWord", required = false, defaultValue = "") String key,
+                             @RequestParam(value = "page", required = false, defaultValue = "1") int page,
+                             @RequestParam(value = "pageSize", required = false, defaultValue = "20") int pageSize) throws SignatureException {
+        if (key != "")
+            return clientService.getAllClients(page, pageSize);
+        else return clientService.queryClientByKeyword(key, page, pageSize);
+    }
+
+    @RequestMapping("getAllStaff")
+    public Result getStaffs(@RequestParam(value = "keyWord", required = false, defaultValue = "") String key,
+                            @RequestParam(value = "page", required = false, defaultValue = "1") int page,
+                            @RequestParam(value = "pageSize", required = false, defaultValue = "20") int pageSize) throws SignatureException {
+        if (key != "")
+            return staffService.getAllStaffs(page, pageSize);
+        else return staffService.queryStaffByKeyword(key, page, pageSize);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/updateClientInfo", method = RequestMethod.POST)
+    public Result updateInfo(Client client) {
+        return clientService.updateClient(client);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/updateStaffInfo", method = RequestMethod.POST)
+    public Result updateInfo(Staff staff) {
+        return staffService.updateStaff(staff);
+    }
 
 }

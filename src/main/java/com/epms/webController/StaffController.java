@@ -55,4 +55,5 @@ public class StaffController {
                                @RequestParam(value = "pageSize", required = false, defaultValue = "20") int pageSize) throws SignatureException {
         return commitLogService.staffGetOwnCommitLog(sId, page, pageSize);
     }
+
 }
