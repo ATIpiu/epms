@@ -64,6 +64,4 @@ public interface CommitLogDao {
      * @return list<CommitLog> 所有的commit日志(CommitLog)信息
      */
     List<CommitLog> queryAllCommitLogs();
-
-
 }

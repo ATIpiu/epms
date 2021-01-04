@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <button type="button " onclick="getData()">提交</button>
+</div>
+<a href=>Download</a>
+<script>
+    function getData() {
+        var timestamp = (new Date()).valueOf();
+        var token = md5("epms" + timestamp);
+        var client = {
+            cId: 10000001
+        }
+        var commitLog = {
+            sId: 10000001,
+            pId: 10001,
+            cCreateTime: "2020-12-26 06:50:31",
+            cType: 2,
+            cFeedback: "不同意就是不同意",
+            cResponseType: 2,
+            cFileUrl: 1
+        }
+        //   sId: 10000001, pId: 10001, cCreateTime: "2020-12-25T22:50:31.000+00:00", cType: 2, cFeedback: null,
+        console.log(timestamp + ":", token + ":")
+        window.open("http://localhost:8080/download/commitLogFile?token="+token+"&timestamp="+timestamp+"&url=D:/Epms/ATIpiuTest/小样/15.jpg");
+    }
+
+</script>
+</body>
+</html>

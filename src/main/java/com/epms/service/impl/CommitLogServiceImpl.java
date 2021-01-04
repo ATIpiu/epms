@@ -95,7 +95,7 @@ public class CommitLogServiceImpl implements CommitLogService {
             String url= UploadFileUtil.upload(file,"D:/Epms/"+projectDao.queryProjectBypId(commitLog.getpId()).getpName()+"/小样");
             if(url==null){
                 return Result.error().message("文件错误");
-            }else commitLog.setcFileUrl(url);
+            }else commitLog.setcFileUrl("D:/Epms/"+projectDao.queryProjectBypId(commitLog.getpId()).getpName()+"/小样"+url);
             int sType=staffDao.getType(commitLog.getsId());
             if (sType>=4&&sType<=6&&commitLog.getcType()==2){
                 return Result.error().message("该员工经验不足，不能直接向客户提交");

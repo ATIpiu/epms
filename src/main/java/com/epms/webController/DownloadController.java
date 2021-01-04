@@ -25,8 +25,22 @@ public class DownloadController {
     }
 
     @RequestMapping("/projectFile")
-    public ResponseEntity<byte[]> EIToolDownloads(@RequestParam("pId") int pId) throws IOException {
+    public ResponseEntity<byte[]> projectFile(@RequestParam("pId") int pId) throws IOException {
         String downLoadPath = projectService.getProjectFile(pId);
+        File file = new File(downLoadPath);
+        if (file.exists()) {
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+            headers.setContentDispositionFormData("attachment", file.getName());
+            return new ResponseEntity<>(FileUtils.readFileToByteArray(file), headers, HttpStatus.OK);
+        } else {
+            System.out.println("文件不存在,请重试...");
+            return null;
+        }
+    }
+    @RequestMapping("/commitLogFile")
+    public ResponseEntity<byte[]> commitLogFile(@RequestParam("url") String url) throws IOException {
+        String downLoadPath = url;
         File file = new File(downLoadPath);
         if (file.exists()) {
             HttpHeaders headers = new HttpHeaders();
