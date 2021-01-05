@@ -23,8 +23,16 @@
     </select>
     <update id="updateClient" parameterType="com.epms.entity.Client">
         UPDATE client
-        SET cName=#{cName},cTel=#{cTel},cPhoneNumber=#{cPhoneNumber},cQNumber=#{cQNumber},cEmail=#{cEmail},
-            cUsername=#{cUsername},cPwd=#{cPwd},cUnit=#{cUnit}
+        <set>
+            <if test="cName!=null">cName=#{cName},</if>
+            <if test="cTel!=null">cTel=#{cTel},</if>
+            <if test="cPhoneNumber!=null">cPhoneNumber=#{cPhoneNumber},</if>
+            <if test="cQNumber!=null">cQNumber=#{cQNumber},</if>
+            <if test="cEmail!=null">cEmail=#{cEmail},</if>
+            <if test="cUsername!=null">cUsername=#{cUsername},</if>
+            <if test="cPwd!=null">cPwd=#{cPwd},</if>
+            <if test="cUnit!=null">cUnit=#{cUnit}</if>
+        </set>
         WHERE cId=#{cId}
     </update>
     <select id="queryClientByKeyword" resultType="com.epms.entity.Client" parameterType="string">

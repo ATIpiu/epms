@@ -42,10 +42,10 @@ public class EpmsDaoTest {
 //        Client c=new Client("Test3",12345678,"12345667","123456","1123456","1522760512@qq.com","Atipiu","123456","none");
 //        System.out.println(clientDao.queryClientByUserName(c.getcUsername()));
         //更新Client对象测试
-//        Client c=new Client("Test3",12345678,"12345667","123456","1123456","1522760512@qq.com","Atipiu11","123456",null);
-//        System.out.println(clientDao.updateClient(c));
+        Client c=new Client("Test3",12345678,"12345667","123456","1123456","1522760512@qq.com","Atipiu11",null,null);
+        System.out.println(clientDao.updateClient(c));
         //关键字查询测试
-        System.out.println(clientDao.queryClientByKeyword("A"));
+//        System.out.println(clientDao.queryClientByKeyword("A"));
     }
 
     @Test
