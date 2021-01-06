@@ -2,22 +2,26 @@ package com.epms.service.impl;
 
 import com.epms.dao.projectDao.ProjectDao;
 import com.epms.dao.salaryDao.SalaryDao;
+import com.epms.dao.staffDao.StaffDao;
 import com.epms.entity.Salary;
+import com.epms.entity.Staff;
 import com.epms.service.SalaryService;
 import com.epms.utils.result.Result;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 @Service
 public class SalaryServiceImpl implements SalaryService {
     private final SalaryDao salaryDao;
     private final ProjectDao projectDao;
+    private final StaffDao staffDao;
 
-    public SalaryServiceImpl(SalaryDao salaryDao, ProjectDao projectDao) {
+    public SalaryServiceImpl(SalaryDao salaryDao, ProjectDao projectDao, StaffDao staffDao) {
         this.salaryDao = salaryDao;
         this.projectDao = projectDao;
+        this.staffDao = staffDao;
     }
 
     @Override
@@ -48,6 +52,26 @@ public class SalaryServiceImpl implements SalaryService {
             System.err.println(e);
             return Result.error().message("录入失败："+e.toString());
         }
+    }
+
+    @Override
+    public Result ManagerGetSalaryList(int type, int pId,int page,int pageSize) {
+       try {
+           List<Salary> salaryList = salaryDao.querySalaryBypId(pId);
+           List<Salary> result = new ArrayList<Salary>();
+           for (Salary s : salaryList
+           ) {
+               if (staffDao.getType(s.getsId()) == type)
+                   result.add(s);
+           }
+           List<Salary> results1 = new ArrayList<Salary>();
+           for(int i=(page-1)*pageSize;i<page*pageSize&&i<result.size();i++){
+               results1.add(results1.get(i));
+           }
+           return Result.ok().data("salaryList", results1);
+       }catch (Exception e){
+           return Result.error().message("查询失败！！" +e.toString());
+       }
     }
 
 

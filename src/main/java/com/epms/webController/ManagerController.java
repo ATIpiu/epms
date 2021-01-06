@@ -93,4 +93,13 @@ public class ManagerController {
         List<Salary> salaryLists = JSONArray.parseArray(salaryList, Salary.class);
         return salaryService.EvaluateQuality(salaryLists);
     }
+    @RequestMapping("/getSalaryList")
+    public Result getSalaryList(@RequestParam("type") int type,
+                                @RequestParam("pId") int pId,
+                              @RequestParam(value = "page", required = false, defaultValue = "1") int page,
+                              @RequestParam(value = "pageSize", required = false, defaultValue = "20") int pageSize) throws SignatureException {
+    return salaryService.ManagerGetSalaryList(type, pId, page, pageSize);
+    }
+
+
 }

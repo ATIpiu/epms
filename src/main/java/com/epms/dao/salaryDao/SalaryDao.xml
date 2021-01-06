@@ -5,8 +5,8 @@
 <mapper namespace="com.epms.dao.salaryDao.SalaryDao">
     <insert id="insertIntoSalary" parameterType="com.epms.entity.Salary"
             useGeneratedKeys="true">
-        INSERT INTO salary(sId,pId,sSalaryTime,sStatus)
-        VALUES (#{sId},#{pId},#{sSalaryTime},#{sStatus})
+        INSERT INTO salary(sId,pId,sQuality,sSalaryTime,sEvaluation,sStatus)
+        VALUES (#{sId},#{pId},#{sQuality},#{sSalaryTime},#{sEvaluation},#{sStatus})
     </insert>
 
     <delete id="deleteSalary" parameterType="com.epms.entity.Salary">
