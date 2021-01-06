@@ -44,7 +44,22 @@
     <select id="getType" resultType="int">
         SELECT sType FROM staff WHERE sId=#{sId}
     </select>
-
+    <select id="generateFile" parameterType="string" resultType="int">
+        SELECT *
+        INTO OUTFILE #{path} FIELDS TERMINATED BY ','
+            CHARACTER SET gbk  LINES TERMINATED BY '\n'
+        FROM (SELECT 'sName',
+                     'sId',
+                     'sType',
+                     'sSex',
+                     'sIdNumber',
+                     'sAddress',
+                     'sTel',
+                     'sUsername'
+              UNION
+              SELECT sName, sId, sType, sSex, sIdNumber, sAddress, sTel, sUsername
+              from staff) b
+    </select>
     <select id="managerGetOwnProjectStaff" resultType="com.epms.entity.Staff">
         SELECT sName, sId, sType, sSex, sIdNumber, sAddress, sTel, sUsername, sPwd
         FROM staff

@@ -250,4 +250,16 @@ public class ProjectServiceImpl implements ProjectService {
             return Result.error().message("设置错误：" + e.toString());
         }
     }
+
+    @Override
+    public String exportCsv(String url) {
+        try{
+            projectDao.generateFile(url);
+            return url;
+        }catch (Exception e){
+            System.err.println(e.toString());
+            return null;
+        }
+    }
+
 }

@@ -1,4 +1,4 @@
-package java.com.epms;
+package com.epms;
 
 import com.epms.entity.CommitLog;
 import com.epms.entity.Project;
@@ -88,15 +88,16 @@ public class EpmsServiceTest {
     public void projectServiceTest() {
         ApplicationContext ctx = SpringUtil.getApplicationContext();
         ProjectService projectService = (ProjectService) ctx.getBean("projectServiceImpl");
-        java.util.Date javaDate = new java.util.Date(120, 11, 26, 9, 20, 31);
-        long time = javaDate.getTime();
-        Timestamp stamp = new Timestamp(time);
-        Project project = new Project(10002, "ATIpiuTest", stamp, stamp, 1234, 10000001, 10000001, "none",
-                100000010, "none", 10000003,
-                "none", 0, 0, "www.4399.com", 500,
-                200, 400);
-//        插入测试
-        System.out.println(projectService.managerAddProject(project));
+//        java.util.Date javaDate = new java.util.Date(120, 11, 26, 9, 20, 31);
+//        long time = javaDate.getTime();
+//        Timestamp stamp = new Timestamp(time);
+//        Project project = new Project(10002, "ATIpiuTest", stamp, stamp, 1234, 10000001, 10000001, "none",
+//                100000010, "none", 10000003,
+//                "none", 0, 0, "www.4399.com", 500,
+//                200, 400);
+////        插入测试
+//        System.out.println(projectService.managerAddProject(project));
+        projectService.exportCsv("/Epms/tmp/project123.csv");
 //        更新测试
 //        System.out.println(projectService.managerUpdateProject(project));
 //        客户获取项目列表测试

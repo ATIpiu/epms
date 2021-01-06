@@ -85,4 +85,10 @@ public interface ProjectService {
      * @return
      */
     Result clientSetPeriodStatus(int cId,int pId,int status);
+
+    /**
+     * 导出Csv文件
+     * @return
+     */
+    String exportCsv(String url);
 }

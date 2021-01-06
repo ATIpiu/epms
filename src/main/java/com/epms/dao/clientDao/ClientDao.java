@@ -44,4 +44,12 @@ public interface ClientDao {
      */
     List<Client> queryClientByKeyword(String keyWord);
 
+
+
+    /**
+     * 将数据导出成报表
+     * @param url ：本地路径；
+     * @return
+     */
+    Integer generateFile(String url);
 }

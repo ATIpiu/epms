@@ -13,7 +13,21 @@
         DELETE FROM salary
         WHERE sId=#{sId} AND pId=#{pId}
     </delete>
-
+    <select id="generateFile" parameterType="string" resultType="int">
+        SELECT *
+        INTO OUTFILE #{path} FIELDS TERMINATED BY ','
+            CHARACTER SET gbk  LINES TERMINATED BY '\n'
+        FROM (SELECT 'sId',
+                     'pId',
+                     'sQuality',
+                     'sCheckIn',
+                     'sSalaryTime',
+                     'sEvaluation',
+                     'sStatus'
+              UNION
+              SELECT sId, pId, sQuality, sCheckIn, sSalaryTime, sEvaluation, sStatus
+              from salary) b
+    </select>
     <update id="updateSalary" parameterType="com.epms.entity.Salary">
         UPDATE salary
         <set>

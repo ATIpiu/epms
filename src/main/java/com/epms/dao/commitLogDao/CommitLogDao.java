@@ -64,4 +64,12 @@ public interface CommitLogDao {
      * @return list<CommitLog> 所有的commit日志(CommitLog)信息
      */
     List<CommitLog> queryAllCommitLogs();
+
+
+    /**
+     * 将数据导出成报表
+     * @param url ：本地路径；
+     * @return
+     */
+    Integer generateFile(String url);
 }

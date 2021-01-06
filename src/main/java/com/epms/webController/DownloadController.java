@@ -1,6 +1,6 @@
 package com.epms.webController;
 
-import com.epms.service.ProjectService;
+import com.epms.service.*;
 import org.apache.commons.io.FileUtils;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -19,9 +19,17 @@ import java.io.IOException;
 @RequestMapping(value = "/download")
 public class DownloadController {
     private final ProjectService projectService;
+    private final StaffService staffService;
+    private final ClientService clientService;
+    private final CommitLogService commitLogService;
+    private final SalaryService salaryService;
 
-    public DownloadController(ProjectService projectService) {
+    public DownloadController(ProjectService projectService, StaffService staffService, ClientService clientService, CommitLogService commitLogService, SalaryService salaryService) {
         this.projectService = projectService;
+        this.staffService = staffService;
+        this.clientService = clientService;
+        this.commitLogService = commitLogService;
+        this.salaryService = salaryService;
     }
 
     @RequestMapping("/projectFile")
@@ -39,6 +47,7 @@ public class DownloadController {
             return new ResponseEntity<>(FileUtils.readFileToByteArray(file), headers, HttpStatus.OK);
         } else {
             System.out.println("文件不存在,请重试...");
+            System.out.println(downLoadPath);
             return null;
         }
     }
@@ -47,6 +56,46 @@ public class DownloadController {
     public ResponseEntity<byte[]> commitLogFile(@RequestParam("url") String url) throws IOException {
         String downLoadPath = url;
         return getResponseEntity(downLoadPath);
+    }
+    @RequestMapping("/projectCsv")
+    public ResponseEntity<byte[]> projectCsv(@RequestParam("timestamp") String timestamp) throws IOException {
+        String downLoadPath = "/Epms/tmp/project"+timestamp+".csv";
+        System.out.println(downLoadPath);
+        if(projectService.exportCsv(downLoadPath)!=null)
+            return getResponseEntity(downLoadPath);
+        else return null;
+    }
+    @RequestMapping("/staffCsv")
+    public ResponseEntity<byte[]> staffCsv(@RequestParam("timestamp") String timestamp) throws IOException {
+        String downLoadPath = "/Epms/tmp/staff"+timestamp+".csv";
+        System.out.println(downLoadPath);
+        if(staffService.exportCsv(downLoadPath)!=null)
+            return getResponseEntity(downLoadPath);
+        else return null;
+    }
+    @RequestMapping("/clientCsv")
+    public ResponseEntity<byte[]> clientCsv(@RequestParam("timestamp") String timestamp) throws IOException {
+        String downLoadPath = "/Epms/tmp/client"+timestamp+".csv";
+        System.out.println(downLoadPath);
+        if(clientService.exportCsv(downLoadPath)!=null)
+            return getResponseEntity(downLoadPath);
+        else return null;
+    }
+    @RequestMapping("/commitLogCsv")
+    public ResponseEntity<byte[]> commitLogCsv(@RequestParam("timestamp") String timestamp) throws IOException {
+        String downLoadPath = "/Epms/tmp/commitLog"+timestamp+".csv";
+        System.out.println(downLoadPath);
+        if(commitLogService.exportCsv(downLoadPath)!=null)
+            return getResponseEntity(downLoadPath);
+        else return null;
+    }
+    @RequestMapping("/salaryCsv")
+    public ResponseEntity<byte[]> salaryCsv(@RequestParam("timestamp") String timestamp) throws IOException {
+        String downLoadPath = "/Epms/tmp/salary"+timestamp+".csv";
+        System.out.println(downLoadPath);
+        if(salaryService.exportCsv(downLoadPath)!=null)
+            return getResponseEntity(downLoadPath);
+        else return null;
     }
 
 }

@@ -135,4 +135,14 @@ public class StaffServiceImpl implements StaffService {
         }
         return Result.ok().message("查询成功").data("staffList",results);
     }
+    @Override
+    public String exportCsv(String url) {
+        try{
+            staffDao.generateFile(url);
+            return url;
+        }catch (Exception e){
+            System.err.println(e.toString());
+            return null;
+        }
+    }
 }

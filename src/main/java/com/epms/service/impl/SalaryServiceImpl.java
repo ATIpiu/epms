@@ -73,6 +73,15 @@ public class SalaryServiceImpl implements SalaryService {
            return Result.error().message("查询失败！！" +e.toString());
        }
     }
-
+    @Override
+    public String exportCsv(String url) {
+        try{
+            salaryDao.generateFile(url);
+            return url;
+        }catch (Exception e){
+            System.err.println(e.toString());
+            return null;
+        }
+    }
 
 }

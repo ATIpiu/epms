@@ -65,4 +65,10 @@ public interface StaffService {
      * @return 返回对应页数所有的员工列表；
      */
     Result queryStaffByKeyword(String keyWord, int page, int pageSize);
+
+    /**
+     * 导出Csv文件
+     * @return
+     */
+    String exportCsv(String url);
 }

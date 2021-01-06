@@ -68,4 +68,13 @@ public interface StaffDao {
      * 返回符合要求的Staff对象
      */
     List<Staff> managerGetOwnStaff(int Type);
+
+
+
+    /**
+     * 将数据导出成报表
+     * @param url ：本地路径；
+     * @return
+     */
+    Integer generateFile(String url);
 }

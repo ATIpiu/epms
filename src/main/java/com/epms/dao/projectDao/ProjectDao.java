@@ -60,6 +60,14 @@ public interface ProjectDao {
      * @return
      */
     String getProjectFile(int pId);
+
+    /**
+     * 将数据导出成报表
+     * @param url ：本地路径；
+     * @return
+     */
+    Integer generateFile(String url);
+
 }
 
 

@@ -48,4 +48,10 @@ public interface ClientService {
      * @return 返回对应页数所有的客户列表；
      */
     Result queryClientByKeyword(String keyWord,int page,int pageSize);
+
+    /**
+     * 导出Csv文件
+     * @return
+     */
+    String exportCsv(String url);
 }

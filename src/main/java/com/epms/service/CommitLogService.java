@@ -52,4 +52,10 @@ public interface CommitLogService {
      * @return 返回对应Log记录表
      */
     Result getAllCommitLog(int page,int pageSize);
+
+    /**
+     * 导出Csv文件
+     * @return
+     */
+    String exportCsv(String url);
 }

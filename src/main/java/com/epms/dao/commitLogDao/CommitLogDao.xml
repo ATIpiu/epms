@@ -5,18 +5,23 @@
 <mapper namespace="com.epms.dao.commitLogDao.CommitLogDao">
     <insert id="insertIntoCommitLog" parameterType="com.epms.entity.CommitLog"
             useGeneratedKeys="true">
-        INSERT INTO commitlog(sId,pId,cCreateTime,cType,cFileUrl,cResponseType)
-        VALUES (#{sId},#{pId},#{cCreateTime},#{cType},#{cFileUrl},#{cResponseType})
+        INSERT INTO commitlog(sId, pId, cCreateTime, cType, cFileUrl, cResponseType)
+        VALUES (#{sId}, #{pId}, #{cCreateTime}, #{cType}, #{cFileUrl}, #{cResponseType})
     </insert>
 
     <delete id="deleteCommitLog" parameterType="com.epms.entity.CommitLog">
-        DELETE FROM commitlog WHERE sId=#{sId} AND pId=#{pId} AND cCreateTime=#{cCreateTime}
+        DELETE
+        FROM commitlog
+        WHERE sId = #{sId}
+          AND pId = #{pId}
+          AND cCreateTime = #{cCreateTime}
     </delete>
 
     <select id="clientGetCommitLog" resultType="com.epms.entity.CommitLog">
         SELECT sId, pId, cCreateTime, cType, cFeedback, cResponseType, cFileUrl
         FROM commitlog
-        WHERE cType=2 AND pId IN (SELECT pId FROM project WHERE cId =#{cId})
+        WHERE cType = 2
+          AND pId IN (SELECT pId FROM project WHERE cId = #{cId})
         ORDER BY cCreateTime
     </select>
 
@@ -34,6 +39,22 @@
         ORDER BY cCreateTime
     </select>
 
+    <select id="generateFile" parameterType="string" resultType="int">
+        SELECT *
+        INTO OUTFILE #{path} FIELDS TERMINATED BY ','
+            CHARACTER SET gbk  LINES TERMINATED BY '\n'
+        FROM (SELECT 'sId',
+                     'pId',
+                     'cCreateTime',
+                     'cType',
+                     'cFeedback',
+                     'cResponseType',
+                     'cFileUrl'
+
+              UNION
+              SELECT sId, pId, cCreateTime, cType, cFeedback, cResponseType, cFileUrl
+              from commitlog) b
+    </select>
     <update id="updateCommitLog" parameterType="com.epms.entity.CommitLog">
         UPDATE commitlog
         <set>
@@ -47,12 +68,15 @@
 
     <select id="queryCommitLogsBysId" resultType="com.epms.entity.CommitLog" parameterType="int">
         SELECT sId, pId, cCreateTime, cType, cFeedback, cResponseType, cFileUrl
-        FROM commitlog WHERE sId=#{sId}  ORDER BY cCreateTime
+        FROM commitlog
+        WHERE sId = #{sId}
+        ORDER BY cCreateTime
     </select>
 
     <select id="queryCommitLogsBypId" resultType="com.epms.entity.CommitLog" parameterType="int">
         SELECT sId, pId, cCreateTime, cType, cFeedback, cResponseType, cFileUrl
-        FROM commitlog WHERE pId=#{pId}
+        FROM commitlog
+        WHERE pId = #{pId}
         ORDER BY cCreateTime
     </select>
 

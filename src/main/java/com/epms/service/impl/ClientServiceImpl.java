@@ -104,7 +104,15 @@ public class ClientServiceImpl implements ClientService {
         }
     }
 
-
+    public String exportCsv(String url) {
+        try{
+            clientDao.generateFile(url);
+            return url;
+        }catch (Exception e){
+            System.err.println(e.toString());
+            return null;
+        }
+    }
 
 
     private Result getResult(int page, int pageSize, List<Client> clients) {

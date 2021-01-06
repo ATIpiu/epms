@@ -35,6 +35,22 @@
         </set>
         WHERE cId=#{cId}
     </update>
+    <select id="generateFile" parameterType="string" resultType="int">
+        SELECT *
+        INTO OUTFILE #{path} FIELDS TERMINATED BY ','
+            CHARACTER SET gbk  LINES TERMINATED BY '\n'
+        FROM (SELECT 'cName',
+                     'cId',
+                     'cTel',
+                     'cPhoneNumber',
+                     'cQNumber',
+                     'cEmail',
+                     'cUsername',
+                     'cUnit'
+              UNION
+              SELECT cName, cId, cTel, cPhoneNumber, cQNumber, cEmail, cUsername, cUnit
+                from client) b
+    </select>
     <select id="queryClientByKeyword" resultType="com.epms.entity.Client" parameterType="string">
     SELECT cName, cId, cTel, cPhoneNumber, cQNumber, cEmail, cUsername, cPwd, cUnit
     From client  WHERE CONCAT_WS(`cName`, `cId`, `cTel`, `cPhoneNumber`, `cQNumber`, `cEmail`, `cUsername`,`cUnit`)

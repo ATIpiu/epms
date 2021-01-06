@@ -22,4 +22,10 @@ public interface SalaryService {
      * @return
      */
     Result ManagerGetSalaryList(int type,int pId,int page,int pageSize);
+
+    /**
+     * 导出Csv文件
+     * @return
+     */
+    String exportCsv(String url);
 }
