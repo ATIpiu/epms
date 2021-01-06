@@ -197,7 +197,7 @@
 | message | 此次请求的信息                  |
 #### 3：主管获取他对应的员工
 
-**URL**:http://localhost:8080/manager/getOwnProjectStaff
+**URL**http://localhost:8080/manager/getOwnStaff
 
 **传入参数列表**：
 
@@ -217,7 +217,7 @@
 | staffList | 主管对应的员工                  |
 #### 4：主管获取他的项目员工
 
-**URL**http://localhost:8080/manager/getOwnStaff
+**URL**:http://localhost:8080/manager/getOwnProjectStaff
 
 **传入参数列表**：
 
@@ -366,6 +366,21 @@
 | ------ | ---------------------- |
 | url    | 要下载的提交记录中的cFileUrl |
 **无返回参数，若请求成功则下载文件**
+####13:主管获取可以选的列表
+
+**URL**:http://localhost:8080/frontDesk/getChoose
+
+**传入参数列表**：
+
+**返回参数列表**:
+
+| 参数名  | 描述                            |
+| ------- | ------------------------------- |
+| success | 此次请求是否成功(true Or false) |
+| code    | 此次请求的结果                  |
+| message | 此次请求的信息|
+| staffList | 员工列表 |
+| clientList| 客户列表|
 ### Staff：普通员工所有接口
 
 #### 1:员工修改自己的个人信息

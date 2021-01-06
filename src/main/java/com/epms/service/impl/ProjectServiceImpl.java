@@ -93,11 +93,7 @@ public class ProjectServiceImpl implements ProjectService {
     public Result stuffGetProject(int sId, int page, int pageSize) {
         try{
             List<Project> projects=projectDao.staffGetProject(sId);
-            List<Project> results=new ArrayList<Project>();
-            for (int i = (page - 1) * pageSize; i < page * pageSize && i < projects.size(); i++) {
-                results.add(projects.get(i));
-            }
-            return Result.ok().message("查询成功").data("commitLogList", results);
+            return paging(page, pageSize, projects);
         }catch (Exception e){
             System.err.println(e);
             return Result.error().message("查询失败："+e.toString());
@@ -108,15 +104,19 @@ public class ProjectServiceImpl implements ProjectService {
     public Result getAllProject(int page, int pageSize) {
         try{
             List<Project> projects=projectDao.queryAllProjects();
-            List<Project> results=new ArrayList<Project>();
-            for (int i = (page - 1) * pageSize; i < page * pageSize && i < projects.size(); i++) {
-                results.add(projects.get(i));
-            }
-            return Result.ok().message("查询成功").data("commitLogList", results);
+            return paging(page, pageSize, projects);
         }catch (Exception e){
             System.err.println(e);
             return Result.error().message("查询失败："+e.toString());
         }
+    }
+
+    private Result paging(int page, int pageSize, List<Project> projects) {
+        List<Project> results=new ArrayList<Project>();
+        for (int i = (page - 1) * pageSize; i < page * pageSize && i < projects.size(); i++) {
+            results.add(projects.get(i));
+        }
+        return Result.ok().message("查询成功").data("commitLogList", results);
     }
 
     @Override
@@ -152,25 +152,25 @@ public class ProjectServiceImpl implements ProjectService {
                 return Result.error().message("上传文件失败：项目Id对应的项目不存在！！！");
             }
             if (type == 1&&project.getpPeriodStatus()==1) {
-                path ="D:/Epms/"+project.getpName()+"/max/原始模型";
+                path ="/Epms/"+project.getpName()+"/max/OriginalModel";
                 String url= UploadFileUtil.upload(file,path);
                 project.setpPeriodStatus(2);
             }
             else if(type==2&&project.getpPeriodStatus()==2){
-                path="D:/Epms/"+project.getpName()+"/max/渲染模型";
+                path="/Epms/"+project.getpName()+"/max/RenderModel";
                 String url= UploadFileUtil.upload(file,path);
                 project.setpPeriodStatus(3);
 
             }
             else if(type==3&&project.getpPeriodStatus()==2){
-                path="D:/Epms/"+project.getpName()+ "/jpg";
+                path="/Epms/"+project.getpName()+ "/jpg";
                 String url= UploadFileUtil.upload(file,path);
                 project.setpPeriodStatus(4);
             }
             else return Result.error().message("上传文件失败：项目阶段错误");
-            String fileName="D:/Epms/"+project.getpName()+".zip";
+            String fileName="/Epms/zipFile"+project.getpName()+".zip";
             FileOutputStream fos1 = new FileOutputStream(new File(fileName));
-            ZipUtils.toZip(new File("D:/Epms/"+project.getpName()), fos1,true);
+            ZipUtils.toZip(new File("/Epms/"+project.getpName()), fos1,true);
             project.setpFileUrl(fileName);
             projectDao.updateProject(project);
             return Result.ok().message("上传成功");
@@ -193,11 +193,11 @@ public class ProjectServiceImpl implements ProjectService {
             if(project==null){
                 return Result.error().message("项目不存在!!!");
             }
-            String path ="D:/Epms/"+project.getpName()+"/资料";
+            String path ="/Epms/"+project.getpName()+"/Material";
             UploadFileUtil.upload(file,path);
-            String fileName="D:/Epms/"+project.getpName()+".zip";
+            String fileName="/Epms/zipFile"+project.getpName()+".zip";
             FileOutputStream fos1 = new FileOutputStream(new File(fileName));
-            ZipUtils.toZip(new File("D:/Epms/"+project.getpName()+"/资料"), fos1,true);
+            ZipUtils.toZip(new File("/Epms/"+project.getpName()+"/资料"), fos1,true);
             project.setpFileUrl(fileName);
             projectDao.updateProject(project);
             return Result.ok().message("上传成功");

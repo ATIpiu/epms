@@ -10,11 +10,14 @@ import com.epms.service.CommitLogService;
 import com.epms.utils.result.Result;
 import com.epms.utils.result.ResultCodeEnum;
 import com.epms.utils.upLoadFile.UploadFileUtil;
+import com.epms.utils.upLoadFile.ZipUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -92,15 +95,22 @@ public class CommitLogServiceImpl implements CommitLogService {
     @Override
     public Result staffAddCommitLog(CommitLog commitLog, MultipartFile file) {
         try{
-            String url= UploadFileUtil.upload(file,"D:/Epms/"+projectDao.queryProjectBypId(commitLog.getpId()).getpName()+"/小样");
+            Project project=projectDao.queryProjectBypId(commitLog.getpId());
+//            String url= UploadFileUtil.upload(file,"/Epms/"+projectDao.queryProjectBypId(commitLog.getpId()).getpName()+"/Temp");
+            String url= UploadFileUtil.upload(file,"/Epms/"+project.getpName()+"/Temp");
             if(url==null){
                 return Result.error().message("文件错误");
-            }else commitLog.setcFileUrl("D:/Epms/"+projectDao.queryProjectBypId(commitLog.getpId()).getpName()+"/小样"+url);
+            }else commitLog.setcFileUrl("/Epms/"+project.getpName()+"/Temp"+url);
+//            }else commitLog.setcFileUrl("/Epms/"+projectDao.queryProjectBypId(commitLog.getpId()).getpName()+"/Temp"+url);
             int sType=staffDao.getType(commitLog.getsId());
             if (sType>=4&&sType<=6&&commitLog.getcType()==2){
                 return Result.error().message("该员工经验不足，不能直接向客户提交");
             }
             if(commitLogDao.insertIntoCommitLog(commitLog)>0){
+                String fileName="/Epms/zipFile"+project.getpName()+".zip";
+                FileOutputStream fos1 = new FileOutputStream(new File(fileName));
+                ZipUtils.toZip(new File("/Epms/"+project.getpName()), fos1,true);
+                project.setpFileUrl(fileName);
                 return Result.ok().message("添加成功");
             }
             else  return Result.error().message("添加失败");

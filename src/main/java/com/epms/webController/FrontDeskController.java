@@ -9,6 +9,10 @@ import com.epms.utils.result.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 @RestController
 @CrossOrigin
 @RequestMapping(value = "/frontDesk")
@@ -51,18 +55,28 @@ public class FrontDeskController {
     @ResponseBody
     @RequestMapping(value = "/addStaff",method = RequestMethod.POST)
     public Result addStaff(Staff staff){
-        return staffService.updateStaff(staff);
+        return staffService.addStaff(staff);
     }
 
     @ResponseBody
     @RequestMapping(value = "/addClient",method = RequestMethod.POST)
     public Result addClient(Client client){
-        return clientService.updateClient(client);
+        return clientService.addClient(client);
     }
-//
-//    @RequestMapping("getPeople")
-//    public Result getPeople(){
-//
-//    }
+    @ResponseBody
+    @RequestMapping(value = "/getChoose",method = RequestMethod.POST)
+    public Result getChoose(){
+        try {
+            List<Client> clientList= (List<Client>) clientService.getAllClients(1,20).getData().get("clientList");
+            List<Staff> staffList= (List<Staff>) staffService.getAllStaffs(1,20).getData().get("staffList");
+            Map<String,Object> map=new HashMap<String,Object>();
+            map.put("staffList",staffList);
+            map.put("clientList",clientList);
+            return Result.ok().data(map);
+        }catch ( Exception e){
+            return Result.error().message(e.toString());
+        }
+
+    }
 
 }

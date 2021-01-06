@@ -12,9 +12,11 @@ public class UploadFileUtil {
             return null;
         String fileName = file.getOriginalFilename();
         // 创建文件实例
-        File filePath=new File(path, fileName);
+        File filePath=new File(path,fileName);
+        filePath.setWritable(true,false);
         // 如果文件目录不存在，创建目录
         if (!filePath.getParentFile().exists()) {
+
             filePath.getParentFile().mkdirs();
             System.out.println("创建目录" + filePath);
         }

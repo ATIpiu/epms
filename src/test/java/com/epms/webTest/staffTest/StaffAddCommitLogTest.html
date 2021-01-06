@@ -26,7 +26,8 @@
         formdata.append("cCreateTime",cCreateTime);
         console.log(formdata.get("cCreateTime"))
         $.ajax({
-            url: "http://localhost:8080/staff/UploadFile",
+            url: "http://localhost:8080/staff/commit",
+            // url: "http://47.92.227.185:8080/staff/commit",
             data: formdata,
             method: "POST",
             headers: {

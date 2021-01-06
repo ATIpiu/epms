@@ -235,7 +235,7 @@ public class EpmsDaoTest {
 //            System.out.println(staff);
 //        }
         //插入测试
-//        Staff s=new Staff("Test2",10000002,1,"male","12345678901","chongqing","15730680467","ATIpiu","atipiu");
+        Staff s=new Staff("Test2",10000002,1,"male","12345678901","chongqing","15730680467","ATIpiu","atipiu");
 //        System.out.println(staffDao.insertIntoStaff(s));
         //按sId查询测试
 //        Staff s=new Staff("Test2",10000002,1,"male","12345678901","chongqing","15730680467","ATIpiu","atipiu");
@@ -248,7 +248,7 @@ public class EpmsDaoTest {
 //        System.out.println(staffDao.updateStaff(s));
 //        System.out.println(staffDao.managerGetOwnProjectStaff(10001,11));
 //        模糊查询测试
-        System.out.println(staffDao.managerGetOwnStaff(1));
+//        System.out.println(staffDao.getType(s.getsId()));
     }
 
     @Test
