@@ -572,7 +572,8 @@
 | success | 此次请求是否成功(true Or false) |
 | code    | 此次请求的结果                  |
 | message | 此次请求的信息                  |
-####6:前台修增加客户
+
+#### 6:前台修增加客户
 
 **URL**:http://localhost:8080/frontDesk/addClient
 
@@ -589,3 +590,23 @@
 | success | 此次请求是否成功(true Or false) |
 | code    | 此次请求的结果                  |
 | message | 此次请求的信息                  |
+
+
+### Admin:管理员接口（其它别的地方有的接口就不写了）
+
+#### 1：打印报表：应该看得懂吧每个Url是啥
+
+**URL**:http://localhost:8080/download/projectCsv
+
+**URL**:http://localhost:8080/download/clientCsv
+
+**URL**:http://localhost:8080/download/commitLogCsv
+
+**URL**:http://localhost:8080/download/salarylogCsv
+
+**URL**:http://localhost:8080/download/staffCsv
+
+**传入参数列表**：token和timestamp；
+
+**返回参数列表**:无返回参数，成功即下载文件
+
