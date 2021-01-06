@@ -48,4 +48,21 @@ public class FrontDeskController {
         return staffService.updateStaff(staff);
     }
 
+    @ResponseBody
+    @RequestMapping(value = "/addStaff",method = RequestMethod.POST)
+    public Result addStaff(Staff staff){
+        return staffService.updateStaff(staff);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/addClient",method = RequestMethod.POST)
+    public Result addClient(Client client){
+        return clientService.updateClient(client);
+    }
+//
+//    @RequestMapping("getPeople")
+//    public Result getPeople(){
+//
+//    }
+
 }
