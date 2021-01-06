@@ -4,26 +4,50 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.epms.dao.staffDao.StaffDao">
     <select id="queryAllStaffs" resultType="com.epms.entity.Staff">
-        SELECT sName, sId, sType, sSex, sIdNumber, sAddress, sTel, sUsername, sPwd
+        SELECT sName,
+               sId,
+               sType,
+               sSex,
+               sIdNumber,
+               sAddress,
+               sTel,
+               sUsername,
+               sPwd
         FROM staff
     </select>
 
     <insert id="insertIntoStaff" parameterType="com.epms.entity.Staff"
             useGeneratedKeys="true" keyProperty="sId" keyColumn="sId">
-        INSERT INTO
-		staff(sName, sId, sType, sSex, sIdNumber, sAddress, sTel, sUsername, sPwd)
-		VALUES
-		(#{sName},#{sId},#{sType},#{sSex},#{sIdNumber},#{sAddress},#{sTel},#{sUsername},#{sPwd})
+        INSERT INTO staff(sName, sId, sType, sSex, sIdNumber, sAddress, sTel, sUsername, sPwd)
+        VALUES (#{sName}, #{sId}, #{sType}, #{sSex}, #{sIdNumber}, #{sAddress}, #{sTel}, #{sUsername}, #{sPwd})
     </insert>
 
     <select id="queryStaffByUserName" resultType="com.epms.entity.Staff">
-        SELECT sName, sId, sType, sSex, sIdNumber, sAddress, sTel, sUsername, sPwd
-        FROM staff WHERE sUsername=#{sUserName}
+        SELECT sName,
+               sId,
+               sType,
+               sSex,
+               sIdNumber,
+               sAddress,
+               sTel,
+               sUsername,
+               sPwd
+        FROM staff
+        WHERE sUsername = #{sUserName}
     </select>
 
     <select id="queryStaffBysId" resultType="com.epms.entity.Staff">
-        SELECT sName, sId, sType, sSex, sIdNumber, sAddress, sTel, sUsername, sPwd
-        FROM staff WHERE sId=#{sId}
+        SELECT sName,
+               sId,
+               sType,
+               sSex,
+               sIdNumber,
+               sAddress,
+               sTel,
+               sUsername,
+               sPwd
+        FROM staff
+        WHERE sId = #{sId}
     </select>
 
     <update id="updateStaff" parameterType="com.epms.entity.Staff">
@@ -42,12 +66,14 @@
     </update>
 
     <select id="getType" resultType="int">
-        SELECT sType FROM staff WHERE sId=#{sId}
+        SELECT sType
+        FROM staff
+        WHERE sId = #{sId}
     </select>
     <select id="generateFile" parameterType="string" resultType="int">
         SELECT *
-        INTO OUTFILE #{path} FIELDS TERMINATED BY ','
-            CHARACTER SET gbk  LINES TERMINATED BY '\n'
+        INTO OUTFILE #{path} CHARACTER
+        SET 'gbk' FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n'
         FROM (SELECT 'sName',
                      'sId',
                      'sType',
@@ -57,7 +83,14 @@
                      'sTel',
                      'sUsername'
               UNION
-              SELECT sName, sId, sType, sSex, sIdNumber, sAddress, sTel, sUsername
+              SELECT sName,
+                     sId,
+                     sType,
+                     sSex,
+                     sIdNumber,
+                     sAddress,
+                     sTel,
+                     sUsername
               from staff) b
     </select>
     <select id="managerGetOwnProjectStaff" resultType="com.epms.entity.Staff">
@@ -70,14 +103,24 @@
     </select>
 
     <select id="queryStaffByKeyword" resultType="com.epms.entity.Staff" parameterType="string">
-    SELECT sName, sId, sType, sSex, sIdNumber, sAddress, sTel, sUsername, sPwd
-    From staff  WHERE CONCAT_WS(`sName`, `sId`, `sType`, `sSex`, `sIdNumber`, `sAddress`, `sTel`,`sUsername`)
-    like CONCAT('%',#{keyWord},'%')
-     </select>
+        SELECT sName,
+               sId,
+               sType,
+               sSex,
+               sIdNumber,
+               sAddress,
+               sTel,
+               sUsername,
+               sPwd
+        From staff
+        WHERE CONCAT_WS(`sName`, `sId`, `sType`, `sSex`, `sIdNumber`, `sAddress`, `sTel`, `sUsername`)
+                  like CONCAT('%', #{keyWord}, '%')
+    </select>
 
     <select id="managerGetOwnStaff" resultType="com.epms.entity.Staff">
         SELECT sName, sId, sType, sSex, sIdNumber, sAddress, sTel, sUsername, sPwd
         FROM staff
-        WHERE 1=1 And <if test="type!=11">sType=#{type}+3 OR sType=#{type}+6</if>
+        WHERE 1=1 And
+        <if test="type!=11">sType=#{type}+3 OR sType=#{type}+6</if>
     </select>
 </mapper>

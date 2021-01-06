@@ -41,8 +41,7 @@
 
     <select id="generateFile" parameterType="string" resultType="int">
         SELECT *
-        INTO OUTFILE #{path} FIELDS TERMINATED BY ','
-            CHARACTER SET gbk  LINES TERMINATED BY '\n'
+        INTO OUTFILE #{path} CHARACTER SET 'gbk' FIELDS TERMINATED BY ','  LINES TERMINATED BY '\n'
         FROM (SELECT 'sId',
                      'pId',
                      'cCreateTime',

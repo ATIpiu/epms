@@ -5,18 +5,20 @@
 <mapper namespace="com.epms.dao.salaryDao.SalaryDao">
     <insert id="insertIntoSalary" parameterType="com.epms.entity.Salary"
             useGeneratedKeys="true">
-        INSERT INTO salary(sId,pId,sQuality,sSalaryTime,sEvaluation,sStatus)
-        VALUES (#{sId},#{pId},#{sQuality},#{sSalaryTime},#{sEvaluation},#{sStatus})
+        INSERT INTO salary(sId, pId, sQuality, sSalaryTime, sEvaluation, sStatus)
+        VALUES (#{sId}, #{pId}, #{sQuality}, #{sSalaryTime}, #{sEvaluation}, #{sStatus})
     </insert>
 
     <delete id="deleteSalary" parameterType="com.epms.entity.Salary">
-        DELETE FROM salary
-        WHERE sId=#{sId} AND pId=#{pId}
+        DELETE
+        FROM salary
+        WHERE sId = #{sId}
+          AND pId = #{pId}
     </delete>
     <select id="generateFile" parameterType="string" resultType="int">
         SELECT *
-        INTO OUTFILE #{path} FIELDS TERMINATED BY ','
-            CHARACTER SET gbk  LINES TERMINATED BY '\n'
+        INTO OUTFILE #{path} CHARACTER
+        SET 'gbk' FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n'
         FROM (SELECT 'sId',
                      'pId',
                      'sQuality',
@@ -43,12 +45,14 @@
 
     <select id="querySalaryBysId" resultType="com.epms.entity.Salary">
         SELECT sId, pId, sQuality, sCheckIn, sSalaryTime, sEvaluation, sStatus
-        FROM salary WHERE sId=#{sId}
+        FROM salary
+        WHERE sId = #{sId}
     </select>
 
     <select id="querySalaryBypId" resultType="com.epms.entity.Salary">
         SELECT sId, pId, sQuality, sCheckIn, sSalaryTime, sEvaluation, sStatus
-        FROM salary WHERE pId=#{pId}
+        FROM salary
+        WHERE pId = #{pId}
     </select>
 
     <select id="queryAllSalaries" resultType="com.epms.entity.Salary">

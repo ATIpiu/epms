@@ -5,32 +5,39 @@
 <mapper namespace="com.epms.dao.selectProjectDao.SelectProjectDao">
     <insert id="insertIntoSelectProject" parameterType="com.epms.entity.SelectProject"
             useGeneratedKeys="true" keyProperty="spId" keyColumn="spId">
-        INSERT INTO selectproject(sId,pId) VALUES (#{sId},#{pId})
+        INSERT INTO selectproject(sId, pId)
+        VALUES (#{sId}, #{pId})
     </insert>
 
     <delete id="deleteSelectProjectByspId">
-        DELETE FROM selectproject WHERE spId = #{spId}
+        DELETE
+        FROM selectproject
+        WHERE spId = #{spId}
     </delete>
 
     <update id="updateSelectProject" parameterType="com.epms.entity.SelectProject">
         UPDATE selectproject
-        SET sId=#{sId},pId=#{pId}
+        SET sId=#{sId},
+            pId=#{pId}
         WHERE spId = #{spId}
     </update>
 
     <select id="querySelectProjectBysId" resultType="com.epms.entity.SelectProject" parameterType="int">
         SELECT sId, pId, spId
-        FROM selectproject WHERE sId=#{sId}
+        FROM selectproject
+        WHERE sId = #{sId}
     </select>
 
     <select id="querySelectProjectBypId" resultType="com.epms.entity.SelectProject" parameterType="int">
         SELECT sId, pId, spId
-        FROM selectproject WHERE pId=#{pId}
+        FROM selectproject
+        WHERE pId = #{pId}
     </select>
 
     <select id="querySelectProjectByspId" resultType="com.epms.entity.SelectProject" parameterType="int">
         SELECT sId, pId, spId
-        FROM selectproject WHERE spId=#{spId}
+        FROM selectproject
+        WHERE spId = #{spId}
     </select>
 
     <select id="queryAllSelectProjects" resultType="com.epms.entity.SelectProject">

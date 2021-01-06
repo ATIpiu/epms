@@ -4,22 +4,47 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.epms.dao.clientDao.ClientDao">
     <select id="queryAllClients" resultType="com.epms.entity.Client">
-        SELECT cName, cId, cTel, cPhoneNumber, cQNumber, cEmail, cUsername, cPwd, cUnit FROM client
+        SELECT cName,
+               cId,
+               cTel,
+               cPhoneNumber,
+               cQNumber,
+               cEmail,
+               cUsername,
+               cPwd,
+               cUnit
+        FROM client
     </select>
     <insert id="insertIntoClient" parameterType="com.epms.entity.Client"
             useGeneratedKeys="true" keyProperty="sId" keyColumn="sId">
-        INSERT INTO
-		client(cName, cId, cTel, cPhoneNumber, cQNumber, cEmail, cUsername, cPwd, cUnit)
-		VALUES
-		(#{cName},#{cId},#{cTel},#{cPhoneNumber},#{cQNumber},#{cEmail},#{cUsername},#{cPwd},#{cUnit})
+        INSERT INTO client(cName, cId, cTel, cPhoneNumber, cQNumber, cEmail, cUsername, cPwd, cUnit)
+        VALUES (#{cName}, #{cId}, #{cTel}, #{cPhoneNumber}, #{cQNumber}, #{cEmail}, #{cUsername}, #{cPwd}, #{cUnit})
     </insert>
     <select id="queryClientByUserName" resultType="com.epms.entity.Client">
-        SELECT cName, cId, cTel, cPhoneNumber, cQNumber, cEmail, cUsername, cPwd, cUnit
-        FROM client WHERE cUsername=#{cUserName}
+        SELECT cName,
+               cId,
+               cTel,
+               cPhoneNumber,
+               cQNumber,
+               cEmail,
+               cUsername,
+               cPwd,
+               cUnit
+        FROM client
+        WHERE cUsername = #{cUserName}
     </select>
     <select id="queryClientById" resultType="com.epms.entity.Client">
-        SELECT cName, cId, cTel, cPhoneNumber, cQNumber, cEmail, cUsername, cPwd, cUnit
-        FROM client WHERE cId=#{cId}
+        SELECT cName,
+               cId,
+               cTel,
+               cPhoneNumber,
+               cQNumber,
+               cEmail,
+               cUsername,
+               cPwd,
+               cUnit
+        FROM client
+        WHERE cId = #{cId}
     </select>
     <update id="updateClient" parameterType="com.epms.entity.Client">
         UPDATE client
@@ -37,8 +62,8 @@
     </update>
     <select id="generateFile" parameterType="string" resultType="int">
         SELECT *
-        INTO OUTFILE #{path} FIELDS TERMINATED BY ','
-            CHARACTER SET gbk  LINES TERMINATED BY '\n'
+        INTO OUTFILE #{path} CHARACTER
+        SET 'gbk' FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n'
         FROM (SELECT 'cName',
                      'cId',
                      'cTel',
@@ -48,13 +73,29 @@
                      'cUsername',
                      'cUnit'
               UNION
-              SELECT cName, cId, cTel, cPhoneNumber, cQNumber, cEmail, cUsername, cUnit
-                from client) b
+              SELECT cName,
+                     cId,
+                     cTel,
+                     cPhoneNumber,
+                     cQNumber,
+                     cEmail,
+                     cUsername,
+                     cUnit
+              from client) b
     </select>
     <select id="queryClientByKeyword" resultType="com.epms.entity.Client" parameterType="string">
-    SELECT cName, cId, cTel, cPhoneNumber, cQNumber, cEmail, cUsername, cPwd, cUnit
-    From client  WHERE CONCAT_WS(`cName`, `cId`, `cTel`, `cPhoneNumber`, `cQNumber`, `cEmail`, `cUsername`,`cUnit`)
-    like CONCAT('%',#{keyWord},'%')
-     </select>
+        SELECT cName,
+               cId,
+               cTel,
+               cPhoneNumber,
+               cQNumber,
+               cEmail,
+               cUsername,
+               cPwd,
+               cUnit
+        From client
+        WHERE CONCAT_WS(`cName`, `cId`, `cTel`, `cPhoneNumber`, `cQNumber`, `cEmail`, `cUsername`, `cUnit`)
+                  like CONCAT('%', #{keyWord}, '%')
+    </select>
 
 </mapper>

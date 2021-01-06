@@ -6,18 +6,19 @@
 
     <insert id="insertIntoProject" parameterType="com.epms.entity.Project"
             useGeneratedKeys="true" keyProperty="pId" keyColumn="pId">
-        INSERT INTO
-		project(pId, pName, pCreateDate, pEndDate, pType, cId, pModelManagerId, pModelStaff,
-         pRenderManagerId, pRenderStaff, pAfterManagerId, pAfterStaff, pPeriodStatus, pProjectStatus,
-         pFileUrl, pModelWage, pRenderWage, pAfterWage)
-		VALUES
-		(#{pId},#{pName},#{pCreateDate},#{pEndDate},#{pType},#{cId},#{pModelManagerId},#{pModelStaff},
-		#{pRenderManagerId},#{pRenderStaff},#{pAfterManagerId},#{pAfterStaff},#{pPeriodStatus},#{pProjectStatus},
-		#{pFileUrl},#{pModelWage},#{pRenderWage},#{pAfterWage})
+        INSERT INTO project(pId, pName, pCreateDate, pEndDate, pType, cId, pModelManagerId, pModelStaff,
+                            pRenderManagerId, pRenderStaff, pAfterManagerId, pAfterStaff, pPeriodStatus, pProjectStatus,
+                            pFileUrl, pModelWage, pRenderWage, pAfterWage)
+        VALUES (#{pId}, #{pName}, #{pCreateDate}, #{pEndDate}, #{pType}, #{cId}, #{pModelManagerId}, #{pModelStaff},
+                #{pRenderManagerId}, #{pRenderStaff}, #{pAfterManagerId}, #{pAfterStaff}, #{pPeriodStatus},
+                #{pProjectStatus},
+                #{pFileUrl}, #{pModelWage}, #{pRenderWage}, #{pAfterWage})
     </insert>
 
     <delete id="deleteProjectBypId" parameterType="map">
-        DELETE FROM project WHERE pId=#{pId}
+        DELETE
+        FROM project
+        WHERE pId = #{pId}
     </delete>
 
     <update id="updateProject" parameterType="com.epms.entity.Project">
@@ -45,46 +46,141 @@
     </update>
 
     <select id="staffGetProject" resultType="com.epms.entity.Project">
-        SELECT pid, pname, pcreatedate, penddate, ptype, cid, pmodelmanagerid,
-        pmodelstaff, prendermanagerid, prenderstaff, paftermanagerid, pafterstaff,
-        pperiodstatus, pprojectstatus, pfileurl, pmodelwage, prenderwage, pafterwage
+        SELECT pid,
+               pname,
+               pcreatedate,
+               penddate,
+               ptype,
+               cid,
+               pmodelmanagerid,
+               pmodelstaff,
+               prendermanagerid,
+               prenderstaff,
+               paftermanagerid,
+               pafterstaff,
+               pperiodstatus,
+               pprojectstatus,
+               pfileurl,
+               pmodelwage,
+               prenderwage,
+               pafterwage
         FROM project
-        WHERE pId IN (SELECT pId FROM selectproject WHERE sId=#{sId})
+        WHERE pId IN (SELECT pId FROM selectproject WHERE sId = #{sId})
         ORDER BY pCreateDate
     </select>
 
     <select id="queryProjectBypId" resultType="com.epms.entity.Project">
-        SELECT pid, pname, pcreatedate, penddate, pType, cid, pmodelmanagerid,
-         pmodelstaff, prendermanagerid, prenderstaff, paftermanagerid, pafterstaff,
-         pperiodstatus, pprojectstatus, pfileurl, pmodelwage, prenderwage, pafterwage
-         FROM project WHERE pId=#{pId}  ORDER BY pCreateDate
+        SELECT pid,
+               pname,
+               pcreatedate,
+               penddate,
+               pType,
+               cid,
+               pmodelmanagerid,
+               pmodelstaff,
+               prendermanagerid,
+               prenderstaff,
+               paftermanagerid,
+               pafterstaff,
+               pperiodstatus,
+               pprojectstatus,
+               pfileurl,
+               pmodelwage,
+               prenderwage,
+               pafterwage
+        FROM project
+        WHERE pId = #{pId}
+        ORDER BY pCreateDate
     </select>
     <select id="generateFile" parameterType="string" resultType="int">
-        SELECT * INTO OUTFILE #{path} FIELDS TERMINATED BY ','
-        CHARACTER SET gbk  LINES TERMINATED BY '\n' FROM (SELECT 'pId','pName','pCreateDate',
-        'pEndDate','pType','cId','pModelManagerId','pRenderManagerId','pAfterManagerId','pPeriodStatus','pProjectStatus',
-        'pFileUrl','pModelWage','pRenderWage','pAfterWage' UNION SELECT
-        pId, pName, pCreateDate, pEndDate, pType, cId, pModelManagerId,
-        pRenderManagerId, pAfterManagerId, pPeriodStatus, pProjectStatus,pFileUrl,
-        pModelWage, pRenderWage, pAfterWage from project) b
+        SELECT *
+        INTO OUTFILE #{path} CHARACTER
+        SET 'gbk' FIELDS TERMINATED BY ','
+            LINES TERMINATED BY '\n'
+        FROM (SELECT 'pId',
+                     'pName',
+                     'pCreateDate',
+                     'pEndDate',
+                     'pType',
+                     'cId',
+                     'pModelManagerId',
+                     'pRenderManagerId',
+                     'pAfterManagerId',
+                     'pPeriodStatus',
+                     'pProjectStatus',
+                     'pFileUrl',
+                     'pModelWage',
+                     'pRenderWage',
+                     'pAfterWage'
+              UNION
+              SELECT pId,
+                     pName,
+                     pCreateDate,
+                     pEndDate,
+                     pType,
+                     cId,
+                     pModelManagerId,
+                     pRenderManagerId,
+                     pAfterManagerId,
+                     pPeriodStatus,
+                     pProjectStatus,
+                     pFileUrl,
+                     pModelWage,
+                     pRenderWage,
+                     pAfterWage
+              from project) b
     </select>
 
     <select id="queryProjectBycId" resultType="com.epms.entity.Project">
-        SELECT pid, pname, pcreatedate, penddate, pType, cid, pmodelmanagerid,
-         pmodelstaff, prendermanagerid, prenderstaff, paftermanagerid, pafterstaff,
-         pperiodstatus, pprojectstatus, pfileurl, pmodelwage, prenderwage, pafterwage
-         FROM project WHERE cId=#{cId}  ORDER BY pCreateDate
+        SELECT pid,
+               pname,
+               pcreatedate,
+               penddate,
+               pType,
+               cid,
+               pmodelmanagerid,
+               pmodelstaff,
+               prendermanagerid,
+               prenderstaff,
+               paftermanagerid,
+               pafterstaff,
+               pperiodstatus,
+               pprojectstatus,
+               pfileurl,
+               pmodelwage,
+               prenderwage,
+               pafterwage
+        FROM project
+        WHERE cId = #{cId}
+        ORDER BY pCreateDate
     </select>
 
     <select id="queryAllProjects" resultType="com.epms.entity.Project">
-        SELECT  pid, pname, pcreatedate, penddate, pType, cid, pmodelmanagerid,
-         pmodelstaff, prendermanagerid, prenderstaff, paftermanagerid, pafterstaff,
-         pperiodstatus, pprojectstatus, pfileurl, pmodelwage, prenderwage, pafterwage
-         FROM project ORDER BY pCreateDate
+        SELECT pid,
+               pname,
+               pcreatedate,
+               penddate,
+               pType,
+               cid,
+               pmodelmanagerid,
+               pmodelstaff,
+               prendermanagerid,
+               prenderstaff,
+               paftermanagerid,
+               pafterstaff,
+               pperiodstatus,
+               pprojectstatus,
+               pfileurl,
+               pmodelwage,
+               prenderwage,
+               pafterwage
+        FROM project
+        ORDER BY pCreateDate
     </select>
 
     <select id="getProjectFile" resultType="string">
-        SELECT  pFileUrl
-         FROM project where pId=#{pId}
+        SELECT pFileUrl
+        FROM project
+        where pId = #{pId}
     </select>
 </mapper>
