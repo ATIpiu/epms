@@ -54,8 +54,7 @@ public class ManagerController {
                                      @RequestParam("type") int type,
                                      @RequestParam(value = "page", required = false, defaultValue = "1") int page,
                                      @RequestParam(value = "pageSize", required = false, defaultValue = "20") int pageSize) throws SignatureException {
-        List<Salary> salaryList= (List<Salary>) salaryService.ManagerGetSalaryList(type, pId, page, pageSize).getData().get("salaryList");
-        return staffService.managerGetOwnProjectStaff(pId, type, page, pageSize).data("salaryList",salaryList);
+        return staffService.managerGetOwnProjectStaff(pId, type, page, pageSize);
     }
 
     @RequestMapping("/getOwnProject")

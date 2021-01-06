@@ -369,7 +369,7 @@
 **无返回参数，若请求成功则下载文件**
 ####13:主管获取可以选的列表
 
-**URL**:http://localhost:8080/frontDesk/getChoose
+**URL**:http://localhost:8080/admin/getChoose
 
 **传入参数列表**：
 

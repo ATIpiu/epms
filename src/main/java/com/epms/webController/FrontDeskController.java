@@ -63,20 +63,6 @@ public class FrontDeskController {
     public Result addClient(Client client){
         return clientService.addClient(client);
     }
-    @ResponseBody
-    @RequestMapping(value = "/getChoose",method = RequestMethod.POST)
-    public Result getChoose(){
-        try {
-            List<Client> clientList= (List<Client>) clientService.getAllClients(1,20).getData().get("clientList");
-            List<Staff> staffList= (List<Staff>) staffService.getAllStaffs(1,20).getData().get("staffList");
-            Map<String,Object> map=new HashMap<String,Object>();
-            map.put("staffList",staffList);
-            map.put("clientList",clientList);
-            return Result.ok().data(map);
-        }catch ( Exception e){
-            return Result.error().message(e.toString());
-        }
 
-    }
 
 }

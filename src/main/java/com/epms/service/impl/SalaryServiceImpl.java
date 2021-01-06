@@ -66,7 +66,7 @@ public class SalaryServiceImpl implements SalaryService {
            }
            List<Salary> results1 = new ArrayList<Salary>();
            for(int i=(page-1)*pageSize;i<page*pageSize&&i<result.size();i++){
-               results1.add(results1.get(i));
+               results1.add(result.get(i));
            }
            return Result.ok().data("salaryList", results1);
        }catch (Exception e){
