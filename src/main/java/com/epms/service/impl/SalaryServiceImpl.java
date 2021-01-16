@@ -4,7 +4,7 @@ import com.epms.dao.projectDao.ProjectDao;
 import com.epms.dao.salaryDao.SalaryDao;
 import com.epms.dao.staffDao.StaffDao;
 import com.epms.entity.Salary;
-import com.epms.entity.Staff;
+import com.epms.entity.UploadFileLog;
 import com.epms.service.SalaryService;
 import com.epms.utils.result.Result;
 import org.springframework.dao.DuplicateKeyException;
@@ -24,11 +24,6 @@ public class SalaryServiceImpl implements SalaryService {
         this.staffDao = staffDao;
     }
 
-    @Override
-    public Result staffGetProjectBonus(int sId) {
-
-        return null;
-    }
 
     @Override
     public Result EvaluateQuality(List<Salary> salaryList) {
@@ -82,6 +77,36 @@ public class SalaryServiceImpl implements SalaryService {
             System.err.println(e.toString());
             return null;
         }
+    }
+
+    @Override
+    public Result getAllSalary(int page, int pageSize) {
+        try {
+            List<Salary> salaryList=salaryDao.queryAllSalaries();
+            List<Salary> results = new ArrayList<>();
+            for(int i=(page-1)*pageSize;i<page*pageSize&&i<salaryList.size();i++){
+                results.add(salaryList.get(i));
+            }
+            return Result.ok().message("查询成功").data("salaryList",results);
+        }
+        catch (Exception e){
+            System.err.println(e.toString());
+            return Result.error().message(e.toString());
+        }
+    }
+
+
+
+    @Override
+    public Result updateSalary(Salary salary) {
+        try{
+            salaryDao.updateSalary(salary);
+            return Result.ok();
+        }catch (Exception e){
+            System.err.println(e.toString());
+            return Result.error().message(e.toString());
+        }
+
     }
 
 }

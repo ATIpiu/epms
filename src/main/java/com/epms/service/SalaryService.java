@@ -6,7 +6,6 @@ import com.epms.utils.result.Result;
 import java.util.List;
 
 public interface SalaryService {
-    Result staffGetProjectBonus(int sId);
 
     /**
      * 主管给自己的项目员工打分，或者管理员给主管项目完成情况打分
@@ -28,4 +27,16 @@ public interface SalaryService {
      * @return
      */
     String exportCsv(String url);
+
+    /**
+     *获取所有的绩效记录
+     * @return
+     */
+    Result getAllSalary(int page,int pageSize);
+
+    /**
+     * 修改绩效记录
+     * @return
+     */
+    Result updateSalary(Salary salary);
 }

@@ -23,13 +23,15 @@ public class DownloadController {
     private final ClientService clientService;
     private final CommitLogService commitLogService;
     private final SalaryService salaryService;
+    private final WageService wageService;
 
-    public DownloadController(ProjectService projectService, StaffService staffService, ClientService clientService, CommitLogService commitLogService, SalaryService salaryService) {
+    public DownloadController(ProjectService projectService, StaffService staffService, ClientService clientService, CommitLogService commitLogService, SalaryService salaryService, WageService wageService) {
         this.projectService = projectService;
         this.staffService = staffService;
         this.clientService = clientService;
         this.commitLogService = commitLogService;
         this.salaryService = salaryService;
+        this.wageService = wageService;
     }
 
     @RequestMapping("/projectFile")
@@ -94,6 +96,14 @@ public class DownloadController {
         String downLoadPath = "/Epms/tmp/salary"+timestamp+".csv";
         System.out.println(downLoadPath);
         if(salaryService.exportCsv(downLoadPath)!=null)
+            return getResponseEntity(downLoadPath);
+        else return null;
+    }
+    @RequestMapping("/wageCsv")
+    public ResponseEntity<byte[]> wageCsv(@RequestParam("timestamp") String timestamp) throws IOException {
+        String downLoadPath = "/Epms/tmp/salary"+timestamp+".csv";
+        System.out.println(downLoadPath);
+        if(wageService.exportCsv(downLoadPath)!=null)
             return getResponseEntity(downLoadPath);
         else return null;
     }

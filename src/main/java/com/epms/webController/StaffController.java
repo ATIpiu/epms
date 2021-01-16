@@ -1,11 +1,11 @@
 package com.epms.webController;
 
-import com.alibaba.fastjson.JSONObject;
 import com.epms.entity.CommitLog;
 import com.epms.entity.Staff;
 import com.epms.service.CommitLogService;
 import com.epms.service.ProjectService;
 import com.epms.service.StaffService;
+import com.epms.service.WageService;
 import com.epms.utils.exception.SignatureException;
 import com.epms.utils.result.Result;
 import org.springframework.web.bind.annotation.*;
@@ -20,11 +20,13 @@ public class StaffController {
     private final ProjectService projectService;
     private final StaffService staffService;
     private final CommitLogService commitLogService;
+    private final WageService wageService;
 
-    public StaffController(ProjectService projectService, StaffService staffService, CommitLogService commitLogService) {
+    public StaffController(ProjectService projectService, StaffService staffService, CommitLogService commitLogService, WageService wageService) {
         this.projectService = projectService;
         this.staffService = staffService;
         this.commitLogService = commitLogService;
+        this.wageService = wageService;
     }
 
     @RequestMapping("/getOwnProject")
@@ -54,6 +56,13 @@ public class StaffController {
                                @RequestParam(value = "page", required = false, defaultValue = "1") int page,
                                @RequestParam(value = "pageSize", required = false, defaultValue = "20") int pageSize) throws SignatureException {
         return commitLogService.staffGetOwnCommitLog(sId, page, pageSize);
+    }
+
+    @RequestMapping(value = "/getWage")
+    public Result getWage(@RequestParam("sId") int sId,
+                               @RequestParam(value = "page", required = false, defaultValue = "1") int page,
+                               @RequestParam(value = "pageSize", required = false, defaultValue = "20") int pageSize) throws SignatureException {
+        return wageService.staffGetOwnWage(sId,page,pageSize);
     }
 
 }

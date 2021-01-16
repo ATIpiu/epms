@@ -77,4 +77,12 @@ public interface StaffDao {
      * @return
      */
     Integer generateFile(String url);
+
+
+    /**
+     *获取员工基本工资
+     * @param sId
+     * @return 返回员工类型
+     */
+    int getBaseWage(int sId);
 }

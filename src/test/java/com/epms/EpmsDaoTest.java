@@ -1,5 +1,6 @@
 package com.epms;
 
+import com.epms.dao.WageDao.WageDao;
 import com.epms.dao.clientDao.ClientDao;
 import com.epms.dao.commitLogDao.CommitLogDao;
 import com.epms.dao.projectDao.ProjectDao;
@@ -326,5 +327,13 @@ public class EpmsDaoTest {
 //        System.out.println(projectService.getAllProject(1,20));
     }
 
+    @Test
+    public void WageDaoTest(){
+        ApplicationContext ctx = SpringUtil.getApplicationContext();
+        WageDao wageDao= (WageDao) ctx.getBean("wageDao");
+        Wage wage=new Wage(10000002,new Timestamp(new Date().getTime()),10000,10000,-100);
+        wageDao.insertIntoWage(wage);
+        System.out.println(wageDao.queryAllWage());
+    }
 
 }

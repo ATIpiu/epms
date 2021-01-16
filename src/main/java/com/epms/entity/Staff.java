@@ -10,6 +10,31 @@ public class Staff {
     String sTel;
     String sUsername;
     String sPwd;
+    Double baseWage;
+
+    @Override
+    public String toString() {
+        return "Staff{" +
+                "sName='" + sName + '\'' +
+                ", sId=" + sId +
+                ", sType=" + sType +
+                ", sSex='" + sSex + '\'' +
+                ", sIdNumber='" + sIdNumber + '\'' +
+                ", sAddress='" + sAddress + '\'' +
+                ", sTel='" + sTel + '\'' +
+                ", sUsername='" + sUsername + '\'' +
+                ", sPwd='" + sPwd + '\'' +
+                ", baseWage=" + baseWage +
+                '}';
+    }
+
+    public Double getBaseWage() {
+        return baseWage;
+    }
+
+    public void setBaseWage(Double baseWage) {
+        this.baseWage = baseWage;
+    }
 
     public Staff(){}
     public Staff(String sName, Integer sId, Integer sType, String sSex,
@@ -98,17 +123,4 @@ public class Staff {
         this.sPwd = sPwd;
     }
 
-    @Override
-    public String toString() {
-        return "Staff{" +
-                "sName='" + sName + '\'' +
-                ", sId=" + sId +
-                ", sType=" + sType +
-                ", sSex='" + sSex + '\'' +
-                ", sIdNumber='" + sIdNumber + '\'' +
-                ", sAddress='" + sAddress + '\'' +
-                ", sTel='" + sTel + '\'' +
-                ", sUsername='" + sUsername + '\'' +
-                '}';
-    }
 }

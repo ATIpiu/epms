@@ -129,5 +129,11 @@ public class EpmsServiceTest {
         int[] sIds={10000005,10000006};
         System.out.println(selectProjectService.managerDistributeStaff(10001,sIds));
     }
+    @Test
+    public void WageServiceTest() {
+        ApplicationContext ctx = SpringUtil.getApplicationContext();
+        WageService wageService=(WageService)ctx.getBean("wageServiceImpl");
+        System.out.println(wageService.generateMonthlyWage());
+    }
 }
 

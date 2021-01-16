@@ -18,8 +18,8 @@
 
     <insert id="insertIntoStaff" parameterType="com.epms.entity.Staff"
             useGeneratedKeys="true" keyProperty="sId" keyColumn="sId">
-        INSERT INTO staff(sName, sId, sType, sSex, sIdNumber, sAddress, sTel, sUsername, sPwd)
-        VALUES (#{sName}, #{sId}, #{sType}, #{sSex}, #{sIdNumber}, #{sAddress}, #{sTel}, #{sUsername}, #{sPwd})
+        INSERT INTO staff(sName, sId, sType, sSex, sIdNumber, sAddress, sTel, sUsername, sPwd,baseWage)
+        VALUES (#{sName}, #{sId}, #{sType}, #{sSex}, #{sIdNumber}, #{sAddress}, #{sTel}, #{sUsername}, #{sPwd}, #{baseWage})
     </insert>
 
     <select id="queryStaffByUserName" resultType="com.epms.entity.Staff">
@@ -61,6 +61,7 @@
             <if test="sTel!=null">sTel=#{sTel},</if>
             <if test="sUsername!=null">sUsername=#{sUsername},</if>
             <if test="sPwd!=null">sPwd=#{sPwd}</if>
+            <if test="baseWage!=0">baseWage=#{baseWage}</if>
         </set>
         WHERE sId=#{sId}
     </update>
@@ -70,6 +71,13 @@
         FROM staff
         WHERE sId = #{sId}
     </select>
+
+    <select id="getBaseWage" resultType="int">
+        SELECT baseWage
+        FROM staff
+        WHERE sId = #{sId}
+    </select>
+
     <select id="generateFile" parameterType="string" resultType="int">
         SELECT *
         INTO OUTFILE #{path} CHARACTER
@@ -93,6 +101,7 @@
                      sUsername
               from staff) b
     </select>
+
     <select id="managerGetOwnProjectStaff" resultType="com.epms.entity.Staff">
         SELECT sName, sId, sType, sSex, sIdNumber, sAddress, sTel, sUsername, sPwd
         FROM staff

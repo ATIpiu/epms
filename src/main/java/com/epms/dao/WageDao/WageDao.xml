@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.epms.dao.WageDao.WageDao">
+    <insert id="insertIntoWage" parameterType="com.epms.entity.Wage"
+            useGeneratedKeys="true">
+        INSERT INTO wage(sId, salaryMonth, projectBonus, baseSalary, checkOn, sum)
+        VALUES (#{sId}, #{salaryMonth}, #{projectBonus}, #{baseSalary}, #{checkOn}, #{sum})
+    </insert>
+
+    <update id="updateWage" parameterType="com.epms.entity.Wage">
+        UPDATE wage
+        <set>
+            projectBonus=#{projectBonus},
+            <if test="baseSalary!=0">baseSalary=#{baseSalary},</if>
+            checkOn=#{checkOn},
+            <if test="sum!=null">sum=#{sum}</if>
+        </set>
+        WHERE sId=#{sId} AND salaryMonth=#{salaryMonth}
+    </update>
+
+    <select id="queryWageBysSalaryMonth" resultType="com.epms.entity.Wage" parameterType="int">
+        SELECT sId, salaryMonth, projectBonus, baseSalary, checkOn
+        FROM wage
+        WHERE salaryMonth = #{salaryMonth}
+    </select>
+
+    <select id="queryWageBysId" resultType="com.epms.entity.Wage" parameterType="int">
+        SELECT sId, salaryMonth, projectBonus, baseSalary, checkOn
+        FROM wage
+        WHERE sId = #{sId}
+    </select>
+
+    <select id="queryAllWage" resultType="com.epms.entity.Wage">
+        SELECT sId, salaryMonth, projectBonus, baseSalary, checkOn
+        FROM wage
+    </select>
+
+    <select id="generateFile" parameterType="string" resultType="int">
+        SELECT *
+        INTO OUTFILE #{path} CHARACTER
+        SET 'gbk' FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n'
+        FROM (SELECT 'sId',
+                     'salaryMonth',
+                     'projectBonus',
+                     'baseSalary',
+                     'checkOn',
+                     'sum',
+
+              UNION
+              SELECT sId, salaryMonth, projectBonus, baseSalary, checkOn, sum
+              from wage) b
+    </select>
+
+
+</mapper>
