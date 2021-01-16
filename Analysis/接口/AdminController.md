@@ -1,4 +1,4 @@
-### Admin:管理员接口（其它别的地方有的接口就不写了）
+### admin:管理员接口（其它别的地方有的接口就不写了）
 
 #### 1：打印报表：应该看得懂吧每个Url是啥
 
@@ -19,7 +19,7 @@
 **返回参数列表**:无返回参数，成功即下载文件
 #### 2：管理员获取所有项目信息
 
-**URL**:http://localhost:8080/Admin/getAllProject
+**URL**:http://localhost:8080/admin/getAllProject
 
 **传入参数列表**：
 
@@ -38,7 +38,7 @@
 | projectList | 成功则返回所有的项目列表 |
 #### 3：管理员修改项目信息
 
-**URL**:http://localhost:8080/Admin/updateProject
+**URL**:http://localhost:8080/admin/updateProject
 
 **传入参数列表**：
 
@@ -55,7 +55,7 @@
 | message     | 此次请求的信息 |
 #### 4：管理员获取所有绩效信息
 
-**URL**:http://localhost:8080/Admin/getAllSalary
+**URL**:http://localhost:8080/admin/getAllSalary
 
 **传入参数列表**：
 
@@ -74,7 +74,7 @@
 | salaryList | 成功则返回所有的工资列表 |
 #### 5：管理员修改项目信息
 
-**URL**:http://localhost:8080/Admin/updateSalary
+**URL**:http://localhost:8080/admin/updateSalary
 
 **传入参数列表**：
 
@@ -92,7 +92,7 @@
 
 #### 6：管理员获取所有工资记录
 
-**URL**:http://localhost:8080/Admin/getAllWage
+**URL**:http://localhost:8080/admin/getAllWage
 
 **传入参数列表**：
 
@@ -111,7 +111,7 @@
 | wageList | 成功则返回所有的工资 |
 #### 7：管理员修改工资
 
-**URL**:http://localhost:8080/Admin/updateWage
+**URL**:http://localhost:8080/admin/updateWage
 
 **传入参数列表**：
 
@@ -128,7 +128,7 @@
 | message     | 此次请求的信息 |
 #### 8：管理员获取所有工资记录
 
-**URL**:http://localhost:8080/Admin/getAllUploadFileLog
+**URL**:http://localhost:8080/admin/getAllUploadFileLog
 
 **传入参数列表**：
 
