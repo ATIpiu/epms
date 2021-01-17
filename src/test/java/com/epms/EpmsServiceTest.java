@@ -43,7 +43,7 @@ public class EpmsServiceTest {
         ApplicationContext ctx = SpringUtil.getApplicationContext();
         StaffService staffService = (StaffService) ctx.getBean("staffServiceImpl");
 //        查询全部测试
-        System.out.println(staffService.getAllStaffs(2, 20));
+        System.out.println(staffService.getAllStaffs(1, 20));
         //插入测试
 //        Staff s=new Staff("Test5",10000005,5,"male","12345678901","chongqing","15730680467","ATIpiu5","atipiu");
 //        System.out.println(staffService.addStaff(s));

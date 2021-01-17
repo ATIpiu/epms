@@ -64,5 +64,15 @@ public class StaffController {
                                @RequestParam(value = "pageSize", required = false, defaultValue = "20") int pageSize) throws SignatureException {
         return wageService.staffGetOwnWage(sId,page,pageSize);
     }
-
+    @RequestMapping(value = "/monitorLogin")
+    public String  monitorLogin(@RequestParam("userName") String userName,
+                               @RequestParam("password") String password,
+                                @RequestParam("ip") String ip) throws SignatureException {
+            return staffService.monitorLogin(userName, password,ip);
+    }
+    @RequestMapping(value = "/updateWorkTime")
+    public String  updateWorkTime(@RequestParam("userName") String userName,
+                                @RequestParam("workTime") double workTime) throws SignatureException {
+        return staffService.updateWorkTime(userName,workTime);
+    }
 }

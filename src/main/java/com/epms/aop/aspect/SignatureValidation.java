@@ -64,9 +64,9 @@ public class SignatureValidation {
         }
         long now = System.currentTimeMillis();
         long time = Long.parseLong(timestamp);
-        if (now - time > MAX_REQUEST) {
-            return false;
-        }
+//        if (now - time > MAX_REQUEST) {
+//            return false;
+//        }
         String crypt = DigestUtils.md5Hex(SECRET+ timestamp);
         return StringUtils.equals(crypt, token);
     }

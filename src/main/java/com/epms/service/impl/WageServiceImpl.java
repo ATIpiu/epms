@@ -11,22 +11,27 @@ import com.epms.service.WageService;
 import com.epms.utils.result.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Service
+@Transactional
 public class WageServiceImpl implements WageService {
-    @Autowired
-    private WageDao wageDao;
-    @Autowired
-    private StaffDao staffDao;
-    @Autowired
-    private SalaryDao salaryDao;
-    @Autowired
-    private ProjectDao projectDao;
+    private final WageDao wageDao;
+    private final StaffDao staffDao;
+    private final SalaryDao salaryDao;
+    private final ProjectDao projectDao;
+
+    public WageServiceImpl(WageDao wageDao, StaffDao staffDao, SalaryDao salaryDao, ProjectDao projectDao) {
+        this.wageDao = wageDao;
+        this.staffDao = staffDao;
+        this.salaryDao = salaryDao;
+        this.projectDao = projectDao;
+    }
 
     @Override
     public Result staffGetOwnWage(int sId, int page, int pageSize) {
@@ -68,14 +73,14 @@ public class WageServiceImpl implements WageService {
     @Override
     public Result generateMonthlyWage() {
         List<Staff> staffList=staffDao.queryAllStaffs();
-        Timestamp timestamp=new Timestamp(new Date().getTime());
+        Date date=new java.sql.Date(System.currentTimeMillis());
         for (Staff staff:staffList
              ) {
             System.out.println(staff.getsName());
             double bonus=this.staffGetProjectBonus(staff.getsId());
             double base=staffDao.getBaseWage(staff.getsId());
             double checkOn=100.0;
-            Wage wage=new Wage(staff.getsId(),timestamp,bonus,base, checkOn);
+            Wage wage=new Wage(staff.getsId(),date,bonus,base, checkOn);
             wageDao.insertIntoWage(wage);
         }
         return Result.ok();

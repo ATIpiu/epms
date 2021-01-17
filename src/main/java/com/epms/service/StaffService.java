@@ -12,6 +12,21 @@ public interface StaffService {
     Result Login(String userName, String password);
 
     /**
+     * 电脑登录监视器
+     * @param userName
+     * @param password
+     * @param ip
+     * @return
+     */
+    String monitorLogin(String userName, String password,String ip);
+
+    /**
+     * 更新工作时间
+     * @param userName
+     * @return
+     */
+    String updateWorkTime(String userName,double workTime);
+    /**
      * @param id
      * @return 成功返回对应对象，失败返回错误原因
      */

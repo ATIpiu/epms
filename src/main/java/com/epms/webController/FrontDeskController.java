@@ -37,6 +37,7 @@ public class FrontDeskController {
                             @RequestParam(value = "pageSize", required = false, defaultValue = "20") int pageSize) throws SignatureException {
         if (key != "")
             return staffService.getAllStaffs(page, pageSize);
+
         else return staffService.queryStaffByKeyword(key, page, pageSize);
     }
 

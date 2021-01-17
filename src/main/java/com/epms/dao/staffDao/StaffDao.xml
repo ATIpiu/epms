@@ -12,7 +12,8 @@
                sAddress,
                sTel,
                sUsername,
-               sPwd
+               sPwd,
+               baseWage
         FROM staff
     </select>
 
@@ -31,7 +32,8 @@
                sAddress,
                sTel,
                sUsername,
-               sPwd
+               sPwd,
+               baseWage
         FROM staff
         WHERE sUsername = #{sUserName}
     </select>
@@ -45,7 +47,8 @@
                sAddress,
                sTel,
                sUsername,
-               sPwd
+               sPwd,
+               baseWage
         FROM staff
         WHERE sId = #{sId}
     </select>
@@ -60,8 +63,8 @@
             <if test="sAddress!=null">sAddress=#{sAddress},</if>
             <if test="sTel!=null">sTel=#{sTel},</if>
             <if test="sUsername!=null">sUsername=#{sUsername},</if>
-            <if test="sPwd!=null">sPwd=#{sPwd}</if>
-            <if test="baseWage!=0">baseWage=#{baseWage}</if>
+            <if test="sPwd!=null">sPwd=#{sPwd},</if>
+            <if test="baseWage!=null">baseWage=#{baseWage}</if>
         </set>
         WHERE sId=#{sId}
     </update>
@@ -103,7 +106,7 @@
     </select>
 
     <select id="managerGetOwnProjectStaff" resultType="com.epms.entity.Staff">
-        SELECT sName, sId, sType, sSex, sIdNumber, sAddress, sTel, sUsername, sPwd
+        SELECT sName, sId, sType, sSex, sIdNumber, sAddress, sTel, sUsername, sPwd,baseWage
         FROM staff
         WHERE sId IN (select selectproject.sId FROM selectproject where selectproject.pId=#{pId})
         AND
@@ -120,14 +123,15 @@
                sAddress,
                sTel,
                sUsername,
-               sPwd
+               sPwd,
+               baseWage
         From staff
         WHERE CONCAT_WS(`sName`, `sId`, `sType`, `sSex`, `sIdNumber`, `sAddress`, `sTel`, `sUsername`)
                   like CONCAT('%', #{keyWord}, '%')
     </select>
 
     <select id="managerGetOwnStaff" resultType="com.epms.entity.Staff">
-        SELECT sName, sId, sType, sSex, sIdNumber, sAddress, sTel, sUsername, sPwd
+        SELECT sName, sId, sType, sSex, sIdNumber, sAddress, sTel, sUsername, sPwd,baseWage
         FROM staff
         WHERE 1=1 And
         <if test="type!=11">sType=#{type}+3 OR sType=#{type}+6</if>

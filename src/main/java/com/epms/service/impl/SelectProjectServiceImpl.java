@@ -10,10 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
 
 @Service
+@Transactional
 public class SelectProjectServiceImpl implements SelectProjectService {
     private final SelectProjectDao selectProjectDao;
     private final SalaryDao salaryDao;

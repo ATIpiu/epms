@@ -1,16 +1,17 @@
 package com.epms.entity;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 public class Wage {
     private int sId;
-    private Timestamp salaryMonth;
+    private Date salaryMonth;
     private double projectBonus;
     private double baseSalary;
     private double checkOn;
     private double sum;
 
-    public Wage(int sId, Timestamp salaryMonth, double projectBonus, double baseSalary, double checkOn) {
+    public Wage(int sId, Date salaryMonth, double projectBonus, double baseSalary, double checkOn) {
         this.sId = sId;
         this.salaryMonth = salaryMonth;
         this.projectBonus = projectBonus;
@@ -47,11 +48,11 @@ public class Wage {
         this.sId = sId;
     }
 
-    public Timestamp getSalaryMonth() {
+    public Date getSalaryMonth() {
         return salaryMonth;
     }
 
-    public void setSalaryMonth(Timestamp salaryMonth) {
+    public void setSalaryMonth(Date salaryMonth) {
         this.salaryMonth = salaryMonth;
     }
 

@@ -1,5 +1,6 @@
 package com.epms;
 
+import com.epms.dao.CheckOnDao.CheckOnDao;
 import com.epms.dao.WageDao.WageDao;
 import com.epms.dao.clientDao.ClientDao;
 import com.epms.dao.commitLogDao.CommitLogDao;
@@ -234,12 +235,12 @@ public class EpmsDaoTest {
         ApplicationContext ctx = SpringUtil.getApplicationContext();
         StaffDao staffDao = (StaffDao) ctx.getBean("staffDao");
         //查询全部测试
-//        List<Staff> staffs=staffDao.queryAllStaffs();
-//        for (Staff staff:staffs){
-//            System.out.println(staff);
-//        }
+        List<Staff> staffs=staffDao.queryAllStaffs();
+        for (Staff staff:staffs){
+            System.out.println(staff);
+        }
         //插入测试
-        Staff s=new Staff("Test2",10000002,1,"male","12345678901","chongqing","15730680467","ATIpiu","atipiu");
+//        Staff s=new Staff("Test2",10000002,1,"male","12345678901","chongqing","15730680467","ATIpiu","atipiu");
 //        System.out.println(staffDao.insertIntoStaff(s));
         //按sId查询测试
 //        Staff s=new Staff("Test2",10000002,1,"male","12345678901","chongqing","15730680467","ATIpiu","atipiu");
@@ -331,9 +332,13 @@ public class EpmsDaoTest {
     public void WageDaoTest(){
         ApplicationContext ctx = SpringUtil.getApplicationContext();
         WageDao wageDao= (WageDao) ctx.getBean("wageDao");
-        Wage wage=new Wage(10000002,new Timestamp(new Date().getTime()),10000,10000,-100);
+        Wage wage=new Wage(10000002,new java.sql.Date(System.currentTimeMillis()),10000,10000,-100);
         wageDao.insertIntoWage(wage);
         System.out.println(wageDao.queryAllWage());
     }
-
+    @Test
+    public void CheckDaoTest() {
+        ApplicationContext ctx = SpringUtil.getApplicationContext();
+        CheckOnDao checkOnDao = (CheckOnDao) ctx.getBean("checkOnDao");
+    }
 }

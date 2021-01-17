@@ -49,6 +49,7 @@ public class Staff {
         this.sTel = sTel;
         this.sUsername = sUsername;
         this.sPwd = sPwd;
+        this.baseWage=0.0;
     }
 
     public String getsName() {

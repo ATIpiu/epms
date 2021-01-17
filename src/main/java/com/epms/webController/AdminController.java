@@ -4,24 +4,28 @@ import com.epms.entity.*;
 import com.epms.service.*;
 import com.epms.utils.exception.SignatureException;
 import com.epms.utils.result.Result;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
 @RestController
 @CrossOrigin
-@RequestMapping(value = "/Admin")
+@RequestMapping(value = "/admin")
 public class AdminController {
-    @Autowired
-    private AdminService adminService;
-    @Autowired
-    private ProjectService projectService;
-    @Autowired
-    private UploadFileLogService uploadFileLogService;
-    @Autowired
-    private SalaryService  salaryService;
-    @Autowired
-    private WageService wageService;
+    private final AdminService adminService;
+    private final ProjectService projectService;
+    private final UploadFileLogService uploadFileLogService;
+    private final SalaryService  salaryService;
+    private final WageService wageService;
+    private final CommitLogService commitLogService;
+
+    public AdminController(AdminService adminService, ProjectService projectService, UploadFileLogService uploadFileLogService, SalaryService salaryService, WageService wageService, CommitLogService commitLogService) {
+        this.adminService = adminService;
+        this.projectService = projectService;
+        this.uploadFileLogService = uploadFileLogService;
+        this.salaryService = salaryService;
+        this.wageService = wageService;
+        this.commitLogService = commitLogService;
+    }
 
     @ResponseBody
     @RequestMapping(value = "/getChoose")
@@ -62,5 +66,15 @@ public class AdminController {
     @RequestMapping(value = "/updateWage", method = RequestMethod.POST)
     public Result updateWage(Wage wage) {
         return wageService.updateWage(wage);
+    }
+    @RequestMapping(value = "/getAllCommitLog")
+    public Result getAllCommitLog(@RequestParam(value = "page", required = false, defaultValue = "1") int page,
+                             @RequestParam(value = "pageSize", required = false, defaultValue = "20") int pageSize) throws SignatureException {
+        return commitLogService.getAllCommitLog(page,pageSize);
+    }
+    @ResponseBody
+    @RequestMapping(value = "/updateCommitLog", method = RequestMethod.POST)
+    public Result updateCommitLog(CommitLog wage) {
+        return commitLogService.staffUpdateCommitLog(wage);
     }
 }

@@ -16,11 +16,13 @@
         var timestamp = (new Date()).valueOf();
         var token = md5("epms" + timestamp);
         var data={
-            pId:10001,
-            type:2
+
         }
         $.ajax({
-            url: "http://47.92.227.185:8080/admin/getAllWage",
+            url: "http://47.92.227.185:8080/staff/getWage",
+            data:{
+                sId:10000002
+            },
             headers: {
                 token: token,
                 timestamp: timestamp

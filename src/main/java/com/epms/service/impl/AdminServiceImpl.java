@@ -10,16 +10,21 @@ import com.epms.service.UploadFileLogService;
 import com.epms.utils.result.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 @Service
+@Transactional
 public class AdminServiceImpl implements AdminService {
-    @Autowired
-    private StaffDao staffDao;
-    @Autowired
-    private ClientDao clientDao;
+    private final StaffDao staffDao;
+    private final ClientDao clientDao;
+
+    public AdminServiceImpl(StaffDao staffDao, ClientDao clientDao) {
+        this.staffDao = staffDao;
+        this.clientDao = clientDao;
+    }
 
 
     @Override

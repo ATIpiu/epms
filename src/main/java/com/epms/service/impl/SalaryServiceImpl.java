@@ -9,10 +9,12 @@ import com.epms.service.SalaryService;
 import com.epms.utils.result.Result;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 @Service
+@Transactional
 public class SalaryServiceImpl implements SalaryService {
     private final SalaryDao salaryDao;
     private final ProjectDao projectDao;
