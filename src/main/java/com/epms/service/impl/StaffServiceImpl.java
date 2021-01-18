@@ -186,4 +186,23 @@ public class StaffServiceImpl implements StaffService {
             return null;
         }
     }
+
+    @Override
+    public Result getAllCheckOn(int page, int pageSize) {
+        try {
+            List<CheckOn> checkOnList=checkOnDao.getAllCheckOn();
+            List<CheckOn> results=new ArrayList<CheckOn>();
+            for (int i = (page - 1) * pageSize; i < page * pageSize && i < checkOnList.size(); i++) {
+                results.add(checkOnList.get(i));
+            }
+            ArrayList<String> name=new ArrayList<>();
+            for (CheckOn c:checkOnList
+                 ) {
+                name.add(staffDao.queryStaffBysId(c.getsId()).getsName());
+            }
+            return Result.ok().data("checkOnList",results).data("names",name);
+        }catch (Exception e){
+            return Result.error().message("查询错误"+e.toString());
+        }
+    }
 }

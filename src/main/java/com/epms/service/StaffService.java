@@ -86,4 +86,12 @@ public interface StaffService {
      * @return
      */
     String exportCsv(String url);
+
+    /**
+     * 获取所有考勤记录；
+     * @param page
+     * @param pageSize
+     * @return
+     */
+    Result getAllCheckOn(int page,int pageSize);
 }

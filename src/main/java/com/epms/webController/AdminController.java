@@ -17,14 +17,16 @@ public class AdminController {
     private final SalaryService  salaryService;
     private final WageService wageService;
     private final CommitLogService commitLogService;
+    private final StaffService staffService;
 
-    public AdminController(AdminService adminService, ProjectService projectService, UploadFileLogService uploadFileLogService, SalaryService salaryService, WageService wageService, CommitLogService commitLogService) {
+    public AdminController(AdminService adminService, ProjectService projectService, UploadFileLogService uploadFileLogService, SalaryService salaryService, WageService wageService, CommitLogService commitLogService, StaffService staffService) {
         this.adminService = adminService;
         this.projectService = projectService;
         this.uploadFileLogService = uploadFileLogService;
         this.salaryService = salaryService;
         this.wageService = wageService;
         this.commitLogService = commitLogService;
+        this.staffService = staffService;
     }
 
     @ResponseBody
@@ -76,5 +78,10 @@ public class AdminController {
     @RequestMapping(value = "/updateCommitLog", method = RequestMethod.POST)
     public Result updateCommitLog(CommitLog wage) {
         return commitLogService.staffUpdateCommitLog(wage);
+    }
+    @RequestMapping(value = "/getAllCheckOn")
+    public Result getAllCheckOn(@RequestParam(value = "page", required = false, defaultValue = "1") int page,
+                                  @RequestParam(value = "pageSize", required = false, defaultValue = "20") int pageSize) throws SignatureException {
+        return  staffService.getAllCheckOn(page,pageSize);
     }
 }

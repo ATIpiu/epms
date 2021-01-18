@@ -15,4 +15,8 @@
     <update id="updateWorkTime" parameterType="com.epms.entity.CheckOn">
         update checkOn set workTime =workTime+#{workTime} where sId=#{sId} And loginDate=#{loginDate}
     </update>
+    <select id="getAllCheckOn" resultType="com.epms.entity.CheckOn">
+        SELECT loginDate, loginIp, workTime, sId
+        FROM checkOn
+    </select>
 </mapper>
